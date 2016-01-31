@@ -1,0 +1,16 @@
+#grid {
+  border: 1px solid green;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+#grid th {
+  cursor: pointer;
+}
+#grid th:hover {
+  background-color: yellow;
+}
+#grid td,
+#grid th {
+  border: 1px solid green;
+  padding: 5px 5px;
+}
