@@ -1,16 +1,15 @@
 @my-color: green;
 #grid {
   border: 1px solid @my-color;
-  margin: 0 auto;
   border-collapse: collapse;
-  th {
-    cursor: pointer;
-  }
-  th:hover {
-    background-color: yellow;
-  }
   td, th {
     border: 1px solid @my-color;
     padding: 5px 5px;
+  }
+  th {
+    cursor: pointer;
+    &:hover{
+      background-color: yellow;
+    }
   }
 }
