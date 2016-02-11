@@ -1,8 +1,5 @@
 $(document).ready(function() {
 
-    var jsonArray = [];
-    var jsonArrayStart = [];
-
     function GridSort(grid) {
         this.grid = grid;
     }
@@ -19,39 +16,40 @@ $(document).ready(function() {
      * Загрузка JSON-файла
      */
     GridSort.prototype.loadTable = function() {
-        var $grid = $('#grid');
+        var $grid = $(this.grid);
         $.getJSON('index.json', function (data) {
-            $('#grid tbody').html('');
-            jsonArray = [];
+            $grid.find('tbody').html('');
+            this.jsonArray = [];
+            this.jsonLoadSave = [];
             for (var i = 0, dataLength = data.length; i < dataLength; i++) {
                 for (var j = 0; j < data.length; j++) {
                     if (data[i].name === data[j].name) {
                         data[i].count++;
-                    } else if (jsonArray[i] != data[i]) {
-                        jsonArray.push(data[i]);
+                    } else if (this.jsonArray[i] != data[i]) {
+                        this.jsonArray.push(data[i]);
                     }
                 }
             }
-            jsonArrayStart = jsonArray.map(function(object) {
-                return $.extend({}, object);
-            });
             $grid.append('<tbody>');
-            for (var i = 0, jsonArrayLength = jsonArray.length; i < jsonArrayLength; i++) {
-/*                if ($('#checkboxMail').prop('checked') === true) {
+            for (var i = 0, jsonArrayLength = this.jsonArray.length; i < jsonArrayLength; i++) {
+                if ($('#checkboxMail').prop('checked') === true) {
                     if (data[i].typeUrl === '2') {
-                        $grid.append('<tr><td>' + jsonArray[i].date + '</td><td>' + jsonArray[i].name + '</td><td>' + jsonArray[i].count + '</td>' +
-                            '<td>' + jsonArray[i].typeUrl + '</td></tr>');
+                        this.jsonLoadSave.push(this.jsonArray[i]);
+                        $grid.append('<tr><td>' + this.jsonArray[i].date + '</td><td>' + this.jsonArray[i].name + '</td><td>'
+                            + this.jsonArray[i].count + '</td>' + '<td>' + this.jsonArray[i].typeUrl + '</td></tr>');
                     }
                 }
                 if ($('#checkboxOther').prop('checked') === true) {
                     if (data[i].typeUrl === '1') {
-                        $grid.append('<tr><td>' + jsonArray[i].date + '</td><td>' + jsonArray[i].name + '</td><td>' + jsonArray[i].count + '</td>' +
-                            '<td>' + jsonArray[i].typeUrl + '</td></tr>');
+                        this.jsonLoadSave.push(this.jsonArray[i]);
+                        $grid.append('<tr><td>' + this.jsonArray[i].date + '</td><td>' + this.jsonArray[i].name + '</td><td>'
+                            + this.jsonArray[i].count + '</td>' + '<td>' + this.jsonArray[i].typeUrl + '</td></tr>');
                     }
-                }*/
-                $grid.append('<tr><td>' + jsonArray[i].date + '</td><td>' + jsonArray[i].name + '</td><td>' + jsonArray[i].count + '</td>' +
-                    '<td>' + jsonArray[i].typeUrl + '</td></tr>');
+                }
+/*                $grid.append('<tr><td>' + this.jsonArray[i].date + '</td><td>' + this.jsonArray[i].name + '</td><td>' + this.jsonArray[i].count + '</td>' +
+                    '<td>' + this.jsonArray[i].typeUrl + '</td></tr>');*/
             }
+            console.log('->',this.jsonLoadSave);
             $grid.append('</tbody>');
         }.bind(this));
 
@@ -81,11 +79,10 @@ $(document).ready(function() {
         }
         var tbody = this.grid.getElementsByTagName('tbody')[0],
             rowsArray = [].slice.call(tbody.rows),
-            compare,
-            jsonArraySave = [];
-/*            jsonArrayStart = jsonArray.map(function(object) {
+            compare;
+            this.jsonArraySave = this.jsonLoadSave.map(function(object) {
 	            return $.extend({}, object);
-            });*/
+            });
 
 	   /* console.log('>', this.jsonArray);
 	    var map = {};
@@ -130,49 +127,19 @@ $(document).ready(function() {
         /**
          * Сортировка по количеству url (name)
          */
-            case 'name':
-                jsonArrayStart.map(function (elem) {
-		            elem.count=0;
-	            });
-
-
-
-                for (var i = 0, jsonArrayStartLength = jsonArrayStart.length; i < jsonArrayStartLength; i++) {
-                    for (var j = 0; j < jsonArrayStart.length; j++) {
-                        if (jsonArrayStart[i].name === jsonArrayStart[j].name) {
-                            jsonArrayStart[i].count++;
-                        } else if(jsonArraySave[i] != jsonArrayStart[i]){
-                            jsonArraySave.push(jsonArrayStart[i]);
-                        }
-                    }
-                }
-                jsonArraySave.sort(function(a, b){
+            case 'count':
+                this.jsonArraySave.sort(function(a, b){
                     if (a.count > b.count)
                         return -1;
                     if (a.count < b.count)
                         return 1;
                     return 0
                 });
-                console.log('////////////////');
-                for (var i = 0; i < jsonArraySave.length; i++) {
-                    console.log(jsonArraySave[i]);
-                }
-                console.log('--------------');
-                for (var i = 0; i < jsonArray.length; i++) {
-                    console.log(jsonArray[i]);
-                }
-                console.log('////////////////');
-                jsonArraySave.sort(function(a, b) {
-                    return b.count - a.count;
-                });
-                for (var i = 0; i < jsonArraySave.length; i++) {
-                    console.log(jsonArraySave[i]);
-                }
                 this.grid.removeChild(tbody);
-                for (var i = 0; i < jsonArraySave.length; i++) {
-                    $(this.grid).append('<tr><td>' + jsonArraySave[i].date + '</td><td>' + jsonArraySave[i].name + '</td><td>'
-                        + jsonArraySave[i].count + '</td>' +
-                        '<td>' + jsonArraySave[i].typeUrl + '</td></tr>');
+                for (var i = 0; i < this.jsonArraySave.length; i++) {
+                    $(this.grid).append('<tr><td>' + this.jsonArraySave[i].date + '</td><td>' + this.jsonArraySave[i].name + '</td><td>'
+                        + this.jsonArraySave[i].count + '</td>' +
+                        '<td>' + this.jsonArraySave[i].typeUrl + '</td></tr>');
                 }
                 break;
         }
