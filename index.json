@@ -2,65 +2,80 @@
     "date" : "12:42",
     "name": "https://www.habrahabr.ru/",
     "count": 0,
-    "typeUrl": "1"
+    "typeUrl": "other"
   }, {
     "date" : "10:40",
     "name": "https://www.mail.ru/",
     "count": 0,
-    "typeUrl": "2"
+    "typeUrl": "mail"
   }, {
     "date" : "15:23",
     "name": "https://www.yandex.ru/",
     "count": 0,
-    "typeUrl": "2"
+    "typeUrl": "mail"
   }, {
     "date" : "15:23",
     "name": "https://www.yandex.ru/",
     "count": 0,
-    "typeUrl": "1"
+    "typeUrl": "mail"
   }, {
     "date" : "08:30",
     "name": "https://www.gismeteo.ru/",
     "count": 0,
-    "typeUrl": "1"
+    "typeUrl": "other"
   }, {
     "date" : "09:37",
     "name": "https://www.kovalev-denis.ru/",
     "count": 0,
-    "typeUrl": "1"
+    "typeUrl": "other"
   }, {
     "date" : "23:10",
     "name": "https://www.github.com/DenisBMSTU",
     "count": 0,
-    "typeUrl": "1"
+    "typeUrl": "other"
   }, {
     "date" : "06:23",
     "name": "https://www.hh.ru/",
     "count": 0,
-    "typeUrl": "1"
+    "typeUrl": "other"
   }, {
     "date" : "12:10",
     "name": "https://www.habrahabr.ru/",
     "count": 0,
-    "typeUrl": "1"
+    "typeUrl": "other"
   }, {
     "date" : "08:13",
     "name": "https://www.habrahabr.ru/",
     "count": 0,
-    "typeUrl": "1"
+    "typeUrl": "other"
   }, {
     "date" : "17:33",
     "name": "https://www.yandex.ru/",
     "count": 0,
-    "typeUrl": "2"
+    "typeUrl": "mail"
   }, {
     "date" : "08:16",
     "name": "https://www.habrahabr.ru/",
     "count": 0,
-    "typeUrl": "1"
+    "typeUrl": "other"
   }, {
-    "date" : "10:10",
+    "date" : "10:00",
     "name": "https://www.github.com/DenisBMSTU",
     "count": 0,
-    "typeUrl": "1"
-  }]
+    "typeUrl": "other"
+  }, {
+  "date" : "10:22",
+  "name": "https://www.mail.ru/",
+  "count": 0,
+  "typeUrl": "mail"
+}, {
+  "date" : "0:40",
+  "name": "https://www.mail.ru/",
+  "count": 0,
+  "typeUrl": "mail"
+}, {
+  "date" : "0:30",
+  "name": "https://www.mail.ru/",
+  "count": 0,
+  "typeUrl": "mail"
+}]
