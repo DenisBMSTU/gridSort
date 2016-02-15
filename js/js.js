@@ -1,10 +1,5 @@
 $(document).ready(function() {
-    var iOneStart = 0,
-        iOneFin = 0,
-        iTwoStart = 0,
-        iTwoFin = 0,
-        iOne = false,
-        iTwo = false;
+
     function GridSort(grid) {
         this.grid = grid;
     }
