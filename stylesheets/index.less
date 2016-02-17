@@ -13,3 +13,35 @@
     }
   }
 }
+.container {
+  width: 100%;
+  margin: 0 auto;
+  .container__grid {
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid @my-color;
+    &:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden;
+    }
+    .container__category {
+      float: left;
+      padding: 10px;
+/*      border-bottom: 1px solid @my-color;
+      border-right: 1px solid @my-color;
+      margin: -1px;*/
+    }
+    .container__table {
+      float: left;
+      margin-top: -1px;
+      margin-bottom: -1px;
+      .buttonSend {
+        margin-top: 5px;
+      }
+    }
+  }
+}
+

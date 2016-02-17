@@ -50,7 +50,6 @@ $(document).ready(function() {
                 }
             }
         }.bind(this));
-
     };
 
 
@@ -81,32 +80,6 @@ $(document).ready(function() {
             this.jsonArraySave = this.jsonLoadSave.map(function(object) {
 	            return $.extend({}, object);
             });
-
-	   /* console.log('>', this.jsonArray);
-	    var map = {};
-	    this.jsonArray.forEach(function(object) {
-		    console.log('object',object);
-		    var key = JSON.stringify({name: object.name, date: object.date, type: object.typeUrl});
-		    if (map[key]) {
-/!*			    object.forEach(function(item){
-				    if (object.name === item.name) {
-
-				    }
-			    });*!/
-			    map[key] += object.count;
-		    } else {
-			    map[key] = object.count;
-		    }
-	    });
-	    console.log('Object.keys(map)', Object.keys(map));
-	    var result = Object.keys(map).map(function(key) {
-		    /!*return $.extend({count: map[key]}, JSON.parse(key));*!/
-		    var obj = JSON.parse(key);
-		    console.log('obj',obj);
-		    obj.count = map[key];
-		    return obj;
-	    });
-	    console.log('result', result);*/
         switch (typeOfSort) {
         /**
          * Сортировка по дате
@@ -126,14 +99,16 @@ $(document).ready(function() {
          * Сортировка по количеству url (name)
          */
             case 'count':
+                console.log('save',this.jsonArraySave);
                 this.jsonArraySave.sort(function(a, b){
                     if (a.count > b.count)
                         return -1;
                     if (a.count < b.count)
                         return 1;
-                    return 0
+                    return 0;
                 });
-                this.grid.removeChild(tbody);
+                $(this.grid).find('tbody').html('');
+                console.log($(this.grid).find('tbody').html());
                 for (var i = 0; i < this.jsonArraySave.length; i++) {
                     $(this.grid).append('<tr><td>' + this.jsonArraySave[i].date + '</td><td>' + this.jsonArraySave[i].name + '</td><td>'
                         + this.jsonArraySave[i].count + '</td>' +
@@ -147,8 +122,7 @@ $(document).ready(function() {
      * Обработичк события - клик по кнопке 'Загрузить'
      */
     GridSort.prototype.buttonSend = function() {
-        var self = this,
-            i,
+        var i,
             iMailStart = 0,
             iMailFin = 0,
             iOtherStart = 0,

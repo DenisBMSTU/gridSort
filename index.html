@@ -3,28 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Табличка</title>
-    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="stylesheets/index.css"/>
 </head>
 <body>
 <div class="container">
-    <div class="row">
-        <label for="checkboxMail">Почта</label>
-        <input id="checkboxMail" type="checkbox" name="checkboxMail">
-        <label for="checkboxOther">Остальное</label>
-        <input id="checkboxOther" type="checkbox" name="checkboxOther">
-    </div>
-    <div class="row">
-        <table id="grid">
-            <thead><th data-type="data">Дата</th><th data-type="name">Название</th><th data-type="count">Количество</th><th data-type="typeUrl">Тип</th></thead>
-            <tbody></tbody>
-        </table>
+    <div class="container__grid">
+        <div class="container__category">
+            <div class="row_mail">
+                <label for="checkboxMail">Почта</label>
+                <input id="checkboxMail" type="checkbox" name="checkboxMail">
+            </div>
+            <div class="row_other">
+                <label for="checkboxOther">Остальное</label>
+                <input id="checkboxOther" type="checkbox" name="checkboxOther">
+            </div>
+        </div>
+        <div class="container__table">
+            <table id="grid">
+                <thead><th data-type="data">Дата</th><th data-type="name">Название</th><th data-type="count">Количество</th><th data-type="typeUrl">Тип</th></thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
     <button type="button" id="buttonSend">Загрузить 4 строки таблицы</button>
 </div>
 
 <script src="libs/jquery/jquery-1.12.0.min.js"></script>
-<script src="libs/bootstrap/js/bootstrap.min.js"></script>
 <script src="js/js.js"></script>
 </body>
 </html>
