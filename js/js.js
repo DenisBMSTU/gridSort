@@ -11,6 +11,8 @@ $(document).ready(function() {
         this.gridClick();
         this.buttonSend();
         this.loadTable();
+        this.checkBox();
+        this.saveTableData();
     };
 
     /**
@@ -123,89 +125,150 @@ $(document).ready(function() {
      */
     GridSort.prototype.buttonSend = function() {
         var i,
-            iMailStart = 0,
-            iMailFin = 0,
-            iOtherStart = 0,
-            iOtherFin = 0,
+            self = this;
             $grid = $(this.grid),
             $tbody = $grid.find('tbody'),
             buttonSend = document.getElementById('buttonSend');
+
+        this.iMailStart = 0;
+        this.iMailFin = 0;
+        this.iOtherStart = 0;
+        this.iOtherFin = 0;
         buttonSend.onclick = function() {
             if ($('#checkboxOther').prop('checked') === false && $('#checkboxMail').prop('checked') === true) {
-                iMailFin += 4;
-                if (iMailFin > this.jsonTypeMail.length) {
-                    while (iMailFin > this.jsonTypeMail.length) {
-                        iMailFin -= 1;
+                this.iMailFin += 4;
+                if (this.iMailFin > this.jsonTypeMail.length) {
+                    while (this.iMailFin > this.jsonTypeMail.length) {
+                        this.iMailFin -= 1;
                     }
                 }
-                if (iMailStart > this.jsonTypeMail.length) {
-                    while (iMailStart > this.jsonTypeMail.length) {
-                        iMailStart -= 1;
+                if (this.iMailStart > this.jsonTypeMail.length) {
+                    while (this.iMailStart > this.jsonTypeMail.length) {
+                        this.iMailStart -= 1;
                     }
                 }
-                for (i = iMailStart; i < iMailFin; i++) {
+                for (i = this.iMailStart; i < this.iMailFin; i++) {
                     this.jsonLoadSave.push(this.jsonTypeMail[i]);
                     $tbody.append('<tr><td>' + this.jsonTypeMail[i].date + '</td><td>' + this.jsonTypeMail[i].name + '</td><td>'
                         + this.jsonTypeMail[i].count + '</td>' + '<td>' + this.jsonTypeMail[i].typeUrl + '</td></tr>');
                 }
-                iMailStart += 4;
+                this.iMailStart += 4;
             } else if ($('#checkboxMail').prop('checked') === false && $('#checkboxOther').prop('checked') === true) {
-                iOtherFin += 4;
-                if (iOtherFin > this.jsonTypeOther.length) {
-                    while (iOtherFin > this.jsonTypeOther.length) {
-                        iOtherFin -= 1;
+                this.iOtherFin += 4;
+                if (this.iOtherFin > this.jsonTypeOther.length) {
+                    while (this.iOtherFin > this.jsonTypeOther.length) {
+                        this.iOtherFin -= 1;
                     }
                 }
-                if (iOtherStart > this.jsonTypeOther.length) {
-                    while (iOtherStart > this.jsonTypeOther.length) {
-                        iOtherStart -= 1;
+                if (this.iOtherStart > this.jsonTypeOther.length) {
+                    while (this.iOtherStart > this.jsonTypeOther.length) {
+                        this.iOtherStart -= 1;
                     }
                 }
-                for (i = iOtherStart; i < iOtherFin; i++) {
+                for (i = this.iOtherStart; i < this.iOtherFin; i++) {
                     this.jsonLoadSave.push(this.jsonTypeOther[i]);
                     $tbody.append('<tr><td>' + this.jsonTypeOther[i].date + '</td><td>' + this.jsonTypeOther[i].name + '</td><td>'
                         + this.jsonTypeOther[i].count + '</td>' + '<td>' + this.jsonTypeOther[i].typeUrl + '</td></tr>');
                 }
-                iOtherStart += 4;
+                this.iOtherStart += 4;
             } else if ($('#checkboxOther').prop('checked') === true && $('#checkboxMail').prop('checked') === true) {
-                iOtherFin += 2;
-                iMailFin +=2;
-                if (iOtherFin > this.jsonTypeOther.length) {
-                    while (iOtherFin > this.jsonTypeOther.length) {
-                        iOtherFin -= 1;
+                this.iOtherFin += 2;
+                this.iMailFin +=2;
+                if (this.iOtherFin > this.jsonTypeOther.length) {
+                    while (this.iOtherFin > this.jsonTypeOther.length) {
+                        this.iOtherFin -= 1;
                     }
                 }
-                if (iOtherStart > this.jsonTypeOther.length) {
-                    while (iOtherStart > this.jsonTypeOther.length) {
-                        iOtherStart -= 1;
+                if (this.iOtherStart > this.jsonTypeOther.length) {
+                    while (this.iOtherStart > this.jsonTypeOther.length) {
+                        this.iOtherStart -= 1;
                     }
                 }
-                if (iMailFin > this.jsonTypeMail.length) {
-                    while (iMailFin > this.jsonTypeMail.length) {
-                        iMailFin -= 1;
+                if (this.iMailFin > this.jsonTypeMail.length) {
+                    while (this.iMailFin > this.jsonTypeMail.length) {
+                        this.iMailFin -= 1;
                     }
                 }
-                if (iMailStart > this.jsonTypeMail.length) {
-                    while (iMailStart > this.jsonTypeMail.length) {
-                        iMailStart -= 1;
+                if (this.iMailStart > this.jsonTypeMail.length) {
+                    while (this.iMailStart > this.jsonTypeMail.length) {
+                        this.iMailStart -= 1;
                     }
                 }
-                for (i = iMailStart; i < iMailFin; i++) {
+                for (i = this.iMailStart; i < this.iMailFin; i++) {
                     this.jsonLoadSave.push(this.jsonTypeMail[i]);
                     $tbody.append('<tr><td>' + this.jsonTypeMail[i].date + '</td><td>' + this.jsonTypeMail[i].name + '</td><td>'
                         + this.jsonTypeMail[i].count + '</td>' + '<td>' + this.jsonTypeMail[i].typeUrl + '</td></tr>');
                 }
-                for (i = iOtherStart; i < iOtherFin; i++) {
+                for (i = this.iOtherStart; i < this.iOtherFin; i++) {
                     this.jsonLoadSave.push(this.jsonTypeOther[i]);
                     $tbody.append('<tr><td>' + this.jsonTypeOther[i].date + '</td><td>' + this.jsonTypeOther[i].name + '</td><td>'
                         + this.jsonTypeOther[i].count + '</td>' + '<td>' + this.jsonTypeOther[i].typeUrl + '</td></tr>');
                 }
-                iOtherStart += 2;
-                iMailStart +=2;
+                this.iOtherStart += 2;
+                this.iMailStart +=2;
             } else {
                 alert('Выберите, что хотите загрузить!');
             }
+            console.log('this.jsonLoadSave->',this.jsonLoadSave);
         }.bind(this);
+    };
+
+    GridSort.prototype.saveTableData = function() {
+        var self = this,
+            obj = {},
+            arraySaveData = [];
+        $('#buttonSave').on('click', function(){
+            var tbody = self.grid.getElementsByTagName('tbody')[0],
+                rowsArray = [].slice.call(tbody.rows);
+            for (var i = 0; i < rowsArray.length; i++) {
+                /*for (var j = 0; j < rowsArray[i].cells.length; j++){*/
+                obj["date"] = rowsArray[i].cells[0].innerHTML;
+                obj["name"] = rowsArray[i].cells[1].innerHTML;
+                obj["count"] = rowsArray[i].cells[2].innerHTML;
+                obj["typeUrl"] = rowsArray[i].cells[3].innerHTML;
+                    /*arr.push(rowsArray[i].cells[j].innerHTML);*/
+                arraySaveData.push(obj);
+            }
+            /**
+             * arraySaveData - json сохраненных элементов таблицы
+             */
+            console.log(arraySaveData);
+        });
+
+    };
+
+    GridSort.prototype.checkBox = function() {
+        var self = this;
+        $('#checkboxOther').on('click', function(){
+            var tbody = self.grid.getElementsByTagName('tbody')[0],
+                rowsArray = [].slice.call(tbody.rows);
+            if ($('#checkboxOther').prop('checked') === false) {
+                for (var i = 0; i < rowsArray.length; i++) {
+                    if (rowsArray[i].cells[3].innerHTML === 'other') {
+                        tbody.removeChild(rowsArray[i]);
+                        self.iOtherStart = 0;
+                        self.iOtherFin = 0;
+                        for (var j = 0; j < self.jsonArraySave.length; j++) {
+                            /*.......................*/
+                        }
+                    }
+                }
+            }
+        });
+        $('#checkboxMail').on('click', function(){
+            var tbody = self.grid.getElementsByTagName('tbody')[0],
+                rowsArray = [].slice.call(tbody.rows);
+            if ($('#checkboxMail').prop('checked') === false) {
+                for (var i = 0; i < rowsArray.length; i++) {
+                    if (rowsArray[i].cells[3].innerHTML === 'mail') {
+                        tbody.removeChild(rowsArray[i]);
+                        self.iMailStart = 0;
+                        self.iMailFin = 0;
+                    }
+                }
+            }
+        });
+
     };
 
     var table = new GridSort(document.getElementById('grid'));
