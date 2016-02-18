@@ -13,6 +13,7 @@ $(document).ready(function() {
         this.loadTable();
         this.checkBox();
         this.saveTableData();
+        highlightTableRows("grid","hoverRow","clickedRow");
     };
 
     /**
@@ -248,8 +249,11 @@ $(document).ready(function() {
                         tbody.removeChild(rowsArray[i]);
                         self.iOtherStart = 0;
                         self.iOtherFin = 0;
-                        for (var j = 0; j < self.jsonArraySave.length; j++) {
-                            /*.......................*/
+                        for (var j = 0; j < self.jsonLoadSave.length; j++) {
+                            if (self.jsonLoadSave[j].typeUrl === 'other') {
+                                var arr = self.jsonLoadSave.splice(j,1);
+                                console.log('splice mail', arr);
+                            }
                         }
                     }
                 }
@@ -259,13 +263,21 @@ $(document).ready(function() {
             var tbody = self.grid.getElementsByTagName('tbody')[0],
                 rowsArray = [].slice.call(tbody.rows);
             if ($('#checkboxMail').prop('checked') === false) {
+                console.log(' self.jsonLoadSave.length', self.jsonLoadSave);
                 for (var i = 0; i < rowsArray.length; i++) {
                     if (rowsArray[i].cells[3].innerHTML === 'mail') {
                         tbody.removeChild(rowsArray[i]);
                         self.iMailStart = 0;
                         self.iMailFin = 0;
+                        for (var j = 0; j < self.jsonLoadSave.length; j++) {
+                            if (self.jsonLoadSave[j].typeUrl === 'mail') {
+                                var arr = self.jsonLoadSave.splice(j,1);
+                                console.log('splice mail', arr);
+                            }
+                        }
                     }
                 }
+                console.log('long', self.jsonLoadSave);
             }
         });
 
@@ -274,5 +286,62 @@ $(document).ready(function() {
     var table = new GridSort(document.getElementById('grid'));
 
     table.initialize();
+
+
+    function highlightTableRows(tableId, hoverClass, clickClass, multiple)
+    {
+        var table = document.getElementById(tableId);
+        if (typeof multiple == 'undefined') multiple = true;
+        if (hoverClass)
+        {
+            var hoverClassReg = new RegExp("\\b"+hoverClass+"\\b");
+            table.onmouseover = table.onmouseout = function(e)
+            {
+                if (!e) e = window.event;
+                var elem = e.target || e.srcElement;
+                while (!elem.tagName || !elem.tagName.match(/td|th|table/i)) elem = elem.parentNode;
+                if (elem.parentNode.tagName == 'TR' && elem.parentNode.parentNode.tagName == 'TBODY')
+                {
+                    var row = elem.parentNode;
+                    if (!row.getAttribute('clickedRow')) row.className = e.type=="mouseover"?row.className+" "+hoverClass:row.className.replace(hoverClassReg," ");
+                }
+            };
+        }
+        if (clickClass) table.addEventListener('click',function(e){
+            if (!e) e = window.event;
+            var elem = e.target || e.srcElement;
+            while (!elem.tagName || !elem.tagName.match(/td|th|table/i)) elem = elem.parentNode;
+            if (elem.parentNode.tagName == 'TR' && elem.parentNode.parentNode.tagName == 'TBODY')
+            {
+                var clickClassReg = new RegExp("\\b"+clickClass+"\\b"),
+                    row = elem.parentNode;
+                if (row.getAttribute('clickedRow'))
+                {
+                    row.removeAttribute('clickedRow');
+                    row.className = row.className.replace(clickClassReg, "");
+                    row.className += " "+hoverClass;
+                }
+                else
+                {
+                    if (hoverClass) row.className = row.className.replace(hoverClassReg, "");
+                    row.className += " "+clickClass;
+                    row.setAttribute('clickedRow', true);
+                    if (!multiple)
+                    {
+                        var lastRowI = table.getAttribute("lastClickedRowI");
+                        if (lastRowI!==null && lastRowI!=='' && row.sectionRowIndex!=lastRowI)
+                        {
+                            var lastRow = table.tBodies[0].rows[lastRowI];
+                            lastRow.className = lastRow.className.replace(clickClassReg, "");
+                            lastRow.removeAttribute('clickedRow');
+                        }
+                    }
+
+                    table.setAttribute("lastClickedRowI", row.sectionRowIndex);
+                }
+            }
+        },false);
+
+    }
 });
 

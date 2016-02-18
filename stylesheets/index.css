@@ -1,26 +1,14 @@
-#grid {
-  border: 1px solid green;
-  border-collapse: collapse;
-}
-#grid td,
-#grid th {
-  border: 1px solid green;
-  padding: 5px 5px;
-}
-#grid th {
-  cursor: pointer;
-}
-#grid th:hover {
-  background-color: yellow;
-}
 .container {
   width: 100%;
   margin: 0 auto;
+  color: #41474F;
 }
 .container .container__grid {
-  width: 100%;
+  width: auto;
   margin: 0 auto;
-  border: 1px solid green;
+  display: table;
+  border: 1px solid #D1D0C9;
+  background-color: #f6f3ee;
 }
 .container .container__grid:after {
   content: ".";
@@ -32,15 +20,39 @@
 .container .container__grid .container__category {
   float: left;
   padding: 10px;
-  /*      border-bottom: 1px solid @my-color;
-      border-right: 1px solid @my-color;
-      margin: -1px;*/
+  margin-bottom: -15px;
+  border-right: 1px solid #D1D0C9;
+  margin-right: -1px;
 }
 .container .container__grid .container__table {
   float: left;
   margin-top: -1px;
-  margin-bottom: -1px;
+  margin-right: -1px;
+  margin-bottom: -15px;
+  background-color: #fefefe;
 }
 .container .container__grid .container__table .buttonSend {
   margin-top: 5px;
+}
+.container .container__grid .container__table #grid {
+  border: 1px solid #D1D0C9;
+  border-collapse: collapse;
+}
+.container .container__grid .container__table #grid td,
+.container .container__grid .container__table #grid th {
+  border: 1px solid #D1D0C9;
+  padding: 5px 5px;
+}
+.container .container__grid .container__table #grid th {
+  cursor: pointer;
+  background-color: #f6f3ee;
+}
+.container .container__grid .container__table #grid th:hover {
+  background-color: #A7CEC5;
+}
+.hoverRow {
+  background-color: #BADEC9;
+}
+.clickedRow {
+  background-color: #CE8950;
 }

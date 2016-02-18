@@ -1,25 +1,20 @@
-@my-color: green;
-#grid {
-  border: 1px solid @my-color;
-  border-collapse: collapse;
-  td, th {
-    border: 1px solid @my-color;
-    padding: 5px 5px;
-  }
-  th {
-    cursor: pointer;
-    &:hover{
-      background-color: yellow;
-    }
-  }
-}
+@border: #D1D0C9;
+@bg: #f6f3ee;
+@th-hover: #A7CEC5;
+@tr-hover: #BADEC9;
+@tr-click: #CE8950;
+@text: #41474F;
+
 .container {
   width: 100%;
   margin: 0 auto;
+  color: @text;
   .container__grid {
-    width: 100%;
+    width: auto;
     margin: 0 auto;
-    border: 1px solid @my-color;
+    display: table;
+    border: 1px solid @border;
+    background-color: @bg;
     &:after {
       content: ".";
       display: block;
@@ -30,18 +25,37 @@
     .container__category {
       float: left;
       padding: 10px;
-/*      border-bottom: 1px solid @my-color;
-      border-right: 1px solid @my-color;
-      margin: -1px;*/
+      margin-bottom: -15px;
+      border-right: 1px solid @border;
+      margin-right: -1px;
     }
     .container__table {
       float: left;
       margin-top: -1px;
-      margin-bottom: -1px;
+      margin-right: -1px;
+      margin-bottom: -15px;
+      background-color: #fefefe;
       .buttonSend {
         margin-top: 5px;
+      }
+      #grid {
+        border: 1px solid @border;
+        border-collapse: collapse;
+        td, th {
+          border: 1px solid @border;
+          padding: 5px 5px;
+        }
+        th {
+          cursor: pointer;
+          background-color: @bg;
+          &:hover {
+            background-color: @th-hover;
+          }
+        }
       }
     }
   }
 }
 
+.hoverRow { background-color: @tr-hover; }
+.clickedRow { background-color: @tr-click; }
