@@ -77,32 +77,45 @@ $(document).ready(function() {
             console.log('tbody пока нет');
             return;
         }
-        var tbody = this.grid.getElementsByTagName('tbody')[0],
+       /* var tbody = this.grid.getElementsByTagName('tbody')[0],
+            $tbody = $(this.grid).find('tbody'),
             rowsArray = [].slice.call(tbody.rows),
             compare;
             this.jsonArraySave = this.jsonLoadSave.map(function(object) {
 	            return $.extend({}, object);
             });
         switch (typeOfSort) {
-        /**
+        /!**
          * Сортировка по дате
-         */
+         *!/
             case 'data':
                 compare = function(rowA, rowB) {
-                    return new Date('1970/01/01 ' + rowA.cells[colNum].innerHTML) - new Date('1970/01/01 ' + rowB.cells[colNum].innerHTML);
+                    return new Date('1970/01/01 ' + rowA.cells[colNum].innerHTML) > new Date('1970/01/01 ' + rowB.cells[colNum].innerHTML);
                 };
                 rowsArray.sort(compare);
+
                 this.grid.removeChild(tbody);
                 for (var i = 0; i < rowsArray.length; i++) {
                     tbody.appendChild(rowsArray[i]);
                 }
                 this.grid.appendChild(tbody);
                 break;
-        /**
+        /!**
          * Сортировка по количеству url (name)
-         */
+         *!/
             case 'count':
-                console.log('save',this.jsonArraySave);
+                compare = function(rowA, rowB) {
+                    return rowA.cells[colNum].innerHTML < rowB.cells[colNum].innerHTML;
+                };
+                rowsArray.sort(compare);
+
+                this.grid.removeChild(tbody);
+                for (var i = 0; i < rowsArray.length; i++) {
+                    tbody.appendChild(rowsArray[i]);
+                }
+                this.grid.appendChild(tbody);
+                break;
+                /!*console.log('save',this.jsonArraySave);
                 this.jsonArraySave.sort(function(a, b){
                     if (a.count > b.count)
                         return -1;
@@ -110,15 +123,15 @@ $(document).ready(function() {
                         return 1;
                     return 0;
                 });
-                $(this.grid).find('tbody').html('');
-                console.log($(this.grid).find('tbody').html());
+
+                this.grid.removeChild(tbody);
                 for (var i = 0; i < this.jsonArraySave.length; i++) {
-                    $(this.grid).append('<tr><td>' + this.jsonArraySave[i].date + '</td><td>' + this.jsonArraySave[i].name + '</td><td>'
+                    tbody.appendChild($('<tr><td>' + this.jsonArraySave[i].date + '</td><td>' + this.jsonArraySave[i].name + '</td><td>'
                         + this.jsonArraySave[i].count + '</td>' +
-                        '<td>' + this.jsonArraySave[i].typeUrl + '</td></tr>');
+                        '<td>' + this.jsonArraySave[i].typeUrl + '</td></tr>')[0]);
                 }
-                break;
-        }
+                this.grid.appendChild(tbody);*!/
+        }*/
     };
 
     /**
