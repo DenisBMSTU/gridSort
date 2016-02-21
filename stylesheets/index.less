@@ -2,6 +2,7 @@
 @bg: #f6f3ee;
 @th-hover: #A7CEC5;
 @tr-hover: #BADEC9;
+@btn-hover: #A7CEC5;
 @tr-click: #CE8950;
 @text: #41474F;
 
@@ -63,11 +64,14 @@
     display: table;
     .button-style {
       display: inline-block;
-      border: 1px solid #D1D0C9;
-      background-color: #f6f3ee;
+      border: 1px solid @border;
+      background-color: @bg;
       cursor: pointer;
       margin-left: 5px;
       margin-right: 5px;
+      &:hover {
+        background-color: @btn-hover;
+      }
     }
   }
 }
