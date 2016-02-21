@@ -44,7 +44,6 @@ $(document).ready(function() {
             this.jsonArray.sort(function(A, B) {
                 return new Date('1970/01/01 ' + A.date) - new Date('1970/01/01 ' + B.date);
             });
-            console.log(this.jsonArray);
             for (i = 0, jsonArrayLength = this.jsonArray.length; i < jsonArrayLength; i++) {
                 if (this.jsonArray[i].typeUrl === 'other') {
                     this.jsonTypeOther.push(this.jsonArray[i]);
@@ -223,15 +222,14 @@ $(document).ready(function() {
             } else {
                 alert('Выберите, что хотите загрузить!');
             }
-            console.log('this.jsonLoadSave->',this.jsonLoadSave);
         }.bind(this);
     };
 
     GridSort.prototype.saveTableData = function() {
         var self = this,
-            i,
-            arraySaveData = [];
+            i;
         $('#buttonSave').on('click', function(){
+            self.arraySaveData = [];
             var tbody = self.grid.getElementsByTagName('tbody')[0],
                 rowsArray = [].slice.call(tbody.rows);
             for  (i = 0; i < rowsArray.length; i++) {
@@ -242,17 +240,20 @@ $(document).ready(function() {
                 obj["count"] = rowsArray[i].cells[2].innerHTML;
                 obj["typeUrl"] = rowsArray[i].cells[3].innerHTML;
                     /*arr.push(rowsArray[i].cells[j].innerHTML);*/
-                arraySaveData.push(obj);
+                if (obj) {
+                    self.arraySaveData.push(obj);
+                }
             }
             /**
              * arraySaveData - json сохраненных элементов таблицы
              */
-
+            console.log(self.arraySaveData);
             /*ВРЕМЕННЫЙ БЛОК*/
             var arr = [];
-            console.log(arraySaveData);
-            for (i = 0; i < arraySaveData.length; i++) {
-                arr.push(JSON.stringify(arraySaveData[i]));
+            if (self.arraySaveData) {
+                for (i = 0; i < self.arraySaveData.length; i++) {
+                    arr.push(JSON.stringify(self.arraySaveData[i]));
+                }
             }
             if (arr.length === 0) {
                 alert('Данных для сохранения нет');
@@ -272,13 +273,17 @@ $(document).ready(function() {
             if ($('#checkboxOther').prop('checked') === false) {
                 for (var i = 0; i < rowsArray.length; i++) {
                     if (rowsArray[i].cells[3].innerHTML === 'other') {
+                        for (var j = 0; j < self.arraySaveData.length; j++) {
+                            if (self.arraySaveData[j].typeUrl === 'other') {
+                                self.arraySaveData.splice(j,1);
+                            }
+                        }
                         tbody.removeChild(rowsArray[i]);
                         self.iOtherStart = 0;
                         self.iOtherFin = 0;
                         for (var j = 0; j < self.jsonLoadSave.length; j++) {
                             if (self.jsonLoadSave[j].typeUrl === 'other') {
-                                var arr = self.jsonLoadSave.splice(j,1);
-                                console.log('splice mail', arr);
+                                self.jsonLoadSave.splice(j,1);
                             }
                         }
                     }
@@ -289,21 +294,23 @@ $(document).ready(function() {
             var tbody = self.grid.getElementsByTagName('tbody')[0],
                 rowsArray = [].slice.call(tbody.rows);
             if ($('#checkboxMail').prop('checked') === false) {
-                console.log(' self.jsonLoadSave.length', self.jsonLoadSave);
                 for (var i = 0; i < rowsArray.length; i++) {
                     if (rowsArray[i].cells[3].innerHTML === 'mail') {
+                        for (var j = 0; j < self.arraySaveData.length; j++) {
+                            if (self.arraySaveData[j].typeUrl === 'mail') {
+                                self.arraySaveData.splice(j,1);
+                            }
+                        }
                         tbody.removeChild(rowsArray[i]);
                         self.iMailStart = 0;
                         self.iMailFin = 0;
                         for (var j = 0; j < self.jsonLoadSave.length; j++) {
                             if (self.jsonLoadSave[j].typeUrl === 'mail') {
-                                var arr = self.jsonLoadSave.splice(j,1);
-                                console.log('splice mail', arr);
+                                self.jsonLoadSave.splice(j,1);
                             }
                         }
                     }
                 }
-                console.log('long', self.jsonLoadSave);
             }
         });
 
