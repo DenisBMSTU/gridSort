@@ -35,24 +35,39 @@
       margin-right: -1px;
       margin-bottom: -15px;
       background-color: #fefefe;
-      .buttonSend {
-        margin-top: 5px;
-      }
       #grid {
         border: 1px solid @border;
         border-collapse: collapse;
-        td, th {
-          border: 1px solid @border;
-          padding: 5px 5px;
+        thead {
+          td {
+            cursor: pointer;
+            background-color: @bg;
+            border: 1px solid @border;
+            padding: 5px 5px;
+            &:hover {
+              background-color: @th-hover;
+            }
+          }
         }
-        th {
-          cursor: pointer;
-          background-color: @bg;
-          &:hover {
-            background-color: @th-hover;
+        tbody {
+          td {
+            border: 1px solid @border;
+            padding: 5px 5px;
           }
         }
       }
+    }
+  }
+  .container__button {
+    margin: 10px auto;
+    display: table;
+    .button-style {
+      display: inline-block;
+      border: 1px solid #D1D0C9;
+      background-color: #f6f3ee;
+      cursor: pointer;
+      margin-left: 5px;
+      margin-right: 5px;
     }
   }
 }

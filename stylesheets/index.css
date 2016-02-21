@@ -31,24 +31,34 @@
   margin-bottom: -15px;
   background-color: #fefefe;
 }
-.container .container__grid .container__table .buttonSend {
-  margin-top: 5px;
-}
 .container .container__grid .container__table #grid {
   border: 1px solid #D1D0C9;
   border-collapse: collapse;
 }
-.container .container__grid .container__table #grid td,
-.container .container__grid .container__table #grid th {
+.container .container__grid .container__table #grid thead td {
+  cursor: pointer;
+  background-color: #f6f3ee;
   border: 1px solid #D1D0C9;
   padding: 5px 5px;
 }
-.container .container__grid .container__table #grid th {
-  cursor: pointer;
-  background-color: #f6f3ee;
-}
-.container .container__grid .container__table #grid th:hover {
+.container .container__grid .container__table #grid thead td:hover {
   background-color: #A7CEC5;
+}
+.container .container__grid .container__table #grid tbody td {
+  border: 1px solid #D1D0C9;
+  padding: 5px 5px;
+}
+.container .container__button {
+  margin: 10px auto;
+  display: table;
+}
+.container .container__button .button-style {
+  display: inline-block;
+  border: 1px solid #D1D0C9;
+  background-color: #f6f3ee;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .hoverRow {
   background-color: #BADEC9;
