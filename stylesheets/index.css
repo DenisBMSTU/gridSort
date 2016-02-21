@@ -65,6 +65,7 @@
 }
 .hoverRow {
   background-color: #BADEC9;
+  cursor: default;
 }
 .clickedRow {
   background-color: #CE8950;

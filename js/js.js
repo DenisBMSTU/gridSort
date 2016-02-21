@@ -254,7 +254,11 @@ $(document).ready(function() {
             for (i = 0; i < arraySaveData.length; i++) {
                 arr.push(JSON.stringify(arraySaveData[i]));
             }
-            alert(arr.join());
+            if (arr.length === 0) {
+                alert('Данных для сохранения нет');
+            } else {
+                alert(arr.join());
+            }
             /*ВРЕМЕННЫЙ БЛОК*/
         });
 
