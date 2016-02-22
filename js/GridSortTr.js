@@ -167,12 +167,16 @@ GridSortTr.prototype.sortTableTr = function(e) {
 };
 
 GridSortTr.prototype.init = function(e) {
-    if (!document.getElementsByTagName) return;
+    if (!document.getElementsByTagName) {
+        return;
+    }
 
-    if (document.createEvent) function click_elem(elem){
-        var evt = document.createEvent("MouseEvents");
-        evt.initMouseEvent("click", false, false, window, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, elem);
-        elem.dispatchEvent(evt);
+    if (document.createEvent) {
+        function click_elem(elem){
+            var evt = document.createEvent("MouseEvents");
+            evt.initMouseEvent("click", false, false, window, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, elem);
+            elem.dispatchEvent(evt);
+        }
     }
 
     for (var j = 0; (this.thead = document.getElementsByTagName("thead").item(j)); j++) {
