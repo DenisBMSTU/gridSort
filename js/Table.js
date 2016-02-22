@@ -1,4 +1,4 @@
-
+'use strict';
 function Table(grid) {
     this.grid = document.getElementById(grid);
     this.$grid = $(this.grid);
@@ -141,11 +141,10 @@ Table.prototype.buttonSend = function() {
 };
 
 Table.prototype.saveTableData = function() {
-    var self = this,
-        i;
-    $('#buttonSave').on('click', function(){
-        self.arraySaveData = [];
-        var tbody = self.grid.getElementsByTagName('tbody')[0],
+    var i;
+    $('#buttonSave').on('click', () =>{
+        this.arraySaveData = [];
+        var tbody = this.grid.getElementsByTagName('tbody')[0],
             rowsArray = [].slice.call(tbody.rows);
         for  (i = 0; i < rowsArray.length; i++) {
             /*for (var j = 0; j < rowsArray[i].cells.length; j++){*/
@@ -156,18 +155,18 @@ Table.prototype.saveTableData = function() {
             obj["typeUrl"] = rowsArray[i].cells[3].innerHTML;
                 /*arr.push(rowsArray[i].cells[j].innerHTML);*/
             if (obj) {
-                self.arraySaveData.push(obj);
+                this.arraySaveData.push(obj);
             }
         }
         /**
          * arraySaveData - json сохраненных элементов таблицы
          */
-        console.log(self.arraySaveData);
+        console.log(this.arraySaveData);
         /*ВРЕМЕННЫЙ БЛОК*/
         var arr = [];
-        if (self.arraySaveData) {
-            for (i = 0; i < self.arraySaveData.length; i++) {
-                arr.push(JSON.stringify(self.arraySaveData[i]));
+        if (this.arraySaveData) {
+            for (i = 0; i < this.arraySaveData.length; i++) {
+                arr.push(JSON.stringify(this.arraySaveData[i]));
             }
         }
         if (arr.length === 0) {
@@ -181,51 +180,50 @@ Table.prototype.saveTableData = function() {
 };
 
 Table.prototype.checkBox = function() {
-    var self = this;
-    $('#checkboxOther').on('click', function(){
-        var tbody = self.grid.getElementsByTagName('tbody')[0],
+    $('#checkboxOther').on('click', () => {
+        var tbody = this.grid.getElementsByTagName('tbody')[0],
             rowsArray = [].slice.call(tbody.rows);
         if ($('#checkboxOther').prop('checked') === false) {
             for (var i = 0; i < rowsArray.length; i++) {
                 if (rowsArray[i].cells[3].innerHTML === 'other') {
-                    if (self.arraySaveData != undefined) {
-                        for (var j = 0; j < self.arraySaveData.length; j++) {
-                            if (self.arraySaveData[j].typeUrl === 'other') {
-                                self.arraySaveData.splice(j,1);
+                    if (this.arraySaveData != undefined) {
+                        for (var j = 0; j < this.arraySaveData.length; j++) {
+                            if (this.arraySaveData[j].typeUrl === 'other') {
+                                this.arraySaveData.splice(j,1);
                             }
                         }
                     }
                     tbody.removeChild(rowsArray[i]);
-                    self.iOtherStart = 0;
-                    self.iOtherFin = 0;
-                    for (var j = 0; j < self.jsonLoadSave.length; j++) {
-                        if (self.jsonLoadSave[j].typeUrl === 'other') {
-                            self.jsonLoadSave.splice(j,1);
+                    this.iOtherStart = 0;
+                    this.iOtherFin = 0;
+                    for (var j = 0; j < this.jsonLoadSave.length; j++) {
+                        if (this.jsonLoadSave[j].typeUrl === 'other') {
+                            this.jsonLoadSave.splice(j,1);
                         }
                     }
                 }
             }
         }
     });
-    $('#checkboxMail').on('click', function(){
-        var tbody = self.grid.getElementsByTagName('tbody')[0],
+    $('#checkboxMail').on('click', () => {
+        var tbody = this.grid.getElementsByTagName('tbody')[0],
             rowsArray = [].slice.call(tbody.rows);
         if ($('#checkboxMail').prop('checked') === false) {
             for (var i = 0; i < rowsArray.length; i++) {
                 if (rowsArray[i].cells[3].innerHTML === 'mail') {
-                    if (self.arraySaveData != undefined) {
-                        for (var j = 0; j < self.arraySaveData.length; j++) {
-                            if (self.arraySaveData[j].typeUrl === 'mail') {
-                                self.arraySaveData.splice(j,1);
+                    if (this.arraySaveData != undefined) {
+                        for (var j = 0; j < this.arraySaveData.length; j++) {
+                            if (this.arraySaveData[j].typeUrl === 'mail') {
+                                this.arraySaveData.splice(j,1);
                             }
                         }
                     }
                     tbody.removeChild(rowsArray[i]);
-                    self.iMailStart = 0;
-                    self.iMailFin = 0;
-                    for (var j = 0; j < self.jsonLoadSave.length; j++) {
-                        if (self.jsonLoadSave[j].typeUrl === 'mail') {
-                            self.jsonLoadSave.splice(j,1);
+                    this.iMailStart = 0;
+                    this.iMailFin = 0;
+                    for (var j = 0; j < this.jsonLoadSave.length; j++) {
+                        if (this.jsonLoadSave[j].typeUrl === 'mail') {
+                            this.jsonLoadSave.splice(j,1);
                         }
                     }
                 }
