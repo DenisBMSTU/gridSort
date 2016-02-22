@@ -5,13 +5,12 @@ var Table = require('./Table'),
     highlightTableRows = require('./highlightTableRows'),
     GridSortTr = require('./GridSortTr');
 
-    var table = new Table(document.getElementById('grid'));
 
-    table.initialize();
+var grid = "grid", //id таблицы
+    table = new Table(grid),//загрузка, обработка, сохранение данных таблицы
+    tableSort = new GridSortTr(); //сортировка таблицы
 
-    var tableSort = new GridSortTr();
-
-    tableSort.init();
-
-    highlightTableRows("grid","hoverRow","clickedRow");
+table.init();
+tableSort.init();
+highlightTableRows(grid,"hoverRow","clickedRow");
 

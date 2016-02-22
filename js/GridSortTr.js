@@ -1,12 +1,17 @@
 /**
- * Возвращает для каждого столбца разный способ сортировки, в зависимости от вложенных данных
+ * Конструктор сортировки таблицы
+ * @param grid
+ * @constructor
+ */
+function GridSortTr(grid) {
+    this.grid = grid;
+}
+/**
+ * Возвращаются данные для стандартного метода sort() в зависимости от столбца, по данным которого идет сортировка
  * @param a
  * @param b
  * @returns {number}
- * @private
  */
-
-function GridSortTr() {}
 GridSortTr.prototype.returnSortFunc = function(a, b) {
     var sort_case_sensitive = false, // чуствительновть к регистру при сотрировке
         patternDate = /\d\d\d\d([/])\d\d([/])\d\d/, //регулярное выражения для даты
@@ -61,18 +66,22 @@ function sort_insensitive(a, b) {
  * @returns {number}
  */
 function sort_sensitive(a, b) {
-    if (a < b) return -1;
-    if (a > b) return 1;
-    return 0;
+    if (a < b) {
+        return -1;
+    } else if (a > b) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 function getConcatenedTextContent(node) {
-    var _result = "";
+    var _result = "",
+        childrens = node.childNodes,
+        i = 0;
     if (node == null) {
         return _result;
     }
-    var childrens = node.childNodes;
-    var i = 0;
     while (i < childrens.length) {
         var child = childrens.item(i);
         switch (child.nodeType) {
@@ -100,6 +109,10 @@ function getConcatenedTextContent(node) {
     return _result;
 }
 
+/**
+ * Сама сортировка
+ * @param e
+ */
 GridSortTr.prototype.sortTableTr = function(e) {
     var el = window.event ? window.event.srcElement : e.currentTarget;
 
@@ -110,9 +123,10 @@ GridSortTr.prototype.sortTableTr = function(e) {
         name = el.lastChild.nodeValue,
         dad = el.parentNode,
         table = dad.parentNode.parentNode,
-        up = table.up; // no set/getAttribute!
-
-    var node, arrow, curcol;
+        up = table.up, // no set/getAttribute!
+        node,
+        arrow,
+        curcol;
     for (i = 0; (node = dad.getElementsByTagName("td").item(i)); i++) {
         if (node.lastChild.nodeValue == name){
             curcol = i;
