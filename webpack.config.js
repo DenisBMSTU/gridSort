@@ -8,8 +8,9 @@ module.exports = {
     module: {
         loaders: [
             { test: /\.css$/, loader: "style!css" },
-            { test: path.join(__dirname, 'es6'),
-                loader: 'babel-loader' }
+            { test: path.join(__dirname, 'es6'), loader: 'babel-loader' },
+            { test: /\.less$/, loader: "style!css!less"
+            }
         ]
     }
 };

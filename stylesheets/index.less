@@ -1,9 +1,9 @@
 @border: #D1D0C9;
 @bg: #f6f3ee;
-@th-hover: #A7CEC5;
-@tr-hover: #BADEC9;
-@btn-hover: #A7CEC5;
-@tr-click: #CE8950;
+@th-hover: #CCEBDA;
+@tr-hover: #CCEBDA;/* #BADEC9;*/
+@btn-hover: #CCEBDA; /*#E6C9A1;*/ /*#A7CEC5;*/
+@tr-click: #DFE2EB; /*#CE8950;*/
 @text: #41474F;
 
 .container {
@@ -29,6 +29,13 @@
       margin-bottom: -15px;
       border-right: 1px solid @border;
       margin-right: -1px;
+      label {
+        float: left;
+      }
+      input {
+        float: right;
+        margin: 2px 3px 3px 10px;
+      }
     }
     .container__table {
       float: left;

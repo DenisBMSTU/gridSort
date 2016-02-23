@@ -278,6 +278,7 @@
 	    this.jsonLoadSave = [];
 	    this.jsonTypeMail = [];
 	    this.jsonTypeOther = [];
+	    this.jsonTypeSocial = [];
 
 	    $.getJSON('./index.json', function (data) {
 	        var jsonArrayLength,
@@ -298,10 +299,14 @@
 	                this.jsonTypeOther.push(this.jsonArray[i]);
 	            } else if (this.jsonArray[i].typeUrl === 'mail') {
 	                this.jsonTypeMail.push(this.jsonArray[i]);
+	            } else if (this.jsonArray[i].typeUrl === 'social') {
+	                this.jsonTypeSocial.push(this.jsonArray[i]);
 	            }
 	        }
 	        this.jsonTypeMail.sort(sortDateDown);
 	        this.jsonTypeOther.sort(sortDateDown);
+	        this.jsonTypeSocial.sort(sortDateDown);
+	        console.log(this.jsonTypeOther);
 	    }.bind(this));
 	};
 
@@ -312,13 +317,41 @@
 	    var i,
 	        buttonSend = document.getElementById('buttonSend'),
 	        countIncrement = 4; //кол-во строк, выгружаемых в таблицу
-
+	    this.allStart = 0;
+	    this.allFin = 0;
 	    this.iMailStart = 0;
 	    this.iMailFin = 0;
+	    this.iSocialStart = 0;
+	    this.iSocialFin = 0;
 	    this.iOtherStart = 0;
 	    this.iOtherFin = 0;
+	    this.otherAllStart = 0;
+	    this.otherAllFin = 0;
+	    this.mailAllStart = 0;
+	    this.mailAllFin = 0;
+	    this.socialAllStart = 0;
+	    this.socialAllFin = 0;
 	    buttonSend.onclick = function() {
-	        if ($('#checkboxOther').prop('checked') === false && $('#checkboxMail').prop('checked') === true) {
+	        if ($('#checkboxSocial').prop('checked') === true) {
+	            this.iSocialFin += countIncrement;
+	            if (this.iSocialFin > this.jsonTypeSocial.length) {
+	                while (this.iSocialFin > this.jsonTypeSocial.length) {
+	                    this.iSocialFin -= 1;
+	                }
+	            }
+	            if (this.iSocialStart > this.jsonTypeSocial.length) {
+	                while (this.iSocialStart > this.jsonTypeSocial.length) {
+	                    this.iSocialStart -= 1;
+	                }
+	            }
+	            for (i = this.iSocialStart; i < this.iSocialFin; i++) {
+	                this.jsonLoadSave.push(this.jsonTypeSocial[i]);
+	            }
+	            this.socialAllStart = this.iSocialStart;
+	            this.socialAllFin = this.iSocialFin;
+	            this.iSocialStart += countIncrement;
+	        }
+	        if ($('#checkboxMail').prop('checked') === true) {
 	            this.iMailFin += countIncrement;
 	            if (this.iMailFin > this.jsonTypeMail.length) {
 	                while (this.iMailFin > this.jsonTypeMail.length) {
@@ -332,11 +365,12 @@
 	            }
 	            for (i = this.iMailStart; i < this.iMailFin; i++) {
 	                this.jsonLoadSave.push(this.jsonTypeMail[i]);
-	                this.$tbody.append('<tr><td>' + this.jsonTypeMail[i].date + '</td><td>' + this.jsonTypeMail[i].name + '</td><td>'
-	                    + this.jsonTypeMail[i].count + '</td>' + '<td>' + this.jsonTypeMail[i].typeUrl + '</td></tr>');
 	            }
+	            this.mailAllStart = this.iMailStart;
+	            this.mailAllFin = this.iMailFin;
 	            this.iMailStart += countIncrement;
-	        } else if ($('#checkboxMail').prop('checked') === false && $('#checkboxOther').prop('checked') === true) {
+	        }
+	        if ($('#checkboxOther').prop('checked') === true) {
 	            this.iOtherFin += countIncrement;
 	            if (this.iOtherFin > this.jsonTypeOther.length) {
 	                while (this.iOtherFin > this.jsonTypeOther.length) {
@@ -350,47 +384,22 @@
 	            }
 	            for (i = this.iOtherStart; i < this.iOtherFin; i++) {
 	                this.jsonLoadSave.push(this.jsonTypeOther[i]);
-	                this.$tbody.append('<tr><td>' + this.jsonTypeOther[i].date + '</td><td>' + this.jsonTypeOther[i].name + '</td><td>'
-	                    + this.jsonTypeOther[i].count + '</td>' + '<td>' + this.jsonTypeOther[i].typeUrl + '</td></tr>');
 	            }
+	            this.otherAllStart = this.iOtherStart;
+	            this.otherAllFin = this.iOtherFin;
 	            this.iOtherStart += countIncrement;
-	        } else if ($('#checkboxOther').prop('checked') === true && $('#checkboxMail').prop('checked') === true) {
-	            this.iOtherFin += countIncrement/2;
-	            this.iMailFin += countIncrement/2;
-	            if (this.iOtherFin > this.jsonTypeOther.length) {
-	                while (this.iOtherFin > this.jsonTypeOther.length) {
-	                    this.iOtherFin -= 1;
-	                }
-	            }
-	            if (this.iOtherStart > this.jsonTypeOther.length) {
-	                while (this.iOtherStart > this.jsonTypeOther.length) {
-	                    this.iOtherStart -= 1;
-	                }
-	            }
-	            if (this.iMailFin > this.jsonTypeMail.length) {
-	                while (this.iMailFin > this.jsonTypeMail.length) {
-	                    this.iMailFin -= 1;
-	                }
-	            }
-	            if (this.iMailStart > this.jsonTypeMail.length) {
-	                while (this.iMailStart > this.jsonTypeMail.length) {
-	                    this.iMailStart -= 1;
-	                }
-	            }
-	            for (i = this.iMailStart; i < this.iMailFin; i++) {
-	                this.jsonLoadSave.push(this.jsonTypeMail[i]);
-	                this.$tbody.append('<tr><td>' + this.jsonTypeMail[i].date + '</td><td>' + this.jsonTypeMail[i].name + '</td><td>'
-	                    + this.jsonTypeMail[i].count + '</td>' + '<td>' + this.jsonTypeMail[i].typeUrl + '</td></tr>');
-	            }
-	            for (i = this.iOtherStart; i < this.iOtherFin; i++) {
-	                this.jsonLoadSave.push(this.jsonTypeOther[i]);
-	                this.$tbody.append('<tr><td>' + this.jsonTypeOther[i].date + '</td><td>' + this.jsonTypeOther[i].name + '</td><td>'
-	                    + this.jsonTypeOther[i].count + '</td>' + '<td>' + this.jsonTypeOther[i].typeUrl + '</td></tr>');
-	            }
-	            this.iOtherStart += countIncrement/2;
-	            this.iMailStart += countIncrement/2;
-	        } else {
-	            alert('Выберите, что хотите загрузить!');
+	            console.log('this.allStart',this.allStart, 'this.allFin', this.allFin,'this.iOtherStart', this.iOtherStart, 'this.iOtherFin', this.iOtherFin );
+	        }
+	        if ($('#checkboxMail').prop('checked') === false && $('#checkboxOther').prop('checked') === false && $('#checkboxSocial').prop('checked') === false) {
+	            alert('Выберите данные для загрузки');
+	            return;
+	        }
+	        this.allStart = this.otherAllStart + this.mailAllStart + this.socialAllStart;
+	        this.allFin = this.otherAllFin + this.mailAllFin + this.socialAllFin;
+	        console.log('this.allStart',this.allStart, 'this.allFin', this.allFin, 'this.jsonLoadSave',this.jsonLoadSave);
+	        for (var j = this.allStart; j < this.allFin; j++) {
+	            this.$tbody.append('<tr><td>' + this.jsonLoadSave[j].date + '</td><td>' + this.jsonLoadSave[j].name + '</td><td>'
+	                + this.jsonLoadSave[j].count + '</td>' + '<td>' + this.jsonLoadSave[j].typeUrl + '</td></tr>');
 	        }
 	    }.bind(this);
 	};
@@ -451,8 +460,37 @@
 	                    tbody.removeChild(rowsArray[i]);
 	                    this.iOtherStart = 0;
 	                    this.iOtherFin = 0;
+	                    this.otherAllStart = 0;
+	                    this.otherAllFin = 0;
 	                    for (var j = 0; j < this.jsonLoadSave.length; j++) {
 	                        if (this.jsonLoadSave[j].typeUrl === 'other') {
+	                            this.jsonLoadSave.splice(j,1);
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	    });
+	    $('#checkboxSocial').on('click', () => {
+	        var tbody = this.grid.getElementsByTagName('tbody')[0],
+	            rowsArray = [].slice.call(tbody.rows);
+	        if ($('#checkboxSocial').prop('checked') === false) {
+	            for (var i = 0; i < rowsArray.length; i++) {
+	                if (rowsArray[i].cells[3].innerHTML === 'social') {
+	                    if (this.arraySaveData != undefined) {
+	                        for (var j = 0; j < this.arraySaveData.length; j++) {
+	                            if (this.arraySaveData[j].typeUrl === 'social') {
+	                                this.arraySaveData.splice(j,1);
+	                            }
+	                        }
+	                    }
+	                    tbody.removeChild(rowsArray[i]);
+	                    this.iSocialStart = 0;
+	                    this.iSocialFin = 0;
+	                    this.socialAllStart = 0;
+	                    this.socialAllFin = 0;
+	                    for (var j = 0; j < this.jsonLoadSave.length; j++) {
+	                        if (this.jsonLoadSave[j].typeUrl === 'social') {
 	                            this.jsonLoadSave.splice(j,1);
 	                        }
 	                    }
@@ -476,6 +514,8 @@
 	                    tbody.removeChild(rowsArray[i]);
 	                    this.iMailStart = 0;
 	                    this.iMailFin = 0;
+	                    this.mailAllStart = 0;
+	                    this.mailAllFin = 0;
 	                    for (var j = 0; j < this.jsonLoadSave.length; j++) {
 	                        if (this.jsonLoadSave[j].typeUrl === 'mail') {
 	                            this.jsonLoadSave.splice(j,1);
@@ -485,7 +525,6 @@
 	            }
 	        }
 	    });
-
 	};
 	/**
 	 * Сортировка даты по убыванию
