@@ -51,7 +51,6 @@ Table.prototype.loadTable = function() {
         this.jsonTypeMail.sort(sortDateDown);
         this.jsonTypeOther.sort(sortDateDown);
         this.jsonTypeSocial.sort(sortDateDown);
-        console.log(this.jsonTypeOther);
     }.bind(this));
 };
 
@@ -60,8 +59,9 @@ Table.prototype.loadTable = function() {
  */
 Table.prototype.buttonSend = function() {
     var i,
+        countIncrement,
         buttonSend = document.getElementById('buttonSend'),
-        countIncrement = 4; //кол-во строк, выгружаемых в таблицу
+        countInc = 6; //кол-во строк, выгружаемых в таблицу
     this.allStart = 0;
     this.allFin = 0;
     this.iMailStart = 0;
@@ -76,7 +76,23 @@ Table.prototype.buttonSend = function() {
     this.mailAllFin = 0;
     this.socialAllStart = 0;
     this.socialAllFin = 0;
+    var input = $('.container__category').find('input'),
+        inputLength = $('.container__category').find('input').length;
     buttonSend.onclick = function() {
+        var countInput = 0;
+        for (i = 0; i < inputLength; i++) {
+            if (input[i].checked) {
+                countInput +=1;
+            }
+        }
+        if (countInput === 1) {
+            countIncrement = countInc;
+        } else if (countInput === 2) {
+            countIncrement = countInc/2
+        } else if (countInput === 3) {
+            countIncrement = countInc/3;
+        }
+
         if ($('#checkboxSocial').prop('checked') === true) {
             this.iSocialFin += countIncrement;
             if (this.iSocialFin > this.jsonTypeSocial.length) {
@@ -133,7 +149,6 @@ Table.prototype.buttonSend = function() {
             this.otherAllStart = this.iOtherStart;
             this.otherAllFin = this.iOtherFin;
             this.iOtherStart += countIncrement;
-            console.log('this.allStart',this.allStart, 'this.allFin', this.allFin,'this.iOtherStart', this.iOtherStart, 'this.iOtherFin', this.iOtherFin );
         }
         if ($('#checkboxMail').prop('checked') === false && $('#checkboxOther').prop('checked') === false && $('#checkboxSocial').prop('checked') === false) {
             alert('Выберите данные для загрузки');
@@ -141,7 +156,6 @@ Table.prototype.buttonSend = function() {
         }
         this.allStart = this.otherAllStart + this.mailAllStart + this.socialAllStart;
         this.allFin = this.otherAllFin + this.mailAllFin + this.socialAllFin;
-        console.log('this.allStart',this.allStart, 'this.allFin', this.allFin, 'this.jsonLoadSave',this.jsonLoadSave);
         for (var j = this.allStart; j < this.allFin; j++) {
             this.$tbody.append('<tr><td>' + this.jsonLoadSave[j].date + '</td><td>' + this.jsonLoadSave[j].name + '</td><td>'
                 + this.jsonLoadSave[j].count + '</td>' + '<td>' + this.jsonLoadSave[j].typeUrl + '</td></tr>');
@@ -170,7 +184,6 @@ Table.prototype.saveTableData = function() {
         /**
          * arraySaveData - json сохраненных элементов таблицы
          */
-        console.log(this.arraySaveData);
         /*ВРЕМЕННЫЙ БЛОК*/
         var arr = [];
         if (this.arraySaveData) {
