@@ -258,6 +258,7 @@
 	    this.grid = document.getElementById(grid);
 	    this.$grid = $(this.grid);
 	    this.$tbody = this.$grid.find('tbody');
+	    this.$theadTr = this.$grid.find('thead tr');
 	}
 
 	/**
@@ -303,9 +304,9 @@
 	                this.jsonTypeSocial.push(this.jsonArray[i]);
 	            }
 	        }
-	        this.jsonTypeMail.sort(sortDateDown);
-	        this.jsonTypeOther.sort(sortDateDown);
-	        this.jsonTypeSocial.sort(sortDateDown);
+	/*        this.jsonTypeMail.sort(sortDateUp);
+	        this.jsonTypeOther.sort(sortDateUp);
+	        this.jsonTypeSocial.sort(sortDateUp);*/
 	    }.bind(this));
 	};
 
@@ -347,7 +348,6 @@
 	        } else if (countInput === 3) {
 	            countIncrement = countInc/3;
 	        }
-
 
 	        if ($('#checkboxSocial').prop('checked') === true) {
 	            this.iSocialFin += countIncrement;
@@ -416,6 +416,7 @@
 	            this.$tbody.append('<tr><td>' + this.jsonLoadSave[j].date + '</td><td>' + this.jsonLoadSave[j].name + '</td><td>'
 	                + this.jsonLoadSave[j].count + '</td>' + '<td>' + this.jsonLoadSave[j].typeUrl + '</td></tr>');
 	        }
+	        this.sortWhenLoad();
 	    }.bind(this);
 	};
 
@@ -455,6 +456,22 @@
 	        /*ВРЕМЕННЫЙ БЛОК*/
 	    });
 
+	};
+
+	Table.prototype.sortWhenLoad = function() {
+	    if (this.$theadTr.children('[data-type="date"]').find('span').html() === "↑&nbsp;" ||
+	        this.$theadTr.children('[data-type="date"]').find('span').html() === "↓&nbsp;") {
+	        this.$theadTr.children('[data-type="date"]').click().click();
+	    } else if (this.$theadTr.children('[data-type="name"]').find('span').html() === "↑&nbsp;" ||
+	        this.$theadTr.children('[data-type="name"]').find('span').html() === "↓&nbsp;") {
+	        this.$theadTr.children('[data-type="name"]').click().click();
+	    } else if (this.$theadTr.children('[data-type="count"]').find('span').html() === "↑&nbsp;" ||
+	        this.$theadTr.children('[data-type="count"]').find('span').html() ===  "↓&nbsp;") {
+	        this.$theadTr.children('[data-type="count"]').click().click();
+	    } else if (this.$theadTr.children('[data-type="typeUrl"]').find('span').html() === "↑&nbsp;" ||
+	        this.$theadTr.children('[data-type="typeUrl"]').find('span').html() === "↓&nbsp;") {
+	        this.$theadTr.children('[data-type="typeUrl"]').click().click();
+	    }
 	};
 
 	Table.prototype.checkBox = function() {
@@ -543,7 +560,7 @@
 	/**
 	 * Сортировка даты по убыванию
 	 */
-	function sortDateDown(a,b) {
+	function sortDateUp(a,b) {
 	    if (a.date < b.date) {
 	        return 1;
 	    } else if(a.date > b.date) {
@@ -556,7 +573,7 @@
 	/**
 	 * Сортировка даты по возрастанию
 	 */
-	function sortDateUp(a,b) {
+	function sortDateDown(a,b) {
 	    if (a.date < b.date) {
 	        return -1;
 	    } else if(a.date > b.date) {
