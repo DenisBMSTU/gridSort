@@ -37,7 +37,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -336,7 +336,7 @@
 	        inputLength = $('.container__category').find('input').length;
 	    buttonSend.onclick = function() {
 	        var countInput = 0;
-	        for (i = 0; i < inputLength; i++) {
+	        for (i = 1; i < inputLength; i++) {
 	            if (input[i].checked) {
 	                countInput +=1;
 	            }
@@ -591,6 +591,28 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var checkAll = function() {
+	    var checkbox = $('.container__grid .container__category .row-checkbox input')
+	    var checkboxMain = $('.container__grid .container__category .row_all input');
+	    checkboxMain.on('click',function(){
+	        for (var i = 0; i < checkbox.length; i++) {
+	            if (checkboxMain[0].checked) {
+	                checkbox[i].checked = true;
+	            } else {
+	                if (checkbox[i].checked) {
+	                    checkbox[i].click();
+	                }
+	            }
+	        }
+	    });
+	};
+
+	module.e = checkAll;
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
 	
 	/**
 	 * Подсвечивает строку таблицы, на которую был наведен курсор, а так же строку, которая была выделена
@@ -658,15 +680,16 @@
 	module.e = highlightTableRows;
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Created by ubuntu on 22.02.16.
 	 */
 	var Table = __webpack_require__(1),
-	    highlightTableRows = __webpack_require__(2),
-	    GridSortTr = __webpack_require__(0);
+	    highlightTableRows = __webpack_require__(3),
+	    GridSortTr = __webpack_require__(0),
+	    checkAll = __webpack_require__(2);
 
 
 	var grid = "grid", //id таблицы
@@ -676,6 +699,7 @@
 	table.init();
 	tableSort.init();
 	highlightTableRows(grid,"hoverRow","clickedRow");
+	checkAll();
 
 
 

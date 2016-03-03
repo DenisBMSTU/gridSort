@@ -3,7 +3,8 @@
  */
 var Table = require('./Table'),
     highlightTableRows = require('./highlightTableRows'),
-    GridSortTr = require('./GridSortTr');
+    GridSortTr = require('./GridSortTr'),
+    checkAll = require('./checkAll');
 
 
 var grid = "grid", //id таблицы
@@ -13,4 +14,5 @@ var grid = "grid", //id таблицы
 table.init();
 tableSort.init();
 highlightTableRows(grid,"hoverRow","clickedRow");
+checkAll();
 

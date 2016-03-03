@@ -81,7 +81,7 @@ Table.prototype.buttonSend = function() {
         inputLength = $('.container__category').find('input').length;
     buttonSend.onclick = function() {
         var countInput = 0;
-        for (i = 0; i < inputLength; i++) {
+        for (i = 1; i < inputLength; i++) {
             if (input[i].checked) {
                 countInput +=1;
             }
