@@ -1,4 +1,6 @@
+var findAbnormalUrl = require('./findAbnormalUrl');
 'use strict';
+
 function Table(grid) {
     this.grid = document.getElementById(grid);
     this.$grid = $(this.grid);
@@ -49,9 +51,10 @@ Table.prototype.loadTable = function() {
                 this.jsonTypeSocial.push(this.jsonArray[i]);
             }
         }
-/*        this.jsonTypeMail.sort(sortDateUp);
+        this.jsonTypeMail.sort(sortDateUp);
         this.jsonTypeOther.sort(sortDateUp);
-        this.jsonTypeSocial.sort(sortDateUp);*/
+        this.jsonTypeSocial.sort(sortDateUp);
+        console.log('this.jsonTypeSocial',this.jsonTypeSocial);
     }.bind(this));
 };
 
@@ -162,6 +165,8 @@ Table.prototype.buttonSend = function() {
                 + this.jsonLoadSave[j].count + '</td>' + '<td>' + this.jsonLoadSave[j].typeUrl + '</td></tr>');
         }
         this.sortWhenLoad();
+
+        findAbnormalUrl();
     }.bind(this);
 };
 

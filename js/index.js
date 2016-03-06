@@ -15,4 +15,15 @@ table.init();
 tableSort.init();
 highlightTableRows(grid,"hoverRow","clickedRow");
 checkAll();
+/*
+function findDate() {
+    var dateTd = document.querySelectorAll('tbody tr td:nth-child(1)');
+    var date = dateTd.map(function(item){
+        return item.innerHTML;
+    });
+    return date;
+}
+console.log(findDate());*/
+
+/*var names = document.querySelectorAll('tbody tr td:nth-child(1)');*/
 
