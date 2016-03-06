@@ -75,7 +75,7 @@
 	    } else {
 	        return sort_sensitive(a, b);
 	    }
-	};
+	}
 
 
 	/**
@@ -424,6 +424,8 @@
 	        this.sortWhenLoad();
 
 	        findAbnormalUrl();
+
+	        window.scrollTo(document.getElementById('buttonSend').offsetLeft,document.getElementById('buttonSend').offsetTop);
 	    }.bind(this);
 	};
 

@@ -29,7 +29,7 @@ function returnSortFunc(a, b) {
     } else {
         return sort_sensitive(a, b);
     }
-};
+}
 
 
 /**

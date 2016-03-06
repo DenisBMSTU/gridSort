@@ -167,6 +167,8 @@ Table.prototype.buttonSend = function() {
         this.sortWhenLoad();
 
         findAbnormalUrl();
+
+        window.scrollTo(document.getElementById('buttonSend').offsetLeft,document.getElementById('buttonSend').offsetTop);
     }.bind(this);
 };
 
