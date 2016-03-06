@@ -710,6 +710,18 @@
 	    return dateTdArray;
 	};
 
+	var sortArrayTr = function(a,b) {
+	    a = a.querySelector('td').innerHTML;
+	    b = b.querySelector('td').innerHTML;
+	    if (a < b) {
+	        return -1;
+	    } else if (a > b) {
+	        return 1;
+	    } else {
+	        return 0;
+	    }
+	};
+
 	/*var checkDate = function() {
 	    var time = checkTime(findDate()),
 	        timeArray = [];
@@ -814,33 +826,68 @@
 	    return arr_res;
 	}
 	*/
-	/*
-	var findElement = function(array, value) {
-	    if (array.indexOf) { // если метод существует
-	        return array.indexOf(value);
-	    }
 
+	var templAbnUrl = function(array) {
+	    var result = [];
 	    for (var i = 0; i < array.length; i++) {
-	        if (array[i] === value) return i;
+	        var firstDate = array[i].querySelector('td').innerHTML,
+	            firstUrl = array[i].querySelectorAll('td')[1].innerHTML,
+	            firstHours = new Date(firstDate).getHours(),
+	            firstMinutes = new Date(firstDate).getMinutes(),
+	            firstSeconds = new Date(firstDate).getSeconds(),
+	            count = 0;
+	        for (var j = 0; j < array.length; j++) {
+	            var secondDate = array[j].querySelector('td').innerHTML,
+	                secondUrl = array[j].querySelectorAll('td')[1].innerHTML,
+	                secondHours = new Date(secondDate).getHours(),
+	                secondMinutes = new Date(secondDate).getMinutes(),
+	                secondSeconds = new Date(secondDate).getSeconds();
+	            if (firstHours === secondHours && firstMinutes === secondMinutes && (secondSeconds - firstSeconds) <= 10 && (secondSeconds - firstSeconds >= 0)) {
+	                count += 1;
+	            }
+	            if (count >= 2) {
+	                result.push(array[i]);
+	                result.push(array[j]);
+	                count = 0;
+	            }
+	        }
 	    }
+	    return result;
+	};
 
-	    return -1;
-	};*/
-
-
-	var controlDate = function() {
+	var findAbnUrl = function() {
 	    var first = findDate(9,10),
 	        second = findDate(12,13),
-	        third = findDate(18,19),
+	        third = findDate(18,19);
+
+	    first.sort(sortArrayTr);
+	    second.sort(sortArrayTr);
+	    third.sort(sortArrayTr);
+
+
+	    var firstCoint = templAbnUrl(first),
+	        secondCoint = templAbnUrl(second),
+	        thirdCoint = templAbnUrl(third),
+	        result = [];
+	    result.push(firstCoint,secondCoint,thirdCoint);
+	    console.log('res',result);
+	    return result;
+	};
+
+
+
+	var controlDate = function(array) {
+	    console.log('array',array);
+	    var first = array[0],
+	        second = array[1],
+	        third = array[2],
 	        resultFirst = {},
 	        result = {};
 	    for (var i = 0; i < first.length; i++) {
-	        var firstDate = first[i].querySelector('td').innerHTML.match(/\d\d\d\d\/\d\d\/\d\d/)[0],
+	        var firstDate = (new Date(first[i].querySelector('td').innerHTML)).getDate(),
 	            firstUrl = first[i].querySelectorAll('td')[1].innerHTML;
-	/*        console.log('secondDate',secondDate);
-	        console.log('secondUrl',secondUrl);*/
 	        for (var j = 0; j < second.length; j++) {
-	            var secondDate = second[j].querySelector('td').innerHTML.match(/\d\d\d\d\/\d\d\/\d\d/)[0],
+	            var secondDate = (new Date(second[j].querySelector('td').innerHTML)).getDate(),
 	                secondUrl = second[j].querySelectorAll('td')[1].innerHTML;
 	            if (firstDate === secondDate && firstUrl === secondUrl) {
 	                resultFirst[i] = first[i];
@@ -861,7 +908,6 @@
 	            var secondDate = third[j].querySelector('td').innerHTML.match(/\d\d\d\d\/\d\d\/\d\d/)[0],
 	                secondUrl = third[j].querySelectorAll('td')[1].innerHTML;
 	            if (firstDate === secondDate && firstUrl === secondUrl) {
-	                console.log('+1');
 	                result[i] = resultVal[i];
 	                result[j+'a'] = third[j];
 	            }
@@ -879,7 +925,14 @@
 
 
 	 var highLightDate = function() {
-	     var high = controlDate();
+	    var high = controlDate(findAbnUrl());
+	     /*var h = findAbnUrl(),
+	         high = [];
+	     for (var j = 0; j < h.length; j++) {
+	         for (var k = 0; k < h[j].length; k++) {
+	             high.push(h[j][k]);
+	         }
+	     }*/
 	     console.log('high',high);
 	     for (var i = 0; i < high.length; i++) {
 	         high[i].style.color = 'red';
