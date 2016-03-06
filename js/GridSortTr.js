@@ -12,7 +12,7 @@ function GridSortTr(grid) {
  * @param b
  * @returns {number}
  */
-GridSortTr.prototype.returnSortFunc = function(a, b) {
+function returnSortFunc(a, b) {
     var sort_case_sensitive = false, // чуствительновть к регистру при сотрировке
         patternDate = /\d\d\d\d([/])\d\d([/])\d\d/, //регулярное выражения для даты
         patternTime = /\d\d([:])\d\d([:])\d\d/, //регулярное выражения для времени
@@ -39,7 +39,8 @@ GridSortTr.prototype.returnSortFunc = function(a, b) {
  * @returns {number}
  */
 function sort_numbers(a, b) {
-    return a - b;
+    if (a > b) return 1;
+    if (a < b) return -1;
 }
 
 /**
@@ -157,7 +158,8 @@ GridSortTr.prototype.sortTableTr = function(e) {
         a[i][3] = node;
     }
 
-    a.sort(this.returnSortFunc);
+    /*console.log('this.returnSortFunc',this.returnSortFunc(a,b));*/
+    a.sort(returnSortFunc);
 
     if (table.up) a.reverse();
 
