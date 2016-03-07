@@ -83,6 +83,7 @@ Table.prototype.buttonSend = function() {
     var input = $('.container__category').find('input'),
         inputLength = $('.container__category').find('input').length;
     buttonSend.onclick = function() {
+
         var countInput = 0;
         for (i = 1; i < inputLength; i++) {
             if (input[i].checked) {
@@ -160,6 +161,12 @@ Table.prototype.buttonSend = function() {
         }
         this.allStart = this.otherAllStart + this.mailAllStart + this.socialAllStart;
         this.allFin = this.otherAllFin + this.mailAllFin + this.socialAllFin;
+
+        if (this.allStart === this.allFin) {
+            alert('Данных для загрузки больше нет!');
+            return;
+        };
+
         for (var j = this.allStart; j < this.allFin; j++) {
             this.$tbody.append('<tr><td>' + this.jsonLoadSave[j].date + '</td><td>' + this.jsonLoadSave[j].name + '</td><td>'
                 + this.jsonLoadSave[j].count + '</td>' + '<td>' + this.jsonLoadSave[j].typeUrl + '</td></tr>');
