@@ -54,7 +54,6 @@ Table.prototype.loadTable = function() {
         this.jsonTypeMail.sort(sortDateUp);
         this.jsonTypeOther.sort(sortDateUp);
         this.jsonTypeSocial.sort(sortDateUp);
-        console.log('this.jsonTypeSocial',this.jsonTypeSocial);
     }.bind(this));
 };
 
