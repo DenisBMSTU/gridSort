@@ -238,14 +238,6 @@ var findSession = function(dateArray, startHours, endHours) {
     return arr;
 };
 
-/*var checkElement = function(array, element) {
-    if (array.indexOf(element) != -1) {
-        return true;
-    } else {
-        return false;
-    }
-};*/
-
 var sortArrayTr = function(a,b) {
     a = a.querySelector('td').innerHTML;
     b = b.querySelector('td').innerHTML;
@@ -308,6 +300,14 @@ var findTenSeconds = function(session) {
                 var obj = {};
                 obj[fullDate + ' ' + firstUrl] = fullDatek + ' ' + firstUrlk;
                 arr.push(obj);
+                var end = {};
+                end[fullDatek + ' ' + firstUrlk] = "end";
+                arr.push(end);
+                /*if (k === (session.length - 1)) {
+                    var end = {};
+                    end[fullDatek + ' ' + firstUrlk] = "end " + firstUrlk;
+                    arr.push(end);
+                }*/
                 count = 0;
             }
         }
@@ -335,6 +335,40 @@ var saveObjectKey = function(arr) {
     return arrayKey;
 };
 
+var checkElement = function(array, element) {
+     if (array.indexOf(element) != -1) {
+         return true;
+     } else {
+         return false;
+     }
+};
+
+
+/**
+ * Проверяем наличие url за первую сессию в каждой из трех
+ * @param first
+ * @param second
+ * @param third
+ */
+var checkThreeSession = function(first, second, third) {
+    var arrOne = {};
+    for(var i = 0; i < first.length; i++) {
+        var firstDate =  first[i].slice(0,19),
+            firstUrl = first[i].slice(20);
+        for(var j = 0; j < second.length; j++) {
+            var secondDate =  second[j].slice(0,19),
+                secondUrl = second[j].slice(20);
+            /*console.log('first',firstUrl,'second',secondUrl);*/
+            if (firstUrl === secondUrl) {
+                arrOne[firstUrl] = 'yes';
+            }
+        }
+    }
+    arrOne = Object.keys(arrOne);
+    return arrOne;
+};
+
+
 var checkSession = function(firstObj, firstArr, secondObj, secondArr, thirdObj, thirdArr) {
     for(var i = 0; i < firstArr.length; i++) {
         var firstArrDate = firstArr[i].slice(0,19),
@@ -352,6 +386,152 @@ var checkSession = function(firstObj, firstArr, secondObj, secondArr, thirdObj, 
     }
 };
 
+/**
+ * Убираем из массива повторяющиеся элементы
+ * @param arr
+ * @returns {Array}
+ */
+var unique = function(arr) {
+    var result = [];
+
+    nextInput:
+        for (var i = 0; i < arr.length; i++) {
+            var str = arr[i]; // для каждого элемента
+            for (var j = 0; j < result.length; j++) { // ищем, был ли он уже?
+                if (result[j] == str) continue nextInput; // если да, то следующий
+            }
+            result.push(str);
+        }
+
+    return result;
+};
+
+var coincidence = function(common, firstArray, firstObj, secondArray, secondObj, thirdArray, thirdObj) {
+    var arr = [],
+         re = /\//;
+    for(var i = 0; i < common.length; i++) {
+        for(var f = 0; f < firstArray.length; f++) {
+            var firstArrDate = firstArray[f].slice(0,19),
+                firstArrUrl = firstArray[f].slice(20),
+                firstObjDate = firstObj[f][firstArrDate + ' ' + firstArrUrl].slice(0,19),
+                firstObjUrl = firstObj[f][firstArrDate + ' ' + firstArrUrl].slice(20);
+
+            if(common[i] === firstArrUrl && checkElement(common,(firstArray[f]).slice(20))) {
+                arr.push(firstArray[f].slice(0,19));
+            }
+        }
+    }
+    for(var i = 0; i < common.length; i++) {
+        for(var f = 0; f < secondArray.length; f++) {
+            var firstArrDate = secondArray[f].slice(0,19),
+                firstArrUrl = secondArray[f].slice(20),
+                firstObjDate = secondObj[f][firstArrDate + ' ' + firstArrUrl].slice(0,19),
+                firstObjUrl = secondObj[f][firstArrDate + ' ' + firstArrUrl].slice(20);
+
+            if(common[i] === firstArrUrl && checkElement(common,(secondArray[f]).slice(20))) {
+                arr.push(secondArray[f].slice(0,19));
+            }
+        }
+    }
+    for(var i = 0; i < common.length; i++) {
+        for(var f = 0; f < thirdArray.length; f++) {
+            var firstArrDate = thirdArray[f].slice(0,19),
+                firstArrUrl = thirdArray[f].slice(20),
+                firstObjDate = thirdObj[f][firstArrDate + ' ' + firstArrUrl].slice(0,19),
+                firstObjUrl = thirdObj[f][firstArrDate + ' ' + firstArrUrl].slice(20);
+
+            if(common[i] === firstArrUrl && checkElement(common,(thirdArray[f]).slice(20))) {
+                arr.push(thirdArray[f].slice(0,19));
+            }
+        }
+    }
+    return arr;
+};
+
+var checkCommon = function(coin, firstArray, firstObj, secondArray, secondObj, thirdArray, thirdObj) {
+    var arrOne = coin.slice(),
+        arrTwo = coin.slice(),
+        arrThree = coin.slice();
+    for(var i = 0; i < arrOne.length; i++) {
+        for(var j = 0; j < firstArray.length; j++) {
+            if (firstObj[j][firstArray[j]] === 'end') {
+                arrOne.splice(j, 1);
+            }
+        }
+    }
+    for(var i = 0; i < arrTwo.length; i++) {
+        for(var j = 0; j < secondArray.length; j++) {
+            if (secondObj[j][secondArray[j]] === 'end') {
+                arrTwo.splice(j, 1);
+            }
+        }
+    }
+    for(var i = 0; i < arrThree.length; i++) {
+        for(var j = 0; j < thirdArray.length; j++) {
+            if (thirdObj[j][thirdArray[j]] === 'end') {
+                arrThree.splice(j, 1);
+            }
+        }
+    }
+
+    var all = arrOne.concat(arrTwo).concat(arrThree);
+    return all;
+};
+
+var remUrl = function(array) {
+    var arr = [];
+    for(var i = 0; i < array.length; i++) {
+      arr.push(array[i].slice(0,19));
+    }
+    return arr;
+};
+
+var colorTr = function(coin, first, second, third ) {
+    var arr = [];
+    for(var i = 0; i < first.length; i++) {
+        if(!checkElement(coin,first[i])) {
+            arr.push(first[i]);
+        }
+    }
+    for(var i = 0; i < second.length; i++) {
+        if(!checkElement(coin,second[i])) {
+            arr.push(second[i]);
+        }
+    }
+    for(var i = 0; i < third.length; i++) {
+        if(!checkElement(coin,third[i])) {
+            arr.push(third[i]);
+        }
+    }
+    for(var i = 0; i < arr.length; i++) {
+        for(var j = 0; j < $('#grid tbody tr td:first-child').length; j++) {
+            if (arr[i] === $('#grid tbody tr td:first-child')[j].innerHTML.slice(0,19)) {
+                $('#grid tbody tr td:first-child')[j].style.color = 'green';
+            }
+        }
+    }
+    for(var i = 0; i < coin.length; i++) {
+        for(var j = 0; j < $('#grid tbody tr td:first-child').length; j++) {
+            if (coin[i] === $('#grid tbody tr td:first-child')[j].innerHTML.slice(0,19)) {
+                $('#grid tbody tr td:first-child')[j].style.color = 'red';
+            }
+        }
+    }
+};
+
+
+var loadTd = function(arr, obj, arr2, obj2, arr3, obj3) {
+    $('#info').html('');
+    for(var i = 0; i < arr.length; i++) {
+        $('#info').append('<div>' + arr[i] + ' -> ' + obj[i][arr[i]] + '</div>');
+    }
+    for(var i = 0; i < arr2.length; i++) {
+        $('#info').append('<div>' + arr2[i] +' -> '+ obj2[i][arr2[i]] + '</div>');
+    }
+    for(var i = 0; i < arr3.length; i++) {
+        $('#info').append('<div>' + arr3[i] +' -> '+ obj3[i][arr3[i]] + '</div>');
+    }
+};
 
 /**
  * Собираем в кучу все классненькие функции и ищем наконец аномальные переходы
@@ -377,6 +557,10 @@ var findCoin = function() {
     var firstArrayObj = findTenSeconds(first),
         secondArrayObj = findTenSeconds(second),
         thirdArrayObj = findTenSeconds(third);
+
+/*    console.log('fr',tenString(first));
+    console.log('fr',tenString(second));
+    console.log('fr',tenString(third));*/
     /**
      * Собирается массив ключей каждого объекта
      */
@@ -384,10 +568,43 @@ var findCoin = function() {
         secondArray = saveObjectKey(secondArrayObj),
         thirdArray = saveObjectKey(thirdArrayObj);
 
-  /*  console.log(firstArrayObj);
-    console.log(secondArrayObj);
-    console.log(thirdArrayObj);*/
-    console.log(checkSession(firstArrayObj, firstArray, secondArrayObj, secondArray, thirdArrayObj, thirdArray));
+    var firstDate = remUrl(firstArray),
+        secondDate = remUrl(secondArray),
+        thirdDate = remUrl(thirdArray);
+
+    /**
+     * убираем повторяющиеся символы
+     */
+
+    var firstUn = unique(firstArray),
+        secondUn = unique(secondArray),
+        thirdUn = unique(thirdArray);
+   /* console.log('firstUn',firstUn);
+    console.log('firstArray',firstArray);
+    console.log('firstArrayOb   j',firstArrayObj);*/
+    /**
+     *  Общее для всех сессий
+     */
+    var common = checkThreeSession(firstArray, secondArray, thirdArray);
+
+    /**
+     * Собирает в массив все переходы между Url, которые в трех сессиях и разница <=10 сек
+     */
+
+    var coin = coincidence(common, firstArray, firstArrayObj, secondArray, secondArrayObj, thirdArray, thirdArrayObj);
+/*       console.log('uniq', common);
+    console.log('o',firstArrayObj,'a', firstUn);
+    console.log('coincidence', coin);*/
+   // console.log(checkSession(firstArrayObj, firstArray, secondArrayObj, secondArray, thirdArrayObj, thirdArray));
+    console.log('coincidence', coin);
+    console.log('coin',coin,'firstDate',firstDate);
+    if (coin.length) {
+        colorTr(coin, firstDate, secondDate, thirdDate);
+    }
+
+    loadTd(firstArray,  firstArrayObj,secondArray,secondArrayObj,thirdArray , thirdArrayObj);
+    //var check = checkCommon(coin,firstArray, firstArrayObj, secondArray, secondArrayObj, thirdArray, thirdArrayObj);
+
 };
 
 var findAbnormalUrl = function() {
