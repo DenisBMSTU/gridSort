@@ -290,7 +290,7 @@ var findTenSeconds = function(session) {
                 firstSecondsk = firstDatek.getSeconds(),
                 fullDatek = YYYYMMDDHHMMSS(firstYeark,firstMonthk,firstDayk,firstHoursk,firstMinutesk,firstSecondsk);
             /* console.log('fulldate',fullDate,'fk',fullDatek);*/
-            if (firstHours === firstHoursk && firstMinutes === firstMinutesk && (firstSecondsk - firstSeconds) <= 10 && (firstSecondsk - firstSeconds >= 0)) {
+            if (firstHours === firstHoursk && (firstMinutesk - firstMinutes === 0 || firstMinutesk - firstMinutes === 1) && new Date(fullDatek).getTime() - new Date(fullDate).getTime() <= 10000) {
                 count += 1;
                 /* console.log('count: ',count);*/
             }
