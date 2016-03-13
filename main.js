@@ -1278,9 +1278,24 @@
 	    }
 	};
 
+	var checkUrl = function(array, element) {
+	    for (var i = 0; i < array.length; i++) {
+	        if (element.indexOf(array[i]) != -1) {
+	            return true;
+	        }
+	    }
+	};
 
-	var loadRelation = function(firstYes, secondYes, thirdYes, firstNo, secondNo, thirdNo) {
-	    var sortF = function(a,b) {
+	var checkArr = function(array, element) {
+	    for (var i = 0; i < array.length; i++) {
+	        if (element.indexOf(array[i]) === 20) {
+	            return true;
+	        }
+	    }
+	};
+
+	var loadRelation = function(abnYes, abnNo) {
+	/*    var sortF = function(a,b) {
 	        if (a < b) {
 	            return -1;
 	        } else if (a > b) {
@@ -1294,27 +1309,15 @@
 	    thirdYes.sort(sortF);
 	    firstNo.sort(sortF);
 	    secondNo.sort(sortF);
-	    thirdNo.sort(sortF);
+	    thirdNo.sort(sortF);*/
 	    $('#info').html('');
 	    $('#info').append('<div>Переходы <span style="color:red">по</span> важным ссылкам:</div>');
-	    for(var i = 0; i < firstYes.length; i++) {
-	        $('#info').append('<div>' + firstYes[i] + '</div>');
-	    }
-	    for(var i = 0; i < secondYes.length; i++) {
-	        $('#info').append('<div>' + secondYes[i] + '</div>');
-	    }
-	    for(var i = 0; i < thirdYes.length; i++) {
-	        $('#info').append('<div>' + thirdYes[i] + '</div>');
+	    for(var i = 0; i < abnYes.length; i++) {
+	        $('#info').append('<div>' + abnYes[i] + '</div>');
 	    }
 	    $('#info').append('<div>Переходы <span style="color:red">между</span> важными ссылками:</div>');
-	    for(var i = 0; i < firstNo.length; i++) {
-	        $('#info').append('<div>' + firstNo[i] + '</div>');
-	    }
-	    for(var i = 0; i < secondNo.length; i++) {
-	        $('#info').append('<div>' + secondNo[i] + '</div>');
-	    }
-	    for(var i = 0; i < thirdNo.length; i++) {
-	        $('#info').append('<div>' + thirdNo[i] + '</div>');
+	    for(var i = 0; i < abnNo.length; i++) {
+	        $('#info').append('<div>' + abnNo[i] + '</div>');
 	    }
 	};
 
@@ -1356,11 +1359,82 @@
 	            }
 	        }
 	    }
+	/*
+
+	    var chAr = function(common, element) {
+	        for (var i = 0; i < common.length; i++) {
+	            if (element.indexOf(common[i])) {
+	                return true;
+	            }
+	        }
+	    };
+
+	    var fun = function(array,element) {
+	      for(var i = 0; i < array.length; i++) {
+	          if ((array[i].slice(0,19) != element.slice(0,19))/!* && chAr(common, element)*!/) {
+	              console.log(array[i].slice(0,19),element.slice(0,19));
+	              /!*return true;*!/
+	          }
+	      }
+	    };
+	console.log('ARRRRRRRR',arr);
+	    for(var i = 0; i < arrNo.length; i++) {
+	        fun(arr,arrNo[i]);
+	    }
+	*/
+
 	    var arrEnd = [arr, arrNo];
 	    return arrEnd;
 	};
 
-	/**
+	var findDateForColor = function(array) {
+	    var arr = [];
+	    for (var i = 0; i < array.length; i++) {
+	        var re = /\d\d\d\d\/\d\d\/\d\d \d\d[:]\d\d[:]\d\d/;
+	        var reFirst = re.exec(array[i]).join('');
+	        arr.push(reFirst);
+	        var arrN = array[i].replace(reFirst,'');
+	        var reSecond = re.exec(arrN).join('');
+	        arr.push(reSecond);
+	    }
+	    arr = unique(arr);
+	    return arr;
+	};
+
+
+	var findAbnNo = function(arrYes, arrNo,common) {
+	    for (var i = 0; i < arrNo.length; i++) {
+	        if (!checkElementIndex(arrYes,arrNo[i].slice(0,19)) && checkArr(common,arrNo[i])) {
+	           /* arr.push(arrNo[i]) ;*/
+	            arrNo.splice(i,1);
+	        }
+	    }
+	    return arrNo;
+	};
+
+	var tableAbn = function(arr) {
+	    console.log('arr1',arr);
+	    for(var i = 0; i < arr.length; i++) {
+	        for(var j = 0; j < $('#grid tbody tr td:first-child').length; j++) {
+	            if (arr[i] === $('#grid tbody tr td:first-child')[j].innerHTML.slice(0,19) && !($('#grid tbody tr td:first-child')[j].style.color = 'green')) {
+	                $('#grid tbody tr td:first-child')[j].style.color = 'red';
+	            }
+	        }
+	    }
+	};
+
+	var tableC = function(arr) {
+	    console.log('arr2',arr);
+	    for(var i = 0; i < arr.length; i++) {
+	        for(var j = 0; j < $('#grid tbody tr td:first-child').length; j++) {
+	            if (arr[i] === $('#grid tbody tr td:first-child')[j].innerHTML.slice(0,19) && !($('#grid tbody tr td:first-child')[j].style.color = 'red')) {
+	                $('#grid tbody tr td:first-child')[j].style.color = 'green';
+	            }
+	        }
+	    }
+	};
+
+	/**'
 	 * Собираем в кучу все классненькие функции и ищем наконец аномальные переходы
 	 */
 	var findCoin = function() {
@@ -1398,8 +1472,20 @@
 	        abnUrlSecondNo = abnUrl(common,secondArrayObj)[1],
 	        abnUrlThirdNo = abnUrl(common,thirdArrayObj)[1];
 
+	    var abnYes = abnUrlFirstYes.concat(abnUrlSecondYes).concat(abnUrlThirdYes),
+	        abnNo = abnUrlFirstNo.concat(abnUrlSecondNo).concat(abnUrlThirdNo);
+
+	    var abnAllNo = findAbnNo(abnYes,abnNo,common);
+
+	    var fYes = findDateForColor(abnYes),
+	        fNo = findDateForColor(abnAllNo);
+	    console.log(fYes);
+	    console.log(fNo);
+
 	    if (abnUrlFirstYes.length && abnUrlSecondYes.length && abnUrlThirdYes.length) {
-	        loadRelation(abnUrlFirstYes,abnUrlSecondYes,abnUrlThirdYes,abnUrlFirstNo,abnUrlSecondNo,abnUrlThirdNo);
+	        loadRelation(abnYes,abnAllNo);
+	        tableAbn(fNo);
+	        tableC(fYes);
 	    }
 	};
 
