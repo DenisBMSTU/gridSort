@@ -596,7 +596,7 @@ var loadRelation = function(firstYes, secondYes, thirdYes, firstNo, secondNo, th
     secondNo.sort(sortF);
     thirdNo.sort(sortF);
     $('#info').html('');
-    $('#info').append('<div>Переходы <span color="red">по</span> важным ссылкам:</div>');
+    $('#info').append('<div>Переходы <span style="color:red">по</span> важным ссылкам:</div>');
     for(var i = 0; i < firstYes.length; i++) {
         $('#info').append('<div>' + firstYes[i] + '</div>');
     }
@@ -606,7 +606,7 @@ var loadRelation = function(firstYes, secondYes, thirdYes, firstNo, secondNo, th
     for(var i = 0; i < thirdYes.length; i++) {
         $('#info').append('<div>' + thirdYes[i] + '</div>');
     }
-    $('#info').append('<div>Переходы <span color="red">между</span> важными ссылками:</div>');
+    $('#info').append('<div>Переходы <span style="color:red">между</span> важными ссылками:</div>');
     for(var i = 0; i < firstNo.length; i++) {
         $('#info').append('<div>' + firstNo[i] + '</div>');
     }
