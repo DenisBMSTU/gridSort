@@ -961,6 +961,22 @@
 	    return year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds;
 	};
 
+	function uniqueArr(arr) {
+	    var result = [];
+
+	    nextInput:
+	        for (var i = 0; i < arr.length; i++) {
+	            var str = arr[i][0]; // для каждого элемента
+	            for (var j = 0; j < result.length; j++) { // ищем, был ли он уже?
+	                if (result[j][0] == str) continue nextInput; // если да, то следующий
+	            }
+	            result.push(arr[i]);
+	        }
+
+	    return result;
+	}
+
+
 	/**
 	 * Ищет в сессии элементы, разница между которыми 10 секунд
 	 * @param first
@@ -979,6 +995,7 @@
 	            firstSeconds = firstDate.getSeconds(),
 	            fullDate = YYYYMMDDHHMMSS(firstYear,firstMonth,firstDay,firstHours,firstMinutes,firstSeconds),
 	            count = 0;
+	            var arrIn = [];
 	        for (var k = 0; k < session.length; k++) {
 	            var firstUrlk = session[k].querySelectorAll('td')[1].innerHTML,
 	                firstDatek = new Date(session[k].querySelectorAll('td')[0].innerHTML),
@@ -990,21 +1007,28 @@
 	                firstSecondsk = firstDatek.getSeconds(),
 	                fullDatek = YYYYMMDDHHMMSS(firstYeark,firstMonthk,firstDayk,firstHoursk,firstMinutesk,firstSecondsk);
 	            /* console.log('fulldate',fullDate,'fk',fullDatek);*/
-	            if (firstHours === firstHoursk && (firstMinutesk - firstMinutes === 0 || firstMinutesk - firstMinutes === 1) && new Date(fullDatek).getTime() - new Date(fullDate).getTime() <= 10000) {
-	                count += 1;
+	            if (new Date(fullDatek).getTime() - new Date(fullDate).getTime() <= 10000 && new Date(fullDatek).getTime() - new Date(fullDate).getTime() >= 0 && fullDate != fullDatek) {
+	                /*var obj = {};
+	                obj[fullDate + ' ' + firstUrl] = fullDate + ' ' + firstUrl + ' ' + fullDatek + ' ' + firstUrlk;
+	                arrIn.push(obj);*/
+	                arr.push(fullDate + ' ' + firstUrl + ' ' + fullDatek + ' ' + firstUrlk);
 	                /* console.log('count: ',count);*/
 	            }
 	            if (count === 2) {
 	               /* sessionTen[fullDate] = firstUrl;
 	                sessionTen[fullDatek] = firstUrlk;*/
-	                if ((fullDate + ' ' + firstUrl != fullDatek + ' ' + firstUrlk) && (new Date(fullDate).getTime()) < (new Date(fullDatek).getTime())) {
+	               /* var obj = {};
+	                obj[fullDate + ' ' + firstUrl] = fullDatek + ' ' + firstUrlk;
+	                arrIn.push(obj);
+	                arr.push(arrIn);*/
+	                /*if (fullDate + ' ' + firstUrl != fullDatek + ' ' + firstUrlk) {
 	                    var obj = {};
 	                    obj[fullDate + ' ' + firstUrl] = fullDatek + ' ' + firstUrlk;
 	                    arr.push(obj);
 	                    var end = {};
 	                    end[fullDatek + ' ' + firstUrlk] = "end";
 	                    arr.push(end);
-	                }
+	                }*/
 	                /*if (k === (session.length - 1)) {
 	                    var end = {};
 	                    end[fullDatek + ' ' + firstUrlk] = "end " + firstUrlk;
@@ -1013,20 +1037,10 @@
 	                count = 0;
 	            }
 	        }
-
-	        /*for (var j = 0; j < second.length; j++) {
-	         var secondUrl = first[i].querySelectorAll('td')[1].innerHTML,
-	         secondDate = new Date(first[i].querySelectorAll('td')[0].innerHTML),
-	         secondHours = secondDate.getHours(),
-	         secondMinutes = secondDate.getMinutes(),
-	         secondSeconds = secondDate.getSeconds();
-	         if (firstUrl === secondUrl) {
-
-	         }
-	         }*/
 	    }
+	   /* var arrUn = uniqueArr(arr);
+	    return arrUn;*/
 	    return arr;
-	    /*return sessionTen;*/
 	};
 
 	var saveObjectKey = function(arr) {
@@ -1045,48 +1059,6 @@
 	     }
 	};
 
-
-	/**
-	 * Проверяем наличие url за первую сессию в каждой из трех
-	 * @param first
-	 * @param second
-	 * @param third
-	 */
-	var checkThreeSession = function(first, second, third) {
-	    var arrOne = {};
-	    for(var i = 0; i < first.length; i++) {
-	        var firstDate =  first[i].slice(0,19),
-	            firstUrl = first[i].slice(20);
-	        for(var j = 0; j < second.length; j++) {
-	            var secondDate =  second[j].slice(0,19),
-	                secondUrl = second[j].slice(20);
-	            /*console.log('first',firstUrl,'second',secondUrl);*/
-	            if (firstUrl === secondUrl) {
-	                arrOne[firstUrl] = 'yes';
-	            }
-	        }
-	    }
-	    arrOne = Object.keys(arrOne);
-	    return arrOne;
-	};
-
-
-	var checkSession = function(firstObj, firstArr, secondObj, secondArr, thirdObj, thirdArr) {
-	    for(var i = 0; i < firstArr.length; i++) {
-	        var firstArrDate = firstArr[i].slice(0,19),
-	            firstArrUrl = firstArr[i].slice(20),
-	            firstObjDate = firstObj[i][firstArrDate + ' ' + firstArrUrl].slice(0,19),
-	            firstObjUrl = firstObj[i][firstArrDate + ' ' + firstArrUrl].slice(20);
-	/*        console.log('firstArrDate', firstArrDate, 'firstArrUrl',firstArrUrl);
-	        console.log('firstObjDate',firstObjDate,'firstObjUrl',firstObjUrl );*/
-	        for(var j = 0; j < secondArr.length; j++) {
-	            var secondArrDate = secondArr[i].slice(0,19),
-	                secondArrUrl = secondArr[i].slice(20),
-	                secondObjDate = secondObj[i][secondArrDate + ' ' + secondArrUrl].slice(0,19),
-	                secondObjUrl = secondObj[i][secondArrDate + ' ' + secondArrUrl].slice(20);
-	        }
-	    }
-	};
 
 	/**
 	 * Убираем из массива повторяющиеся элементы
@@ -1108,6 +1080,51 @@
 	    return result;
 	};
 
+	var trToUrl = function(array) {
+	    var arr = [];
+	    for (var i = 0; i < array.length; i++) {
+	        var date = array[i].querySelectorAll('td')[1].innerHTML;
+	        arr.push(date);
+	    }
+	    arr = unique(arr);
+	    return arr;
+	};
+
+	/**
+	 * Url, который встречается во всех трех сессиях
+	 * @param first
+	 * @param second
+	 * @param third
+	 */
+	var checkThreeSession = function(first, second, third) {
+	    var arr = [];
+	    for (var i = 0; i < first.length; i++) {
+	        if (checkElement(second, first[i]) && checkElement(third, first[i])) {
+	            arr.push(first[i]);
+	        }
+	    }
+	    return arr;
+	};
+
+
+	var checkSession = function(firstObj, firstArr, secondObj, secondArr, thirdObj, thirdArr) {
+	    for(var i = 0; i < firstArr.length; i++) {
+	        var firstArrDate = firstArr[i].slice(0,19),
+	            firstArrUrl = firstArr[i].slice(20),
+	            firstObjDate = firstObj[i][firstArrDate + ' ' + firstArrUrl].slice(0,19),
+	            firstObjUrl = firstObj[i][firstArrDate + ' ' + firstArrUrl].slice(20);
+	/*        console.log('firstArrDate', firstArrDate, 'firstArrUrl',firstArrUrl);
+	        console.log('firstObjDate',firstObjDate,'firstObjUrl',firstObjUrl );*/
+	        for(var j = 0; j < secondArr.length; j++) {
+	            var secondArrDate = secondArr[i].slice(0,19),
+	                secondArrUrl = secondArr[i].slice(20),
+	                secondObjDate = secondObj[i][secondArrDate + ' ' + secondArrUrl].slice(0,19),
+	                secondObjUrl = secondObj[i][secondArrDate + ' ' + secondArrUrl].slice(20);
+	        }
+	    }
+	};
+
+	/*
 	var coincidence = function(common, firstArray, firstObj, secondArray, secondObj, thirdArray, thirdObj) {
 	    var arr = [],
 	         re = /\//;
@@ -1148,8 +1165,8 @@
 	        }
 	    }
 	    return arr;
-	};
-
+	};*/
+	/*
 	var checkCommon = function(coin, firstArray, firstObj, secondArray, secondObj, thirdArray, thirdObj) {
 	    var arrOne = coin.slice(),
 	        arrTwo = coin.slice(),
@@ -1178,7 +1195,7 @@
 
 	    var all = arrOne.concat(arrTwo).concat(arrThree);
 	    return all;
-	};
+	};*/
 
 	var remUrl = function(array) {
 	    var arr = [];
@@ -1187,6 +1204,7 @@
 	    }
 	    return arr;
 	};
+	/*
 
 	var colorTr = function(coin, first, second, third ) {
 	    var arr = [];
@@ -1223,16 +1241,108 @@
 
 
 	var loadTd = function(arr, obj, arr2, obj2, arr3, obj3) {
+	    arr.sort(function(a,b) {
+	        if (a < b) {
+	            return -1;
+	        } else if (a > b) {
+	            return 1;
+	        } else {
+	            return 0;
+	        }
+	    });
 	    $('#info').html('');
 	    for(var i = 0; i < arr.length; i++) {
-	        $('#info').append('<div>' + arr[i] + ' -> ' + obj[i][arr[i]] + '</div>');
+	        if ( obj[i][arr[i]] != undefined) {
+	            $('#info').append('<div>' + arr[i] + ' -> ' + obj[i][arr[i]] + '</div>');
+	        }
 	    }
 	    for(var i = 0; i < arr2.length; i++) {
-	        $('#info').append('<div>' + arr2[i] +' -> '+ obj2[i][arr2[i]] + '</div>');
+	        if ( obj2[i][arr2[i]] != undefined){
+	            $('#info').append('<div>' + arr2[i] +' -> '+ obj2[i][arr2[i]] + '</div>');
+	        }
 	    }
 	    for(var i = 0; i < arr3.length; i++) {
-	        $('#info').append('<div>' + arr3[i] +' -> '+ obj3[i][arr3[i]] + '</div>');
+	        if ( obj3[i][arr3[i]] != undefined){
+	            $('#info').append('<div>' + arr3[i] +' -> '+ obj3[i][arr3[i]] + '</div>');
+	        }
 	    }
+	};
+	*/
+
+
+	var checkElementIndex = function(array, element) {
+	    for (var i = 0; i < array.length; i++) {
+	        if (element === array[i].slice(0,19)) {
+	            return true;
+	        }
+	    }
+	};
+
+
+	var loadRelation = function(firstYes, secondYes, thirdYes, firstNo, secondNo, thirdNo) {
+	    $('#info').html('');
+	    $('#info').append('<div>Переходы <span color="red">по</span> важным ссылкам:</div>');
+	    for(var i = 0; i < firstYes.length; i++) {
+	        $('#info').append('<div>' + firstYes[i] + '</div>');
+	    }
+	    for(var i = 0; i < secondYes.length; i++) {
+	        $('#info').append('<div>' + secondYes[i] + '</div>');
+	    }
+	    for(var i = 0; i < thirdYes.length; i++) {
+	        $('#info').append('<div>' + thirdYes[i] + '</div>');
+	    }
+	    $('#info').append('<div>Переходы <span color="red">между</span> важными ссылками:</div>');
+	    for(var i = 0; i < firstNo.length; i++) {
+	        $('#info').append('<div>' + firstNo[i] + '</div>');
+	    }
+	    for(var i = 0; i < secondNo.length; i++) {
+	        $('#info').append('<div>' + secondNo[i] + '</div>');
+	    }
+	    for(var i = 0; i < thirdNo.length; i++) {
+	        $('#info').append('<div>' + thirdNo[i] + '</div>');
+	    }
+	};
+
+	/**
+	 * Поиск аномальных Url с переходами
+	 * @param common
+	 * @param array
+	 * @returns {Array}
+	 */
+	var abnUrl = function(common, array) {
+	    var arrAll = [],
+	        arrNo = [],
+	        arr = [];
+	    for(var i = 0; i < array.length; i++) {
+	        /*for (var j = 0; j < common.length; j++) {
+	            if(array[i].indexOf(common[j]) != -1) {
+	                arrYes.push(array[i]);
+	            }
+	        }*/
+	        var obj = {};
+	        obj[array[i]] = array[i];
+	        obj['count'] = 0;
+	        arrAll.push(obj);
+	    }
+	    for(var i = 0; i < array.length; i++) {
+	        for (var j = 0; j < common.length; j++) {
+	            if (array[i].indexOf(common[j]) != -1) {
+	                arrAll[i]['count'] += 1;
+	            }
+	        }
+	    }
+
+	    for(var i = 0; i < array.length; i++) {
+	        if(arrAll[i]['count'] === 2) {
+	            arr.push(arrAll[i][array[i]]);
+	        } else {
+	            if (!checkElementIndex(arrNo,arrAll[i][array[i]].slice(0,19))){
+	                arrNo.push(arrAll[i][array[i]]);
+	            }
+	        }
+	    }
+	    var arrEnd = [arr, arrNo];
+	    return arrEnd;
 	};
 
 	/**
@@ -1252,62 +1362,30 @@
 	    second.sort(sortArrayTr);
 	    third.sort(sortArrayTr);
 
+
+	    var firstArray = trToUrl(first),
+	        secondArray = trToUrl(second),
+	        thirdArray = trToUrl(third);
+
 	    /**
-	     * Массив объектов, где ключ -> значение - переход в течение 10 секунд
-	     * @type {{}}
+	     *  Общее для всех сессий
 	     */
+	     var common = checkThreeSession(firstArray, secondArray, thirdArray);
+
 	    var firstArrayObj = findTenSeconds(first),
 	        secondArrayObj = findTenSeconds(second),
 	        thirdArrayObj = findTenSeconds(third);
 
-	/*    console.log('fr',tenString(first));
-	    console.log('fr',tenString(second));
-	    console.log('fr',tenString(third));*/
-	    /**
-	     * Собирается массив ключей каждого объекта
-	     */
-	    var firstArray = saveObjectKey(firstArrayObj),
-	        secondArray = saveObjectKey(secondArrayObj),
-	        thirdArray = saveObjectKey(thirdArrayObj);
+	    var abnUrlFirstYes = abnUrl(common,firstArrayObj)[0],
+	        abnUrlSecondYes = abnUrl(common,secondArrayObj)[0],
+	        abnUrlThirdYes = abnUrl(common,thirdArrayObj)[0],
+	        abnUrlFirstNo = abnUrl(common,firstArrayObj)[1],
+	        abnUrlSecondNo = abnUrl(common,secondArrayObj)[1],
+	        abnUrlThirdNo = abnUrl(common,thirdArrayObj)[1];
 
-	    var firstDate = remUrl(firstArray),
-	        secondDate = remUrl(secondArray),
-	        thirdDate = remUrl(thirdArray);
-
-	    /**
-	     * убираем повторяющиеся символы
-	     */
-
-	    var firstUn = unique(firstArray),
-	        secondUn = unique(secondArray),
-	        thirdUn = unique(thirdArray);
-	   /* console.log('firstUn',firstUn);
-	    console.log('firstArray',firstArray);
-	    console.log('firstArrayOb   j',firstArrayObj);*/
-	    /**
-	     *  Общее для всех сессий
-	     */
-	    var common = checkThreeSession(firstArray, secondArray, thirdArray);
-
-	    /**
-	     * Собирает в массив все переходы между Url, которые в трех сессиях и разница <=10 сек
-	     */
-
-	    var coin = coincidence(common, firstArray, firstArrayObj, secondArray, secondArrayObj, thirdArray, thirdArrayObj);
-	/*       console.log('uniq', common);
-	    console.log('o',firstArrayObj,'a', firstUn);
-	    console.log('coincidence', coin);*/
-	   // console.log(checkSession(firstArrayObj, firstArray, secondArrayObj, secondArray, thirdArrayObj, thirdArray));
-	/*    console.log('coincidence', coin);
-	    console.log('coin',coin,'firstDate',firstDate);*/
-	    console.log('firstArray',firstArray,'firstArrayObj',firstArrayObj)
-	    if (coin.length) {
-	        colorTr(coin, firstDate, secondDate, thirdDate);
+	    if (abnUrlFirstYes.length && abnUrlSecondYes.length && abnUrlThirdYes.length) {
+	        loadRelation(abnUrlFirstYes,abnUrlSecondYes,abnUrlThirdYes,abnUrlThirdYes,abnUrlFirstNo,abnUrlSecondNo,abnUrlThirdNo);
 	    }
-
-	    loadTd(firstArray,  firstArrayObj,secondArray,secondArrayObj,thirdArray , thirdArrayObj);
-	    //var check = checkCommon(coin,firstArray, firstArrayObj, secondArray, secondArrayObj, thirdArray, thirdArrayObj);
-
 	};
 
 	var findAbnormalUrl = function() {
