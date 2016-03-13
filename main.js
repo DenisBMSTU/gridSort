@@ -997,12 +997,14 @@
 	            if (count === 2) {
 	               /* sessionTen[fullDate] = firstUrl;
 	                sessionTen[fullDatek] = firstUrlk;*/
-	                var obj = {};
-	                obj[fullDate + ' ' + firstUrl] = fullDatek + ' ' + firstUrlk;
-	                arr.push(obj);
-	                var end = {};
-	                end[fullDatek + ' ' + firstUrlk] = "end";
-	                arr.push(end);
+	                if ((fullDate + ' ' + firstUrl != fullDatek + ' ' + firstUrlk) && (new Date(fullDate).getTime()) < (new Date(fullDatek).getTime())) {
+	                    var obj = {};
+	                    obj[fullDate + ' ' + firstUrl] = fullDatek + ' ' + firstUrlk;
+	                    arr.push(obj);
+	                    var end = {};
+	                    end[fullDatek + ' ' + firstUrlk] = "end";
+	                    arr.push(end);
+	                }
 	                /*if (k === (session.length - 1)) {
 	                    var end = {};
 	                    end[fullDatek + ' ' + firstUrlk] = "end " + firstUrlk;
@@ -1296,8 +1298,9 @@
 	    console.log('o',firstArrayObj,'a', firstUn);
 	    console.log('coincidence', coin);*/
 	   // console.log(checkSession(firstArrayObj, firstArray, secondArrayObj, secondArray, thirdArrayObj, thirdArray));
-	    console.log('coincidence', coin);
-	    console.log('coin',coin,'firstDate',firstDate);
+	/*    console.log('coincidence', coin);
+	    console.log('coin',coin,'firstDate',firstDate);*/
+	    console.log('firstArray',firstArray,'firstArrayObj',firstArrayObj)
 	    if (coin.length) {
 	        colorTr(coin, firstDate, secondDate, thirdDate);
 	    }
