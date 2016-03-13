@@ -1280,6 +1280,21 @@
 
 
 	var loadRelation = function(firstYes, secondYes, thirdYes, firstNo, secondNo, thirdNo) {
+	    var sortF = function(a,b) {
+	        if (a < b) {
+	            return -1;
+	        } else if (a > b) {
+	            return 1;
+	        } else {
+	            return 0;
+	        }
+	    };
+	    firstYes.sort(sortF);
+	    secondYes.sort(sortF);
+	    thirdYes.sort(sortF);
+	    firstNo.sort(sortF);
+	    secondNo.sort(sortF);
+	    thirdNo.sort(sortF);
 	    $('#info').html('');
 	    $('#info').append('<div>Переходы <span color="red">по</span> важным ссылкам:</div>');
 	    for(var i = 0; i < firstYes.length; i++) {
@@ -1384,7 +1399,7 @@
 	        abnUrlThirdNo = abnUrl(common,thirdArrayObj)[1];
 
 	    if (abnUrlFirstYes.length && abnUrlSecondYes.length && abnUrlThirdYes.length) {
-	        loadRelation(abnUrlFirstYes,abnUrlSecondYes,abnUrlThirdYes,abnUrlThirdYes,abnUrlFirstNo,abnUrlSecondNo,abnUrlThirdNo);
+	        loadRelation(abnUrlFirstYes,abnUrlSecondYes,abnUrlThirdYes,abnUrlFirstNo,abnUrlSecondNo,abnUrlThirdNo);
 	    }
 	};
 
