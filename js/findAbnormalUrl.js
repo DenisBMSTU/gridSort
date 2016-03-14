@@ -611,11 +611,11 @@ var loadRelation = function(abnYes, abnNo) {
     secondNo.sort(sortF);
     thirdNo.sort(sortF);*/
     $('#info').html('');
-    $('#info').append('<div>Переходы <span style="color:red">по</span> важным ссылкам:</div>');
+    $('#info').append('<div>Переходы <span style="color:#EB1526">по</span> важным ссылкам:</div>');
     for(var i = 0; i < abnYes.length; i++) {
         $('#info').append('<div>' + abnYes[i] + '</div>');
     }
-    $('#info').append('<div>Переходы <span style="color:red">между</span> важными ссылками:</div>');
+    $('#info').append('<div>Переходы <span style="color:#EB1526">между</span> важными ссылками:</div>');
     for(var i = 0; i < abnNo.length; i++) {
         $('#info').append('<div>' + abnNo[i] + '</div>');
     }
@@ -713,22 +713,22 @@ var findAbnNo = function(arrYes, arrNo,common) {
 };
 
 var tableAbn = function(arr) {
-    console.log('arr1',arr);
+    var date = $('#grid tbody tr td:first-child');
     for(var i = 0; i < arr.length; i++) {
-        for(var j = 0; j < $('#grid tbody tr td:first-child').length; j++) {
-            if (arr[i] === $('#grid tbody tr td:first-child')[j].innerHTML.slice(0,19) && !($('#grid tbody tr td:first-child')[j].style.color = 'green')) {
-                $('#grid tbody tr td:first-child')[j].style.color = 'red';
+        for(var j = 0; j < date.length; j++) {
+            if (arr[i] === date[j].innerHTML.slice(0,19)) {
+                date[j].parentNode.style.color = '#1A398F';
             }
         }
     }
 };
 
 var tableC = function(arr) {
-    console.log('arr2',arr);
+    var date = $('#grid tbody tr td:first-child');
     for(var i = 0; i < arr.length; i++) {
-        for(var j = 0; j < $('#grid tbody tr td:first-child').length; j++) {
-            if (arr[i] === $('#grid tbody tr td:first-child')[j].innerHTML.slice(0,19) && !($('#grid tbody tr td:first-child')[j].style.color = 'red')) {
-                $('#grid tbody tr td:first-child')[j].style.color = 'green';
+        for(var j = 0; j < date.length; j++) {
+            if (arr[i] === date[j].innerHTML.slice(0,19)) {
+                date[j].parentNode.style.color = '#EB1526';
             }
         }
     }
@@ -737,13 +737,13 @@ var tableC = function(arr) {
 /**'
  * Собираем в кучу все классненькие функции и ищем наконец аномальные переходы
  */
-var findCoin = function() {
+var findCoin = function(pickerDate) {
     /**
      * Создается массив из tr по каждой сессии
      */
-    var first = findSession(findDate("2016/03/05"), 9, 10),
-        second = findSession(findDate("2016/03/05"), 12, 13),
-        third = findSession(findDate("2016/03/05"), 18, 19);
+    var first = findSession(findDate(pickerDate), 9, 10),
+        second = findSession(findDate(pickerDate), 12, 13),
+        third = findSession(findDate(pickerDate), 18, 19);
     /**
      * Сортировка по дате
      */
@@ -789,8 +789,8 @@ var findCoin = function() {
     }
 };
 
-var findAbnormalUrl = function() {
-    findCoin();
+var findAbnormalUrl = function(pickerDate) {
+    findCoin(pickerDate);
 };
 
 module.exports = findAbnormalUrl;

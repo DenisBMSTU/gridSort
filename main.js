@@ -37,7 +37,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -255,7 +255,7 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var findAbnormalUrl = __webpack_require__(4);
+	var findAbnormalUrl = __webpack_require__(5);
 	'use strict';
 
 	function Table(grid) {
@@ -336,9 +336,25 @@
 	    this.mailAllFin = 0;
 	    this.socialAllStart = 0;
 	    this.socialAllFin = 0;
+
 	    var input = $('.container__category').find('input'),
 	        inputLength = $('.container__category').find('input').length;
 	    buttonSend.onclick = function() {
+	        var re = /\d\d\/\d\d\/\d\d\d\d/;
+	        if($('.date-pick').val() === '') {
+	            alert('Выберите дату!');
+	            return;
+	        } else if(!re.test($('.date-pick').val())) {
+	            alert('Дата должна соответствовать маске: ММ/ДД/ГГГГ');
+	            return;
+	        }
+
+	        var pickerDate = $('.date-pick').val(),
+	            monthP = pickerDate.slice(0,2),
+	            dayP = pickerDate.slice(3,5),
+	            yearP = pickerDate.slice(6,10);
+
+	        var pickerD = yearP + '/' + monthP + '/' + dayP;
 
 	        var countInput = 0;
 	        for (i = 1; i < inputLength; i++) {
@@ -412,7 +428,7 @@
 	            this.iOtherStart += countIncrement;
 	        }
 	        if ($('#checkboxMail').prop('checked') === false && $('#checkboxOther').prop('checked') === false && $('#checkboxSocial').prop('checked') === false) {
-	            alert('Выберите данные для загрузки');
+	            alert('Выберите данные для загрузки!');
 	            return;
 	        }
 	        this.allStart = this.otherAllStart + this.mailAllStart + this.socialAllStart;
@@ -429,7 +445,7 @@
 	        }
 	        this.sortWhenLoad();
 
-	        findAbnormalUrl();
+	        findAbnormalUrl(pickerD);
 
 	        window.scrollTo(document.getElementById('buttonSend').offsetLeft,document.getElementById('buttonSend').offsetTop);
 	    }.bind(this);
@@ -598,6 +614,14 @@
 	    }
 	}
 
+	/*function checkPicker() {
+	    var re = /\d\d\/\d\d\/\d\d\d\d/;
+	    if (!re.test($('.date-pick').val())) {
+	        alert('Выберите дату!');
+	        return;
+	    }
+	}*/
+
 	module.e = Table;
 
 
@@ -626,6 +650,23 @@
 
 /***/ },
 /* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by ubuntu on 14.03.16.
+	 */
+
+
+	var datePick = function() {
+	    $(function() {
+	        $( "#datepicker" ).datepicker();
+	    });
+	};
+
+	module.e = datePick;
+
+/***/ },
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -695,7 +736,7 @@
 	module.e = highlightTableRows;
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -1311,11 +1352,11 @@
 	    secondNo.sort(sortF);
 	    thirdNo.sort(sortF);*/
 	    $('#info').html('');
-	    $('#info').append('<div>Переходы <span style="color:red">по</span> важным ссылкам:</div>');
+	    $('#info').append('<div>Переходы <span style="color:#EB1526">по</span> важным ссылкам:</div>');
 	    for(var i = 0; i < abnYes.length; i++) {
 	        $('#info').append('<div>' + abnYes[i] + '</div>');
 	    }
-	    $('#info').append('<div>Переходы <span style="color:red">между</span> важными ссылками:</div>');
+	    $('#info').append('<div>Переходы <span style="color:#EB1526">между</span> важными ссылками:</div>');
 	    for(var i = 0; i < abnNo.length; i++) {
 	        $('#info').append('<div>' + abnNo[i] + '</div>');
 	    }
@@ -1413,22 +1454,22 @@
 	};
 
 	var tableAbn = function(arr) {
-	    console.log('arr1',arr);
+	    var date = $('#grid tbody tr td:first-child');
 	    for(var i = 0; i < arr.length; i++) {
-	        for(var j = 0; j < $('#grid tbody tr td:first-child').length; j++) {
-	            if (arr[i] === $('#grid tbody tr td:first-child')[j].innerHTML.slice(0,19) && !($('#grid tbody tr td:first-child')[j].style.color = 'green')) {
-	                $('#grid tbody tr td:first-child')[j].style.color = 'red';
+	        for(var j = 0; j < date.length; j++) {
+	            if (arr[i] === date[j].innerHTML.slice(0,19)) {
+	                date[j].parentNode.style.color = '#1A398F';
 	            }
 	        }
 	    }
 	};
 
 	var tableC = function(arr) {
-	    console.log('arr2',arr);
+	    var date = $('#grid tbody tr td:first-child');
 	    for(var i = 0; i < arr.length; i++) {
-	        for(var j = 0; j < $('#grid tbody tr td:first-child').length; j++) {
-	            if (arr[i] === $('#grid tbody tr td:first-child')[j].innerHTML.slice(0,19) && !($('#grid tbody tr td:first-child')[j].style.color = 'red')) {
-	                $('#grid tbody tr td:first-child')[j].style.color = 'green';
+	        for(var j = 0; j < date.length; j++) {
+	            if (arr[i] === date[j].innerHTML.slice(0,19)) {
+	                date[j].parentNode.style.color = '#EB1526';
 	            }
 	        }
 	    }
@@ -1437,13 +1478,13 @@
 	/**'
 	 * Собираем в кучу все классненькие функции и ищем наконец аномальные переходы
 	 */
-	var findCoin = function() {
+	var findCoin = function(pickerDate) {
 	    /**
 	     * Создается массив из tr по каждой сессии
 	     */
-	    var first = findSession(findDate("2016/03/05"), 9, 10),
-	        second = findSession(findDate("2016/03/05"), 12, 13),
-	        third = findSession(findDate("2016/03/05"), 18, 19);
+	    var first = findSession(findDate(pickerDate), 9, 10),
+	        second = findSession(findDate(pickerDate), 12, 13),
+	        third = findSession(findDate(pickerDate), 18, 19);
 	    /**
 	     * Сортировка по дате
 	     */
@@ -1489,23 +1530,24 @@
 	    }
 	};
 
-	var findAbnormalUrl = function() {
-	    findCoin();
+	var findAbnormalUrl = function(pickerDate) {
+	    findCoin(pickerDate);
 	};
 
 	module.e = findAbnormalUrl;
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Created by ubuntu on 22.02.16.
 	 */
 	var Table = __webpack_require__(1),
-	    highlightTableRows = __webpack_require__(3),
+	    highlightTableRows = __webpack_require__(4),
 	    GridSortTr = __webpack_require__(0),
-	    checkAll = __webpack_require__(2);
+	    checkAll = __webpack_require__(2),
+	    datePicker = __webpack_require__(3);
 
 
 	var grid = "grid", //id таблицы
@@ -1516,17 +1558,7 @@
 	tableSort.init();
 	highlightTableRows(grid,"hoverRow","clickedRow");
 	checkAll();
-	/*
-	function findDate() {
-	    var dateTd = document.querySelectorAll('tbody tr td:nth-child(1)');
-	    var date = dateTd.map(function(item){
-	        return item.innerHTML;
-	    });
-	    return date;
-	}
-	console.log(findDate());*/
-
-	/*var names = document.querySelectorAll('tbody tr td:nth-child(1)');*/
+	datePicker();
 
 
 

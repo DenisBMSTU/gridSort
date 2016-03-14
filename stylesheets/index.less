@@ -29,6 +29,57 @@
       margin-bottom: -15px;
       border-right: 1px solid @border;
       margin-right: -1px;
+      &:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+      }
+      .container_datepicker {
+        margin-top: 5px;
+        &:after {
+          content: ".";
+          display: block;
+          height: 0;
+          clear: both;
+          visibility: hidden;
+        }
+        .date-pick {
+          margin-left: 5px;
+          width: 78px;
+        }
+        .date-pick__label {
+          margin-top: 3px;
+        }
+      }
+      .row_all {
+        &:after {
+          content: ".";
+          display: block;
+          height: 0;
+          clear: both;
+          visibility: hidden;
+        }
+      }
+      .row-checkbox {
+        &:after {
+          content: ".";
+          display: block;
+          height: 0;
+          clear: both;
+          visibility: hidden;
+        }
+        .row_mail, .row_other, .row_social{
+          &:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+          }
+        }
+      }
       label {
         float: left;
       }

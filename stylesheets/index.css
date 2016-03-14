@@ -28,6 +28,53 @@
   border-right: 1px solid #D1D0C9;
   margin-right: -1px;
 }
+.container .container__grid .container__category:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.container .container__grid .container__category .container_datepicker {
+  margin-top: 5px;
+}
+.container .container__grid .container__category .container_datepicker:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.container .container__grid .container__category .container_datepicker .date-pick {
+  margin-left: 5px;
+  width: 78px;
+}
+.container .container__grid .container__category .container_datepicker .date-pick__label {
+  margin-top: 3px;
+}
+.container .container__grid .container__category .row_all:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.container .container__grid .container__category .row-checkbox:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.container .container__grid .container__category .row-checkbox .row_mail:after,
+.container .container__grid .container__category .row-checkbox .row_other:after,
+.container .container__grid .container__category .row-checkbox .row_social:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
 .container .container__grid .container__category label {
   float: left;
 }

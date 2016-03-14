@@ -79,9 +79,25 @@ Table.prototype.buttonSend = function() {
     this.mailAllFin = 0;
     this.socialAllStart = 0;
     this.socialAllFin = 0;
+
     var input = $('.container__category').find('input'),
         inputLength = $('.container__category').find('input').length;
     buttonSend.onclick = function() {
+        var re = /\d\d\/\d\d\/\d\d\d\d/;
+        if($('.date-pick').val() === '') {
+            alert('Выберите дату!');
+            return;
+        } else if(!re.test($('.date-pick').val())) {
+            alert('Дата должна соответствовать маске: ММ/ДД/ГГГГ');
+            return;
+        }
+
+        var pickerDate = $('.date-pick').val(),
+            monthP = pickerDate.slice(0,2),
+            dayP = pickerDate.slice(3,5),
+            yearP = pickerDate.slice(6,10);
+
+        var pickerD = yearP + '/' + monthP + '/' + dayP;
 
         var countInput = 0;
         for (i = 1; i < inputLength; i++) {
@@ -155,7 +171,7 @@ Table.prototype.buttonSend = function() {
             this.iOtherStart += countIncrement;
         }
         if ($('#checkboxMail').prop('checked') === false && $('#checkboxOther').prop('checked') === false && $('#checkboxSocial').prop('checked') === false) {
-            alert('Выберите данные для загрузки');
+            alert('Выберите данные для загрузки!');
             return;
         }
         this.allStart = this.otherAllStart + this.mailAllStart + this.socialAllStart;
@@ -172,7 +188,7 @@ Table.prototype.buttonSend = function() {
         }
         this.sortWhenLoad();
 
-        findAbnormalUrl();
+        findAbnormalUrl(pickerD);
 
         window.scrollTo(document.getElementById('buttonSend').offsetLeft,document.getElementById('buttonSend').offsetTop);
     }.bind(this);
@@ -340,6 +356,14 @@ function sortDateDown(a,b) {
         return 0;
     }
 }
+
+/*function checkPicker() {
+    var re = /\d\d\/\d\d\/\d\d\d\d/;
+    if (!re.test($('.date-pick').val())) {
+        alert('Выберите дату!');
+        return;
+    }
+}*/
 
 module.exports = Table;
 
