@@ -83,7 +83,7 @@ Table.prototype.buttonSend = function() {
     var input = $('.container__category').find('input'),
         inputLength = $('.container__category').find('input').length;
     buttonSend.onclick = function() {
-        var re = /\d\d\/\d\d\/\d\d\d\d/;
+        var re = /\d\d\d\d\/\d\d\/\d\d/;
         if($('.date-pick').val() === '') {
             alert('Выберите дату!');
             return;
@@ -92,12 +92,7 @@ Table.prototype.buttonSend = function() {
             return;
         }
 
-        var pickerDate = $('.date-pick').val(),
-            monthP = pickerDate.slice(0,2),
-            dayP = pickerDate.slice(3,5),
-            yearP = pickerDate.slice(6,10);
-
-        var pickerD = yearP + '/' + monthP + '/' + dayP;
+        var pickerDate = $('.date-pick').val();
 
         var countInput = 0;
         for (i = 1; i < inputLength; i++) {
@@ -188,7 +183,7 @@ Table.prototype.buttonSend = function() {
         }
         this.sortWhenLoad();
 
-        findAbnormalUrl(pickerD);
+        findAbnormalUrl(pickerDate);
 
         window.scrollTo(document.getElementById('buttonSend').offsetLeft,document.getElementById('buttonSend').offsetTop);
     }.bind(this);

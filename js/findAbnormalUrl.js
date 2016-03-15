@@ -359,6 +359,22 @@ var checkElement = function(array, element) {
      }
 };
 
+var checkElementReturn = function(array, common) {
+    var reDate = /\d\d\d\d\/\d\d\/\d\d \d\d[:]\d\d[:]\d\d/;
+    for (var i = 0; i < array.length; i++) {
+        for (var j = 0; j < common.length; j++) {
+            var dateTime = new Date(reDate.exec(array[i])).getTime();
+                var urlPos = array[i].slice(20).indexOf(reDate.exec(array[i].slice(20))) - 1,
+                url = array[i].slice(20, urlPos+20);
+            if (url === common[j]) {
+                console.log('dateTimeF',dateTime);
+                return dateTime;
+            }
+        }
+    }
+    return false;
+};
+
 
 /**
  * Убираем из массива повторяющиеся элементы
@@ -701,7 +717,25 @@ var findDateForColor = function(array) {
     return arr;
 };
 
+/*
+var findSessionNo = function() {
+    if (hours >= startHours && hours <= endHours) {
+        if (hours === endHours && minutes > 0) {
+            console.log('Время вышло за рамки');
+        } else {
+            arr.push(dateArray[i]);
+        }
+    }
+};*/
 
+
+/**
+ * Поиск переходов между важными ссылками
+ * @param arrYes
+ * @param arrNo
+ * @param common
+ * @returns {*}
+ */
 var findAbnNo = function(arrYes, arrNo,common) {
     for (var i = 0; i < arrNo.length; i++) {
         if (!checkElementIndex(arrYes,arrNo[i].slice(0,19)) && checkArr(common,arrNo[i])) {
@@ -732,6 +766,70 @@ var tableC = function(arr) {
             }
         }
     }
+};
+
+var findNo = function(abnAllNo, fStart, fEnd, sStart, sEnd, tStart, tEnd, common) {
+    var first = [],
+        second = [],
+        third = [];
+    for (var i = 0; i < abnAllNo.length; i++) {
+        var hours = abnAllNo[i].slice(11,13),
+            minutes = abnAllNo[i].slice(14,16);
+        if (hours >= fStart && hours <= fEnd) {
+            if (hours === fEnd && minutes > 0) {
+                console.log('Время вышло за рамки');
+            } else {
+                first.push(abnAllNo[i]);
+            }
+        } else if (hours >= sStart && hours <= sEnd) {
+            if (hours === sEnd && minutes > 0) {
+                console.log('Время вышло за рамки');
+            } else {
+                second.push(abnAllNo[i]);
+            }
+        } else if (hours >= tStart && hours <= tEnd) {
+            if (hours === tEnd && minutes > 0) {
+                console.log('Время вышло за рамки');
+            } else {
+                third.push(abnAllNo[i]);
+            }
+        }
+    }
+
+    var firstNew  = [],
+        secondNew = [],
+        thirdNew = [];
+    var reDate = /\d\d\d\d\/\d\d\/\d\d \d\d[:]\d\d[:]\d\d/;
+    for (var i = 0; i < first.length; i++) {
+        var dateTime = new Date(reDate.exec(first[i])).getTime(),
+            urlPos = first[i].slice(20).indexOf(reDate.exec(first[i].slice(20))) - 1,
+            url = first[i].slice(20, urlPos + 20);
+        if (!checkElement(common,url) && dateTime < checkElementReturn(first,common)){
+            console.log('lol');
+        } else {
+            firstNew.push(first[i]);
+        }
+    }
+    for (var i = 0; i < second.length; i++) {
+        var dateTime = new Date(reDate.exec(first[i])).getTime(),
+            urlPos = second[i].slice(20).indexOf(reDate.exec(second[i].slice(20))) - 1,
+            url = second[i].slice(20, urlPos + 20);
+        if (!checkElement(common,url) && dateTime < checkElementReturn(second,common)){
+        } else {
+            secondNew.push(second[i]);
+        }
+    }
+    for (var i = 0; i < third.length; i++) {
+        var dateTime = new Date(reDate.exec(third[i])).getTime(),
+            urlPos = third[i].slice(20).indexOf(reDate.exec(third[i].slice(20))) - 1,
+            url = third[i].slice(20, urlPos + 20);
+        if (!checkElement(common,url) && dateTime < checkElementReturn(third,common)){
+        } else {
+            thirdNew.push(third[i]);
+        }
+    }
+    var arrAll = firstNew.concat(secondNew).concat(thirdNew);
+    return arrAll;
 };
 
 /**'
@@ -776,14 +874,13 @@ var findCoin = function(pickerDate) {
         abnNo = abnUrlFirstNo.concat(abnUrlSecondNo).concat(abnUrlThirdNo);
 
     var abnAllNo = findAbnNo(abnYes,abnNo,common);
+    var adnAllNoNew = findNo(abnAllNo, 9, 10, 12, 13, 18, 19, common);
 
     var fYes = findDateForColor(abnYes),
-        fNo = findDateForColor(abnAllNo);
-    console.log(fYes);
-    console.log(fNo);
+        fNo = findDateForColor(adnAllNoNew);
 
     if (abnUrlFirstYes.length && abnUrlSecondYes.length && abnUrlThirdYes.length) {
-        loadRelation(abnYes,abnAllNo);
+        loadRelation(abnYes,adnAllNoNew);
         tableAbn(fNo);
         tableC(fYes);
     }
