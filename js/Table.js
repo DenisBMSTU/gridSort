@@ -1,4 +1,5 @@
-var findAbnormalUrl = require('./findAbnormalUrl');
+
+var findUrl = require('./findUrl');
 'use strict';
 
 function Table(grid) {
@@ -12,8 +13,8 @@ function Table(grid) {
  * Инициализаия объекта
  */
 Table.prototype.init = function() {
-    this.buttonSend();
     this.loadTable();
+    this.buttonSend();
     this.checkBox();
     this.saveTableData();
 };
@@ -33,6 +34,10 @@ Table.prototype.loadTable = function() {
             i,
             dataLength = data.length;
         /*this.$tbody.html('');*/
+        var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
+        /**
+         * Подсчет полного Url
+         */
         for (i = 0; i < dataLength; i++) {
             for (var j = 0; j < data.length; j++) {
                 if (data[i].name === data[j].name) {
@@ -42,6 +47,40 @@ Table.prototype.loadTable = function() {
                 }
             }
         }
+        /**
+         * Подсчет базового Url
+         */
+        for (i = 0; i < this.jsonArray.length; i++) {
+            this.jsonArray[i].baseUrl = re.exec(this.jsonArray[i].name)[0];
+            for (var j = 0; j < this.jsonArray.length; j++) {
+                if (re.exec(this.jsonArray[i].name)[0] === re.exec(this.jsonArray[j].name)[0]) {
+                    this.jsonArray[i].countBase++;
+                }
+            }
+        }
+        /**
+         * Подсчет кол-ва посещений в день полного Url
+         */
+        for (i = 0; i < this.jsonArray.length; i++) {
+            for (var j = 0; j < this.jsonArray.length; j++) {
+                if (this.jsonArray[i].name === this.jsonArray[j].name && this.jsonArray[i].date === this.jsonArray[j].date) {
+                    this.jsonArray[i].countInDay++;
+                }
+            }
+        }
+
+        /**
+         * Подсчет кол-ва посещений в день базового Url
+         */
+        for (i = 0; i < this.jsonArray.length; i++) {
+            this.jsonArray[i].baseUrl = re.exec(this.jsonArray[i].name)[0];
+            for (var j = 0; j < this.jsonArray.length; j++) {
+                if (re.exec(this.jsonArray[i].name)[0] === re.exec(this.jsonArray[j].name)[0] && this.jsonArray[i].date === this.jsonArray[j].date) {
+                    this.jsonArray[i].countBaseInDay++;
+                }
+            }
+        }
+
         for (i = 0, jsonArrayLength = this.jsonArray.length; i < jsonArrayLength; i++) {
             if (this.jsonArray[i].typeUrl === 'other') {
                 this.jsonTypeOther.push(this.jsonArray[i]);
@@ -178,12 +217,16 @@ Table.prototype.buttonSend = function() {
         };
 
         for (var j = this.allStart; j < this.allFin; j++) {
-            this.$tbody.append('<tr><td>' + this.jsonLoadSave[j].date + '</td><td>' + this.jsonLoadSave[j].name + '</td><td>'
+            this.$tbody.append('<tr><td>' + this.jsonLoadSave[j].date + " " + this.jsonLoadSave[j].time + '</td><td>' + this.jsonLoadSave[j].name + '</td><td>'
                 + this.jsonLoadSave[j].count + '</td>' + '<td>' + this.jsonLoadSave[j].typeUrl + '</td></tr>');
         }
         this.sortWhenLoad();
 
-        findAbnormalUrl(pickerDate);
+
+        var arrAll = this.jsonTypeMail.concat(this.jsonTypeOther).concat(this.jsonTypeSocial);
+     /*   findUrl(pickerDate,arrAll);*/
+        /*findAbnormalUrl(pickerDate);*/
+        findUrl(pickerDate,arrAll);
 
         window.scrollTo(document.getElementById('buttonSend').offsetLeft,document.getElementById('buttonSend').offsetTop);
     }.bind(this);

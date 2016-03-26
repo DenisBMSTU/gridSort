@@ -352,11 +352,14 @@ var saveObjectKey = function(arr) {
 };
 
 var checkElement = function(array, element) {
-     if (array.indexOf(element) != -1) {
-         return true;
-     } else {
-         return false;
-     }
+    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
+    if (re.exec(element) != null) {
+        if (array.indexOf(re.exec(element)[0]) != -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 };
 
 var checkElementReturn = function(array, common) {
@@ -383,12 +386,15 @@ var checkElementReturn = function(array, common) {
  */
 var unique = function(arr) {
     var result = [];
-
+    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
     nextInput:
         for (var i = 0; i < arr.length; i++) {
             var str = arr[i]; // для каждого элемента
             for (var j = 0; j < result.length; j++) { // ищем, был ли он уже?
-                if (result[j] == str) continue nextInput; // если да, то следующий
+                if (re.test(result[j])) {
+                    if (re.exec(result[j])[0] == re.exec(str)[0]) continue nextInput; // если да, то следующий
+                }
+
             }
             result.push(str);
         }
@@ -414,9 +420,10 @@ var trToUrl = function(array) {
  */
 var checkThreeSession = function(first, second, third) {
     var arr = [];
+    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
     for (var i = 0; i < first.length; i++) {
         if (checkElement(second, first[i]) && checkElement(third, first[i])) {
-            arr.push(first[i]);
+            arr.push(re.exec(first[i])[0]);
         }
     }
     return arr;
@@ -603,6 +610,7 @@ var checkUrl = function(array, element) {
 };
 
 var checkArr = function(array, element) {
+    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}/;
     for (var i = 0; i < array.length; i++) {
         if (element.indexOf(array[i]) === 20) {
             return true;
@@ -698,7 +706,6 @@ console.log('ARRRRRRRR',arr);
         fun(arr,arrNo[i]);
     }
 */
-
     var arrEnd = [arr, arrNo];
     return arrEnd;
 };
@@ -772,13 +779,16 @@ var findNo = function(abnAllNo, fStart, fEnd, sStart, sEnd, tStart, tEnd, common
     var first = [],
         second = [],
         third = [];
+
     for (var i = 0; i < abnAllNo.length; i++) {
         var hours = abnAllNo[i].slice(11,13),
             minutes = abnAllNo[i].slice(14,16);
+        console.log('hours',hours,'minutes',minutes)
         if (hours >= fStart && hours <= fEnd) {
             if (hours === fEnd && minutes > 0) {
                 console.log('Время вышло за рамки');
             } else {
+                console.log('abnAllNo[i]',abnAllNo[i])
                 first.push(abnAllNo[i]);
             }
         } else if (hours >= sStart && hours <= sEnd) {
@@ -800,10 +810,11 @@ var findNo = function(abnAllNo, fStart, fEnd, sStart, sEnd, tStart, tEnd, common
         secondNew = [],
         thirdNew = [];
     var reDate = /\d\d\d\d\/\d\d\/\d\d \d\d[:]\d\d[:]\d\d/;
+    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}/;
     for (var i = 0; i < first.length; i++) {
         var dateTime = new Date(reDate.exec(first[i])).getTime(),
             urlPos = first[i].slice(20).indexOf(reDate.exec(first[i].slice(20))) - 1,
-            url = first[i].slice(20, urlPos + 20);
+            url = re.exec(first[i].slice(20, urlPos + 20))[0];
         if (!checkElement(common,url) && dateTime < checkElementReturn(first,common)){
             console.log('lol');
         } else {
@@ -813,7 +824,7 @@ var findNo = function(abnAllNo, fStart, fEnd, sStart, sEnd, tStart, tEnd, common
     for (var i = 0; i < second.length; i++) {
         var dateTime = new Date(reDate.exec(first[i])).getTime(),
             urlPos = second[i].slice(20).indexOf(reDate.exec(second[i].slice(20))) - 1,
-            url = second[i].slice(20, urlPos + 20);
+            url = re.exec(second[i].slice(20, urlPos + 20))[0];
         if (!checkElement(common,url) && dateTime < checkElementReturn(second,common)){
         } else {
             secondNew.push(second[i]);
@@ -822,7 +833,7 @@ var findNo = function(abnAllNo, fStart, fEnd, sStart, sEnd, tStart, tEnd, common
     for (var i = 0; i < third.length; i++) {
         var dateTime = new Date(reDate.exec(third[i])).getTime(),
             urlPos = third[i].slice(20).indexOf(reDate.exec(third[i].slice(20))) - 1,
-            url = third[i].slice(20, urlPos + 20);
+            url = re.exec(third[i].slice(20, urlPos + 20))[0];
         if (!checkElement(common,url) && dateTime < checkElementReturn(third,common)){
         } else {
             thirdNew.push(third[i]);
@@ -853,12 +864,10 @@ var findCoin = function(pickerDate) {
     var firstArray = trToUrl(first),
         secondArray = trToUrl(second),
         thirdArray = trToUrl(third);
-
     /**
      *  Общее для всех сессий
      */
      var common = checkThreeSession(firstArray, secondArray, thirdArray);
-
     var firstArrayObj = findTenSeconds(first),
         secondArrayObj = findTenSeconds(second),
         thirdArrayObj = findTenSeconds(third);
@@ -874,8 +883,8 @@ var findCoin = function(pickerDate) {
         abnNo = abnUrlFirstNo.concat(abnUrlSecondNo).concat(abnUrlThirdNo);
 
     var abnAllNo = findAbnNo(abnYes,abnNo,common);
+    console.log('abnAllNo',abnAllNo)
     var adnAllNoNew = findNo(abnAllNo, 9, 10, 12, 13, 18, 19, common);
-
     var fYes = findDateForColor(abnYes),
         fNo = findDateForColor(adnAllNoNew);
 
