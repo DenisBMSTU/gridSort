@@ -13729,6 +13729,24 @@
 	};
 
 	/**
+	 * Сортировка по времени в массиве объектов
+	 * @param a
+	 * @param b
+	 * @returns {number}
+	 */
+	var sortTime = function(a,b) {
+	    a = a.time;
+	    b = b.time;
+	    if (a < b) {
+	        return -1;
+	    } else if (a > b) {
+	        return 1;
+	    } else {
+	        return 0;
+	    }
+	};
+
+	/**
 	 * Убираем из массива повторяющиеся объект по имени
 	 * @param arr
 	 * @returns {Array}
@@ -13985,6 +14003,7 @@
 	         * Поиск всех объектов по нужной дате
 	         */
 	        var arrAllDate = findDate(date,arrAll);
+
 	        /**
 	         * Поиск сессий
 	         */
@@ -14026,7 +14045,8 @@
 	                var obj = {
 	                    baseUrl: "",
 	                    countBaseInDay: 0,
-	                    countBase: 0
+	                    countBase: 0,
+	                    dateTime: []
 	                };
 	                obj.baseUrl = item.from.baseUrl;
 	                obj.countBaseInDay = item.from.countBaseInDay;
@@ -14037,7 +14057,8 @@
 	                var obj = {
 	                    baseUrl: "",
 	                    countBaseInDay: 0,
-	                    countBase: 0
+	                    countBase: 0,
+	                    dateTime: []
 	                };
 	                obj.baseUrl = item.to.baseUrl;
 	                obj.countBaseInDay = item.to.countBaseInDay;
@@ -14047,6 +14068,19 @@
 	        });
 	        arrCommon = uniqueObj(arrCommon);
 
+	        arrCommon.forEach(function(common) {
+	            arrAllDate.forEach(function(date) {
+	                if (common.baseUrl === date.baseUrl) {
+	                    var obj = {
+	                        date: "",
+	                        time: ""
+	                    };
+	                    obj.date = date.date;
+	                    obj.time = date.time;
+	                    common.dateTime.push(obj);
+	                }
+	            })
+	        });
 
 	        obj.yes.first = firstTenYes;
 	        obj.yes.second = secondTenYes;
