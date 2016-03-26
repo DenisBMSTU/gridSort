@@ -13788,12 +13788,32 @@
 	    }
 	};
 
+	var checkObject = function(array, element) {
+	    array.forEach(function(item) {
+	        if (item.baseUrl === element) {
+	            return false;
+	        }
+	    });
+	    return true;
+	};
+
 	/**
 	 * Базовый Url, который встречается во всех трех сессиях
 	 * @param first
 	 * @param second
 	 * @param third
 	 */
+	var checkThreeSession = function(first, second, third) {
+	    var arr = [];
+	    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
+	    for (var i = 0; i < first.length; i++) {
+	        if (checkElement(second, re.exec(first[i])[0]) && checkElement(third,  re.exec(first[i])[0])) {
+	            arr.push(re.exec(first[i])[0]);
+	        }
+	    }
+	    return arr;
+	};
+
 	var checkThreeSession = function(first, second, third) {
 	    var arr = [];
 	    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
@@ -13879,6 +13899,25 @@
 	    return result;
 	};
 
+
+	var uniqueObj = function(arr) {
+	    var result = [];
+	    nextInput:
+	        for (var i = 0; i < arr.length; i++) {
+	            var obj = arr[i];
+	            var baseUrl = arr[i].baseUrl; // для каждого элемента
+	            for (var j = 0; j < result.length; j++) { // ищем, был ли он уже?
+	                if (result[j].baseUrl) {
+	                    if (result[j].baseUrl === baseUrl) continue nextInput; // если да, то следующий
+	                }
+
+	            }
+	            result.push(obj);
+	        }
+
+	    return result;
+	};
+
 	var loadInComm = function(arrYes, arrNo) {
 	    $('#info').html('');
 	    $('#info').append('<div>Переходы <span style="color:#EB1526">по</span> важным ссылкам:</div>');
@@ -13939,7 +13978,8 @@
 	                    first: "",
 	                    second: "",
 	                    third: ""
-	                }
+	                },
+	                common: ""
 	        };
 	        /**
 	         * Поиск всех объектов по нужной дате
@@ -13980,12 +14020,43 @@
 	            secondTenNo = findElementsBetweenAbn(secondTenYes, secondSession),
 	            thirdTenNo = findElementsBetweenAbn(thirdTenYes, thirdSession);
 
+	        var arrCommon = [];
+	        firstTenYes.forEach(function(item) {
+	            if (checkObject(arrCommon, item.from.baseUrl) != false) {
+	                var obj = {
+	                    baseUrl: "",
+	                    countBaseInDay: 0,
+	                    countBase: 0
+	                };
+	                obj.baseUrl = item.from.baseUrl;
+	                obj.countBaseInDay = item.from.countBaseInDay;
+	                obj.countBase = item.from.countBase;
+	                arrCommon.push(obj);
+	            }
+	            if (checkObject(arrCommon, item.to.baseUrl) != false) {
+	                var obj = {
+	                    baseUrl: "",
+	                    countBaseInDay: 0,
+	                    countBase: 0
+	                };
+	                obj.baseUrl = item.to.baseUrl;
+	                obj.countBaseInDay = item.to.countBaseInDay;
+	                obj.countBase = item.to.countBase;
+	                arrCommon.push(obj);
+	            }
+	        });
+	        arrCommon = uniqueObj(arrCommon);
+
+
 	        obj.yes.first = firstTenYes;
 	        obj.yes.second = secondTenYes;
 	        obj.yes.third = thirdTenYes;
 	        obj.no.first = firstTenNo;
 	        obj.no.second = secondTenNo;
 	        obj.no.third = thirdTenNo;
+	        obj.common = arrCommon;
+
+
 	        findUrlObj.push(obj);
 	    });
 
