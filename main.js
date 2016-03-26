@@ -13223,6 +13223,7 @@
 	        this.jsonTypeMail.sort(sortDateUp);
 	        this.jsonTypeOther.sort(sortDateUp);
 	        this.jsonTypeSocial.sort(sortDateUp);
+	        this.buttonSaveInBd();
 	    }.bind(this));
 
 	};
@@ -13261,9 +13262,6 @@
 	            alert('Дата должна соответствовать маске: ММ/ДД/ГГГГ');
 	            return;
 	        }
-
-	        var pickerDateFrom = $('#datepickerFrom').val(),
-	            pickerDateTo = $('#datepickerTo').val();
 
 	        var countInput = 0;
 	        for (i = 1; i < inputLength; i++) {
@@ -13355,13 +13353,36 @@
 	        this.sortWhenLoad();
 
 
-	        var arrAll = this.jsonTypeMail.concat(this.jsonTypeOther).concat(this.jsonTypeSocial);
+
 	     /*   findUrl(pickerDate,arrAll);*/
 	        /*findAbnormalUrl(pickerDate);*/
-	        findUrl(pickerDateFrom, pickerDateTo, arrAll);
+	        /*findUrl(this.pickerDateFrom, this.pickerDateTo, this.arrAll);*/
 
 	        window.scrollTo(document.getElementById('buttonSend').offsetLeft,document.getElementById('buttonSend').offsetTop);
 	    }.bind(this);
+	};
+
+	/**
+	 * Кнопка загрузки данных в бд
+	 */
+	Table.prototype.buttonSaveInBd = function() {
+	    var self = this;
+	    $('#datepickerFrom').change(function() {
+	        self.pickerDateFrom = $('#datepickerFrom').val();
+	    });
+	    $('#datepickerTo').change(function() {
+	        self.pickerDateTo = $('#datepickerTo').val();
+	    });
+	    self.pickerDateFrom = $('#datepickerFrom').val();
+	    self.pickerDateTo = $('#datepickerTo').val();
+	    self.arrAll = self.jsonTypeMail.concat(self.jsonTypeOther).concat(self.jsonTypeSocial);
+	    $('#buttonBd').on('click', () => {
+	        if (self.pickerDateFrom || self.pickerDateTo) {
+	            findUrl(this.pickerDateFrom, self.pickerDateTo, self.arrAll);
+	        } else {
+	            alert('Выберите дату');
+	        }
+	    });
 	};
 
 	Table.prototype.saveTableData = function() {
@@ -13575,7 +13596,7 @@
 	        $( "#datepickerFrom" ).datepicker({
 	            defaultDate: "+1w",
 	            changeMonth: true,
-	            numberOfMonths: 3,
+	            numberOfMonths: 1,
 	            dateFormat: 'yy/mm/dd',
 	            onClose: function( selectedDate ) {
 	                $( "#to" ).datepicker( "option", "minDate", selectedDate );
@@ -13584,7 +13605,7 @@
 	        $( "#datepickerTo" ).datepicker({
 	            defaultDate: "+1w",
 	            changeMonth: true,
-	            numberOfMonths: 3,
+	            numberOfMonths: 1,
 	            dateFormat: 'yy/mm/dd',
 	            onClose: function( selectedDate ) {
 	                $( "#from" ).datepicker( "option", "maxDate", selectedDate );
@@ -13936,25 +13957,12 @@
 	    return result;
 	};
 
-	var loadInComm = function(arrYes, arrNo) {
-	    $('#info').html('');
-	    $('#info').append('<div>Переходы <span style="color:#EB1526">по</span> важным ссылкам:</div>');
-	    for(var i = 0; i < arrYes.length; i++) {
-	        $('#info').append('<div>' + arrYes[i].from.name + ' -> ' + arrYes[i].to.name + '</div>');
-	    }
-	    $('#info').append('<div>Переходы <span style="color:#EB1526">между</span> важными ссылками:</div>');
-	    for(var i = 0; i < arrNo.length; i++) {
-	        $('#info').append('<div>' + arrNo[i].name + '</div>');
-	    }
-	};
-
-	var YYYYMMDD = function(date) {
-	    var year = new Date(date).getFullYear(),
-	        month = (new Date(date).getMonth() < 9) ? "0" + (new Date(date).getMonth() + 1) : new Date(date).getMonth() + 1,
-	        day = (new Date(date).getDate() < 10) ? "0" + new Date(date).getDate() : new Date(date).getDate();
-	    return year + '' + month + '' + day
-	};
-
+	/**
+	 * Возвращает массив из дат
+	 * @param start
+	 * @param end
+	 * @returns {Array}
+	 */
 	var dateRange = function(start,end) {
 
 	    var startDate = new Date(start),
@@ -13974,6 +13982,13 @@
 	    return dateStrings;
 	};
 
+
+	/**
+	 * Основная функция
+	 * @param pickerDateFrom
+	 * @param pickerDateTo
+	 * @param arrAll
+	 */
 	var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
 
 	    /**

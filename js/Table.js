@@ -93,6 +93,7 @@ Table.prototype.loadTable = function() {
         this.jsonTypeMail.sort(sortDateUp);
         this.jsonTypeOther.sort(sortDateUp);
         this.jsonTypeSocial.sort(sortDateUp);
+        this.buttonSaveInBd();
     }.bind(this));
 
 };
@@ -131,9 +132,6 @@ Table.prototype.buttonSend = function() {
             alert('Дата должна соответствовать маске: ММ/ДД/ГГГГ');
             return;
         }
-
-        var pickerDateFrom = $('#datepickerFrom').val(),
-            pickerDateTo = $('#datepickerTo').val();
 
         var countInput = 0;
         for (i = 1; i < inputLength; i++) {
@@ -225,13 +223,36 @@ Table.prototype.buttonSend = function() {
         this.sortWhenLoad();
 
 
-        var arrAll = this.jsonTypeMail.concat(this.jsonTypeOther).concat(this.jsonTypeSocial);
+
      /*   findUrl(pickerDate,arrAll);*/
         /*findAbnormalUrl(pickerDate);*/
-        findUrl(pickerDateFrom, pickerDateTo, arrAll);
+        /*findUrl(this.pickerDateFrom, this.pickerDateTo, this.arrAll);*/
 
         window.scrollTo(document.getElementById('buttonSend').offsetLeft,document.getElementById('buttonSend').offsetTop);
     }.bind(this);
+};
+
+/**
+ * Кнопка загрузки данных в бд
+ */
+Table.prototype.buttonSaveInBd = function() {
+    var self = this;
+    $('#datepickerFrom').change(function() {
+        self.pickerDateFrom = $('#datepickerFrom').val();
+    });
+    $('#datepickerTo').change(function() {
+        self.pickerDateTo = $('#datepickerTo').val();
+    });
+    self.pickerDateFrom = $('#datepickerFrom').val();
+    self.pickerDateTo = $('#datepickerTo').val();
+    self.arrAll = self.jsonTypeMail.concat(self.jsonTypeOther).concat(self.jsonTypeSocial);
+    $('#buttonBd').on('click', () => {
+        if (self.pickerDateFrom || self.pickerDateTo) {
+            findUrl(this.pickerDateFrom, self.pickerDateTo, self.arrAll);
+        } else {
+            alert('Выберите дату');
+        }
+    });
 };
 
 Table.prototype.saveTableData = function() {
