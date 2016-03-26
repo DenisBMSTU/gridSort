@@ -1,3 +1,5 @@
+var moment = require('moment');
+require('moment-range');
 
 /**
  * Поиск данных с нужной датой
@@ -149,7 +151,7 @@ var findTenSecondsYes = function(session, common) {
                 secondDateFull = new Date(session[j].date + " " + session[j].time),
                 secondDate = session[j].date,
                 secondTime = session[j].time;
-            if (secondDateFull.getTime() - firstDateFull.getTime() <= 10000 && secondDateFull.getTime() - firstDateFull.getTime() >= 0 && firstDateFull !== secondDateFull && checkElement(common,re.exec(firstUrl)[0]) && checkElement(common,re.exec(secondUrl)[0]) && firstTime!==secondTime) {
+            if (secondDateFull.getTime() - firstDateFull.getTime() <= 10000 && secondDateFull.getTime() - firstDateFull.getTime() >= 0 && firstDateFull !== secondDateFull && checkElement(common,firstUrl) && checkElement(common,secondUrl) && firstTime!==secondTime) {
                 var obj = {
                     from: "",
                     to: ""
@@ -223,55 +225,98 @@ var YYYYMMDD = function(date) {
     return year + '' + month + '' + day
 };
 
+var dateRange = function(start,end) {
+
+    var startDate = new Date(start),
+        endDate = new Date(end);
+
+    var dateStrings = [],
+        str;
+    while (startDate <= endDate){
+        var year = startDate.getFullYear(),
+            month = (startDate.getMonth() < 9) ? "0" + (startDate.getMonth() + 1) : startDate.getMonth() + 1,
+            day = (startDate.getDate() < 10) ? "0" + startDate.getDate() : startDate.getDate();
+        str = year + "/" + month + "/" + day;
+        dateStrings.push(str);
+        startDate.setDate(startDate.getDate()+1);
+    }
+
+    return dateStrings;
+};
+
 var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
-    /**
-     * Поиск всех объектов по нужной дате
-     */
-    var tempusDateFrom = YYYYMMDD(pickerDateFrom),
-        tempusDateTo = YYYYMMDD(pickerDateTo);
 
-    var start = moment("2011-04-15", "YYYY-MM-DD");
-    var end   = moment("2011-11-27", "YYYY-MM-DD");
-    var range = moment.range(start, end);
-    console.log('range',range.toArray())
-    //console.log('tempusArrayDate',tempusArrayDate)
+    /**
+     * Массив всех дат
+     */
+    var dateArray = dateRange(pickerDateFrom,pickerDateTo);
 
-    var arrAllDate = findDate(pickerDateFrom,arrAll);
+    var findUrlObj = [];
     /**
-     * Поиск сессий
+     * Проходимся по всем датам
      */
-    var firstSession = findSession(arrAllDate, 9, 10),
-        secondSession = findSession(arrAllDate, 12, 13),
-        thirdSession = findSession(arrAllDate, 18, 19);
-    /**
-     * Сортировка каждой сессии по времени для удобства
-     */
-    var firstSessionSort = firstSession.sort(sortArray),
-        secondSessionSort = secondSession.sort(sortArray),
-        thirdSessionSort = thirdSession.sort(sortArray);
-    /**
-     * Собираем уникальные элементы (по url), чтобы дальше искать общий повторяющийся элемент
-     */
-    var firstSessionSortUnique = unique(firstSessionSort),
-        secondSessionSortUnique = unique(secondSessionSort),
-        thirdSessionSortUnique = unique(thirdSessionSort);
-    /**
-     * Поиск url, которые присутствуют во всех трех сессиях
-     */
-    var common = uniqueArr(checkThreeSession(firstSessionSortUnique,secondSessionSortUnique,thirdSessionSortUnique));
-    /**
-     * Массив объектов с переходами по аномальным url
-     */
-    var firstTenYes = findTenSecondsYes(firstSession, common),
-        secondTenYes = findTenSecondsYes(secondSession, common),
-        thirdTenYes = findTenSecondsYes(thirdSession, common);
-    /**
-     * Поиск элементов между аномальными
-     */
-    var firstTenNo = findElementsBetweenAbn(firstTenYes, firstSession),
-        secondTenNo = findElementsBetweenAbn(secondTenYes, secondSession),
-        thirdTenNo = findElementsBetweenAbn(thirdTenYes, thirdSession);
+    dateArray.forEach(function(date) {
+        var obj = {
+                yes: {
+                    first: "",
+                    second: "",
+                    third: ""
+                },
+                no: {
+                    first: "",
+                    second: "",
+                    third: ""
+                }
+        };
+        /**
+         * Поиск всех объектов по нужной дате
+         */
+        var arrAllDate = findDate(date,arrAll);
+        /**
+         * Поиск сессий
+         */
+        var firstSession = findSession(arrAllDate, 9, 10),
+            secondSession = findSession(arrAllDate, 12, 13),
+            thirdSession = findSession(arrAllDate, 18, 19);
+        /**
+         * Сортировка каждой сессии по времени для удобства
+         */
+        var firstSessionSort = firstSession.sort(sortArray),
+            secondSessionSort = secondSession.sort(sortArray),
+            thirdSessionSort = thirdSession.sort(sortArray);
+        /**
+         * Собираем уникальные элементы (по url), чтобы дальше искать общий повторяющийся элемент
+         */
+        var firstSessionSortUnique = unique(firstSessionSort),
+            secondSessionSortUnique = unique(secondSessionSort),
+            thirdSessionSortUnique = unique(thirdSessionSort);
+        /**
+         * Поиск url, которые присутствуют во всех трех сессиях
+         */
+        var common = uniqueArr(checkThreeSession(firstSessionSortUnique,secondSessionSortUnique,thirdSessionSortUnique));
+        /**
+         * Массив объектов с переходами по аномальным url
+         */
+        var firstTenYes = findTenSecondsYes(firstSession, common),
+            secondTenYes = findTenSecondsYes(secondSession, common),
+            thirdTenYes = findTenSecondsYes(thirdSession, common);
+        /**
+         * Поиск элементов между аномальными
+         */
+        var firstTenNo = findElementsBetweenAbn(firstTenYes, firstSession),
+            secondTenNo = findElementsBetweenAbn(secondTenYes, secondSession),
+            thirdTenNo = findElementsBetweenAbn(thirdTenYes, thirdSession);
 
+        obj.yes.first = firstTenYes;
+        obj.yes.second = secondTenYes;
+        obj.yes.third = thirdTenYes;
+        obj.no.first = firstTenNo;
+        obj.no.second = secondTenNo;
+        obj.no.third = thirdTenNo;
+        findUrlObj.push(obj);
+    });
+
+    console.log(findUrlObj);
     /*loadInComm(firstTenYes,secondTenNo);*/
 
     /**
