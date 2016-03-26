@@ -908,6 +908,80 @@
 	    return arr;
 	};
 
+
+
+	/**
+	 * Ищет в сессии элементы, разница между которыми 10 секунд для аномальных url
+	 * @param session, common
+	 */
+	var findTenSecondsYes = function(session, common) {
+	    var arrYes = [];
+	    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
+	    for (var i = 0; i < session.length; i++) {
+	        var firstUrl = session[i].baseUrl,
+	            firstDateFull = new Date(session[i].date + " " + session[i].time),
+	            firstDate = session[i].date,
+	            firstTime = session[i].time;
+	        for (var j = 0; j < session.length; j++) {
+	            var secondUrl = session[j].baseUrl,
+	                secondDateFull = new Date(session[j].date + " " + session[j].time),
+	                secondDate = session[j].date,
+	                secondTime = session[j].time;
+	            if (secondDateFull.getTime() - firstDateFull.getTime() <= 10000 && secondDateFull.getTime() - firstDateFull.getTime() >= 0 && firstDateFull !== secondDateFull && checkElement(common,re.exec(firstUrl)[0]) && checkElement(common,re.exec(secondUrl)[0]) && firstTime!==secondTime) {
+	                var obj = {
+	                    from: "",
+	                    to: ""
+	                };
+	                obj.from = session[i];
+	                obj.to = session[j];
+	                arrYes.push(obj);
+	            }
+	        }
+	    }
+	    return arrYes;
+	};
+
+
+	var findElementsBetweenAbn = function(arrYes, session) {
+	    var arrNo = [];
+	    arrYes.forEach(function(itemYes) {
+	        var itemYesFromFullDate = new Date(itemYes.from.date + " " + itemYes.from.time).getTime(),
+	            itemYesToFullDate = new Date(itemYes.to.date + " " + itemYes.to.time).getTime();
+	        session.forEach(function(itemSession) {
+	            var itemSessionFullDate = new Date(itemSession.date + " " + itemSession.time).getTime();
+	            if (itemSessionFullDate >= itemYesFromFullDate && itemSessionFullDate <= itemYesToFullDate) {
+	                arrNo.push(itemSession);
+	            }
+	        });
+	    });
+	    return arrNo;
+	};
+
+
+	/**
+	 * Убираем из массива повторяющиеся объекты по имени. Возвращает массив объектов!
+	 * @param arr
+	 * @returns {Array}
+	 */
+	var uniqueNo = function(arr) {
+	    var result = [];
+	    nextInput:
+	        for (var i = 0; i < arr.length; i++) {
+	            var obj = arr[i];
+	            var name = arr[i].name; // для каждого элемента
+	            var date = new Date(arr[i].date + " " + arr[i].time).getTime();
+	            for (var j = 0; j < result.length; j++) { // ищем, был ли он уже?
+	                if (result[j].name) {
+	                    if (result[j].name === name && (new Date(result[j].date + ' ' + result[j].time).getTime()) === date) continue nextInput; // если да, то следующий
+	                }
+
+	            }
+	            result.push(obj);
+	        }
+
+	    return result;
+	};
+
 	var findUrl = function(pickerDate,arrAll) {
 	    /**
 	     * Поиск всех объектов по нужной дате
@@ -935,7 +1009,20 @@
 	     * Поиск url, которые присутствуют во всех трех сессиях
 	     */
 	    var common = uniqueArr(checkThreeSession(firstSessionSortUnique,secondSessionSortUnique,thirdSessionSortUnique));
-	    console.log(common);
+	    /**
+	     * Массив объектов с переходами по аномальным url
+	     */
+	    var firstTenYes = findTenSecondsYes(firstSession, common),
+	        secondTenYes = findTenSecondsYes(secondSession, common),
+	        thirdTenYes = findTenSecondsYes(thirdSession, common);
+	    /**
+	     * Поиск элементов между аномальными
+	     */
+	    var firstTenNo = findElementsBetweenAbn(firstTenYes, firstSession),
+	        secondTenNo = findElementsBetweenAbn(secondTenYes, secondSession),
+	        thirdTenNo = findElementsBetweenAbn(thirdTenYes, thirdSession);
+
+	    console.log(uniqueNo(firstTenNo));
 	};
 
 	module.e = findUrl;
