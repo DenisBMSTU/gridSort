@@ -12,5 +12,11 @@ module.exports = {
             { test: /\.less$/, loader: "style!css!less"
             }
         ]
+    },
+    resolve: {
+        modulesDirectories: ['node_modules'],
+        extensions: ['', '.html', '.js', '.json', '.scss', '.css'],
+        alias: {
+        }
     }
 };

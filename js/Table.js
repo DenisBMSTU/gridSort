@@ -94,6 +94,7 @@ Table.prototype.loadTable = function() {
         this.jsonTypeOther.sort(sortDateUp);
         this.jsonTypeSocial.sort(sortDateUp);
     }.bind(this));
+
 };
 
 /**
@@ -131,7 +132,8 @@ Table.prototype.buttonSend = function() {
             return;
         }
 
-        var pickerDate = $('.date-pick').val();
+        var pickerDateFrom = $('#datepickerFrom').val(),
+            pickerDateTo = $('#datepickerTo').val();
 
         var countInput = 0;
         for (i = 1; i < inputLength; i++) {
@@ -226,7 +228,7 @@ Table.prototype.buttonSend = function() {
         var arrAll = this.jsonTypeMail.concat(this.jsonTypeOther).concat(this.jsonTypeSocial);
      /*   findUrl(pickerDate,arrAll);*/
         /*findAbnormalUrl(pickerDate);*/
-        findUrl(pickerDate,arrAll);
+        findUrl(pickerDateFrom, pickerDateTo, arrAll);
 
         window.scrollTo(document.getElementById('buttonSend').offsetLeft,document.getElementById('buttonSend').offsetTop);
     }.bind(this);

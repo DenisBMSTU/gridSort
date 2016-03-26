@@ -50,7 +50,7 @@
   width: 78px;
 }
 .container .container__grid .container__category .container_datepicker .date-pick__label {
-  margin-top: 3px;
+  margin-top: 6px;
 }
 .container .container__grid .container__category .row_all:after {
   content: ".";

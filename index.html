@@ -31,8 +31,14 @@
                 </div>
             </div>
             <div class="container_datepicker">
-                <label class="date-pick__label" for="datepicker">Дата:</label>
-                <input type="text" id="datepicker" class="date-pick" placeholder="ГГГГ/ММ/ДД"/>
+                <div class="container_datepicker_from">
+                    <label class="date-pick__label" for="datepickerFrom">От:</label>
+                    <input type="text" id="datepickerFrom" class="date-pick" placeholder="ГГГГ/ММ/ДД"/>
+                </div>
+                <div class="container_datepicker_to">
+                    <label class="date-pick__label" for="datepickerTo">До:</label>
+                    <input type="text" id="datepickerTo" class="date-pick" placeholder="ГГГГ/ММ/ДД"/>
+                </div>
             </div>
             <div style="width:100px;color:red">Найдет аномальные url для категории "Соц сеть" 2016/03/05</div>
         </div>
@@ -54,7 +60,8 @@
         </div>
     </div>
 </div>
-
+<script src="js/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/2.2.0/moment-range.js"></script>
 <script src="libs/jquery/jquery-1.12.0.min.js"></script>
 <script src="libs/jqueryUi/js/jquery-ui.min.js"></script>
 

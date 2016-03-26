@@ -1,3 +1,4 @@
+
 /**
  * Поиск данных с нужной датой
  * Принимает на вход массив, содержащий строку в формате YYYY/MM/DD и массив всех данных
@@ -203,11 +204,39 @@ var uniqueNo = function(arr) {
     return result;
 };
 
-var findUrl = function(pickerDate,arrAll) {
+var loadInComm = function(arrYes, arrNo) {
+    $('#info').html('');
+    $('#info').append('<div>Переходы <span style="color:#EB1526">по</span> важным ссылкам:</div>');
+    for(var i = 0; i < arrYes.length; i++) {
+        $('#info').append('<div>' + arrYes[i].from.name + ' -> ' + arrYes[i].to.name + '</div>');
+    }
+    $('#info').append('<div>Переходы <span style="color:#EB1526">между</span> важными ссылками:</div>');
+    for(var i = 0; i < arrNo.length; i++) {
+        $('#info').append('<div>' + arrNo[i].name + '</div>');
+    }
+};
+
+var YYYYMMDD = function(date) {
+    var year = new Date(date).getFullYear(),
+        month = (new Date(date).getMonth() < 9) ? "0" + (new Date(date).getMonth() + 1) : new Date(date).getMonth() + 1,
+        day = (new Date(date).getDate() < 10) ? "0" + new Date(date).getDate() : new Date(date).getDate();
+    return year + '' + month + '' + day
+};
+
+var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
     /**
      * Поиск всех объектов по нужной дате
      */
-    var arrAllDate = findDate(pickerDate,arrAll);
+    var tempusDateFrom = YYYYMMDD(pickerDateFrom),
+        tempusDateTo = YYYYMMDD(pickerDateTo);
+
+    var start = moment("2011-04-15", "YYYY-MM-DD");
+    var end   = moment("2011-11-27", "YYYY-MM-DD");
+    var range = moment.range(start, end);
+    console.log('range',range.toArray())
+    //console.log('tempusArrayDate',tempusArrayDate)
+
+    var arrAllDate = findDate(pickerDateFrom,arrAll);
     /**
      * Поиск сессий
      */
@@ -243,7 +272,11 @@ var findUrl = function(pickerDate,arrAll) {
         secondTenNo = findElementsBetweenAbn(secondTenYes, secondSession),
         thirdTenNo = findElementsBetweenAbn(thirdTenYes, thirdSession);
 
-    console.log(uniqueNo(firstTenNo));
+    /*loadInComm(firstTenYes,secondTenNo);*/
+
+    /**
+     * Для занесения в базу: form | to |
+     */
 };
 
 module.exports = findUrl;
