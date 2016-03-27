@@ -389,7 +389,7 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
         });
         arrCommon = uniqueObj(arrCommon);
 
-        arrCommon.forEach(function(common) {
+        /*arrCommon.forEach(function(common) {
             arrAllDate.forEach(function(date) {
                 if (common.baseUrl === date.baseUrl) {
                     var obj = {
@@ -401,7 +401,7 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
                     common.dateTime.push(obj);
                 }
             })
-        });
+        });*/
 
         obj.yes.first = firstTenYes;
         obj.yes.second = secondTenYes;
@@ -415,7 +415,17 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
         findUrlObj.push(obj);
     });
 
+    findUrlObj.forEach(function(objAll) {
+        objAll.common.forEach(function(com) {
+            arrAll.forEach(function(arAl) {
+                if (com.baseUrl === arAl.baseUrl) {
+                    com.dateTime.push(arAl.date + ' ' + arAl.time);
+                }
+            })
+        });
+    });
     console.log(findUrlObj);
+
     /*loadInComm(firstTenYes,secondTenNo);*/
 
     /**
