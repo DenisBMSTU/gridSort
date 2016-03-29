@@ -380,7 +380,28 @@ var findCountTransitionInDay = function(first, second, third) {
     });
     return [first, second, third];
 };
-
+/**
+ * Сумма всех baseUrl
+ * @param arrAll
+ * @returns {number}
+ */
+var sumBaseOfUrls = function(arrAll) {
+    var objCount = {};
+    for (var i = 0; i < arrAll.length; i++) {
+        objCount[arrAll[i].baseUrl] = arrAll[i].countBase;
+    }
+    var arrCount = Object.keys(objCount),
+        sum = 0;
+    arrCount.forEach(function(item) {
+        sum += objCount[item];
+    });
+    return sum;
+};
+var setSumBaseOfUrls = function(arrAll, sum) {
+  arrAll.forEach(function(item) {
+      item.sumCountBaseUrl = sum;
+  });
+};
 
 /**
  * Основная функция
@@ -389,7 +410,8 @@ var findCountTransitionInDay = function(first, second, third) {
  * @param arrAll
  */
 var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
-
+    var sumBaseUrls = sumBaseOfUrls(arrAll);
+    setSumBaseOfUrls(arrAll, sumBaseUrls);
     /**
      * Массив всех дат
      */
@@ -539,10 +561,6 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
         });
     });
     console.log(findUrlObj);
-    /*loadInComm(firstTenYes,secondTenNo);*/
-
-    var findWithCount = findUrlObjWithCount(findUrlObj);
-    console.log(findWithCount);
     /**
      * Для занесения в базу: form | to |
      */

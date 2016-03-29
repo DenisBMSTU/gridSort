@@ -58,6 +58,14 @@ Table.prototype.loadTable = function() {
                 }
             }
         }
+/*        /!**
+         *  Подсчет суммы посещений базового url
+         *!/
+        this.objCount = {};
+        for (i = 0; i < this.jsonArray.length; i++) {
+            this.jsonArray[i].baseUrl = re.exec(this.jsonArray[i].name)[0];
+            this.objCount[this.jsonArray[i].baseUrl] = this.jsonArray[i].countBase;
+        }*/
         /**
          * Подсчет кол-ва посещений в день полного Url
          */

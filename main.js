@@ -13188,6 +13188,14 @@
 	                }
 	            }
 	        }
+	/*        /!**
+	         *  Подсчет суммы посещений базового url
+	         *!/
+	        this.objCount = {};
+	        for (i = 0; i < this.jsonArray.length; i++) {
+	            this.jsonArray[i].baseUrl = re.exec(this.jsonArray[i].name)[0];
+	            this.objCount[this.jsonArray[i].baseUrl] = this.jsonArray[i].countBase;
+	        }*/
 	        /**
 	         * Подсчет кол-ва посещений в день полного Url
 	         */
@@ -14074,6 +14082,28 @@
 	    });
 	    return [first, second, third];
 	};
+	/**
+	 * Сумма всех baseUrl
+	 * @param arrAll
+	 * @returns {number}
+	 */
+	var sumBaseOfUrls = function(arrAll) {
+	    var objCount = {};
+	    for (var i = 0; i < arrAll.length; i++) {
+	        objCount[arrAll[i].baseUrl] = arrAll[i].countBase;
+	    }
+	    var arrCount = Object.keys(objCount),
+	        sum = 0;
+	    arrCount.forEach(function(item) {
+	        sum += objCount[item];
+	    });
+	    return sum;
+	};
+	var setSumBaseOfUrls = function(arrAll, sum) {
+	  arrAll.forEach(function(item) {
+	      item.sumCountBaseUrl = sum;
+	  });
+	};
 
 	/**
 	 * Основная функция
@@ -14082,7 +14112,8 @@
 	 * @param arrAll
 	 */
 	var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
-
+	    var sumBaseUrls = sumBaseOfUrls(arrAll);
+	    setSumBaseOfUrls(arrAll, sumBaseUrls);
 	    /**
 	     * Массив всех дат
 	     */
@@ -14232,8 +14263,6 @@
 	        });
 	    });
 	    console.log(findUrlObj);
-	    /*loadInComm(firstTenYes,secondTenNo);*/
-
 	    /**
 	     * Для занесения в базу: form | to |
 	     */
