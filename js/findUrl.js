@@ -216,6 +216,7 @@ var findElementsBetweenAbn = function(arrYes, session) {
             }
         });
     });
+    arrNo = uniqueDate(arrNo);
     return arrNo;
 };
 
@@ -245,6 +246,28 @@ var uniqueNo = function(arr) {
 };
 
 
+/**
+ * Убираем из массива повторяющиеся объекты по дате. Возвращает массив объектов!
+ * @param arr
+ * @returns {Array}
+ */
+var uniqueDate = function(arr) {
+    var result = [];
+    nextInput:
+        for (var i = 0; i < arr.length; i++) {
+            var obj = arr[i];
+            var date = new Date(arr[i].date + " " + arr[i].time).getTime();
+            for (var j = 0; j < result.length; j++) { // ищем, был ли он уже?
+                if (result[j].date) {
+                    if ((new Date(result[j].date + ' ' + result[j].time).getTime()) === date) continue nextInput; // если да, то следующий
+                }
+
+            }
+            result.push(obj);
+        }
+
+    return result;
+};
 var uniqueObj = function(arr) {
     var result = [];
     nextInput:
@@ -286,6 +309,76 @@ var dateRange = function(start,end) {
     }
 
     return dateStrings;
+};
+
+/**
+ * Поиск переходов
+ * @param arr
+ * @returns {Array}
+ */
+var findTransition = function(arr) {
+    var array = [];
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i+1] === undefined) {
+            break;
+        } else {
+            var obj = {
+                from: '',
+                to: '',
+                countTransitionInDay: 1
+            };
+            obj.from = arr[i];
+            obj.to = arr[i+1];
+            array.push(obj);
+        }
+    }
+    return array;
+};
+/**
+ * Поиск кол-ва переходов в сессию
+ * @param arr
+ * @returns {*}
+ */
+var findCountTransitionInSession = function(arr) {
+  for (var i = 0; i < arr.length; i++) {
+      if (arr[i+1] === undefined) {
+          break;
+      } else if(arr[i].from.name === arr[i+1].from.name && arr[i].to.name === arr[i+1].to.name) {
+          arr[i].countTransitionInDay += 1;
+          arr[i+1].countTransitionInDay += 1;
+      }
+  }
+    return arr;
+};
+/**
+ * Поиск кол-ва переходов в день
+ */
+var findCountTransitionInDay = function(first, second, third) {
+  first.forEach(function(f) {
+      second.forEach(function(s) {
+         if (f.from.name === s.from.name && f.to.name === s.to.name) {
+             f.countTransitionInDay += 1;
+             s.countTransitionInDay += 1;
+         }
+      });
+  });
+    first.forEach(function(f) {
+        third.forEach(function(t) {
+            if (f.from.name === t.from.name && f.to.name === t.to.name) {
+                f.countTransitionInDay += 1;
+                t.countTransitionInDay += 1;
+            }
+        });
+    });
+    third.forEach(function(t) {
+        second.forEach(function(s) {
+            if (t.from.name === s.from.name && t.to.name === s.to.name) {
+                t.countTransitionInDay += 1;
+                s.countTransitionInDay += 1;
+            }
+        });
+    });
+    return [first, second, third];
 };
 
 
@@ -360,6 +453,27 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
             secondTenNo = findElementsBetweenAbn(secondTenYes, secondSession),
             thirdTenNo = findElementsBetweenAbn(thirdTenYes, thirdSession);
 
+        /**
+         * Составление переходов между подозрительными url
+         */
+        var firstNo = findTransition(firstTenNo),
+            secondNo = findTransition(secondTenNo),
+            thirdNo = findTransition(thirdTenNo);
+        /**
+         * Подсчет повторений переходов по каждой сессии
+         */
+        var firstCountNo = findCountTransitionInSession(firstNo),
+            secondCountNo = findCountTransitionInSession(secondNo),
+            thirdCountNo = findCountTransitionInSession(thirdNo);
+        /**
+         * Подсчет кол-ва повторений в сутки
+         */
+        var countInDayAll = findCountTransitionInDay(firstCountNo,secondCountNo,thirdCountNo),
+            firstCountInDayNo = countInDayAll[0],
+            secondCountInDayNo = countInDayAll[1],
+            thirdCountInDayNo = countInDayAll[2];
+
+
         var arrCommon = [];
         firstTenYes.forEach(function(item) {
             if (checkObject(arrCommon, item.from.baseUrl) != false) {
@@ -406,9 +520,9 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
         obj.yes.first = firstTenYes;
         obj.yes.second = secondTenYes;
         obj.yes.third = thirdTenYes;
-        obj.no.first = firstTenNo;
-        obj.no.second = secondTenNo;
-        obj.no.third = thirdTenNo;
+        obj.no.first = firstCountInDayNo;
+        obj.no.second = secondCountInDayNo;
+        obj.no.third = thirdCountInDayNo;
         obj.common = arrCommon;
 
 
@@ -425,9 +539,10 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
         });
     });
     console.log(findUrlObj);
-
     /*loadInComm(firstTenYes,secondTenNo);*/
 
+    var findWithCount = findUrlObjWithCount(findUrlObj);
+    console.log(findWithCount);
     /**
      * Для занесения в базу: form | to |
      */
