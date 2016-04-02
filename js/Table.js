@@ -29,7 +29,10 @@ Table.prototype.loadTable = function() {
     this.jsonTypeOther = [];
     this.jsonTypeSocial = [];
 
-    $.getJSON('./index.json', function (data) {
+    $.ajax({
+        url: "http://localhost:3000/loadTable",
+        type: 'GET',
+        success: function (data) {
         var jsonArrayLength,
             i,
             dataLength = data.length;
@@ -102,7 +105,7 @@ Table.prototype.loadTable = function() {
         this.jsonTypeOther.sort(sortDateUp);
         this.jsonTypeSocial.sort(sortDateUp);
         this.buttonSaveInBd();
-    }.bind(this));
+    }.bind(this)});
 
 };
 

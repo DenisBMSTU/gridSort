@@ -13159,7 +13159,10 @@
 	    this.jsonTypeOther = [];
 	    this.jsonTypeSocial = [];
 
-	    $.getJSON('./index.json', function (data) {
+	    $.ajax({
+	        url: "http://localhost:3000/loadTable",
+	        type: 'GET',
+	        success: function (data) {
 	        var jsonArrayLength,
 	            i,
 	            dataLength = data.length;
@@ -13232,7 +13235,7 @@
 	        this.jsonTypeOther.sort(sortDateUp);
 	        this.jsonTypeSocial.sort(sortDateUp);
 	        this.buttonSaveInBd();
-	    }.bind(this));
+	    }.bind(this)});
 
 	};
 
@@ -14105,6 +14108,52 @@
 	  });
 	};
 
+	var uniqueObjAndSum = function(arr) {
+	    var result = [];
+	    nextInput:
+	        for (var i = 0; i < arr.length; i++) {
+	            var obj = arr[i];
+	            var from = arr[i].from,
+	                to = arr[i].to;// для каждого элемента
+	            var dateTime = arr[i].dateTime;
+	            for (var j = 0; j < result.length; j++) { // ищем, был ли он уже?
+	                if (result[j].from && result[j].to) {
+	                    if (result[j].from === from && result[j].to === to) {
+	                        result[j].countTransitionAll +=1;
+	                        result[j].dateTime += (', ' + dateTime);
+	                        continue nextInput;
+	                    } // если да, то следующий
+	                }
+
+	            }
+	            result.push(obj);
+	        }
+	    return result;
+	};
+
+	var uniqueObjAndSumAll = function(arr) {
+	    var result = [];
+	    nextInput:
+	        for (var i = 0; i < arr.length; i++) {
+	            var obj = arr[i];
+	            var from = arr[i].from,
+	                to = arr[i].to;// для каждого элемента
+	            var dateTime = arr[i].dateTime;
+	            for (var j = 0; j < result.length; j++) { // ищем, был ли он уже?
+	                if (result[j].from && result[j].to) {
+	                    if (result[j].from === from && result[j].to === to) {
+	                        result[j].countTransitionAll +=1;
+	                        result[j].dateTime += (', ' + dateTime);
+	                        continue nextInput;
+	                    } // если да, то следующий
+	                }
+
+	            }
+	            result.push(obj);
+	        }
+	    return result;
+	};
+
 	/**
 	 * Основная функция
 	 * @param pickerDateFrom
@@ -14262,10 +14311,124 @@
 	            })
 	        });
 	    });
+
+	    findUrlObj.forEach(function(objAll) {
+	        objAll.common.forEach(function(com) {
+	            com.dateTime = com.dateTime.join(', ');
+	        });
+	    });
 	    console.log(findUrlObj);
+	    var arrCom = [];
+	    findUrlObj.forEach(function(item) {
+	        item.common.forEach(function(com) {
+	            arrCom.push(com);
+	        });
+	    });
+	    arrCom = uniqueObj(arrCom);
+
+	    var arrNo = [];
+	    findUrlObj.forEach(function(item) {
+	        item.no.first.forEach(function(el) {
+	            var obj = {
+	                from: el.from.name,
+	                to: el.to.name,
+	                dateTime: el.to.date + ' ' + el.to.time,
+	                countTransitionAll: 1
+	            };
+	            arrNo.push(obj);
+	        });
+	        item.no.second.forEach(function(el) {
+	            var obj = {
+	                from: el.from.name,
+	                to: el.to.name,
+	                dateTime: el.to.date + ' ' + el.to.time,
+	                countTransitionAll: 1
+	            };
+	            arrNo.push(obj);
+	        });
+	        item.no.third.forEach(function(el) {
+	            var obj = {
+	                from: el.from.name,
+	                to: el.to.name,
+	                dateTime: el.to.date + ' ' + el.to.time,
+	                countTransitionAll: 1
+	            };
+	            arrNo.push(obj);
+	        });
+	    });
+	    arrNo = uniqueObjAndSum(arrNo);
+
+	    var newCom = [];
+	    findUrlObj.forEach(function(item) {
+	        item.common.forEach(function(el) {
+	            newCom.push(el.baseUrl);
+	        });
+	    });
+
+	    newCom = uniqueArr(newCom);
+	    var arrYes = [];
+	    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
+	    arrNo.forEach(function(item) {
+	        if (checkElement(newCom, re.exec(item.from)[0])) {
+	            arrYes.push(item);
+	        }
+	    });
+	    arrYes.forEach(function(item) {
+	        item.from = re.exec(item.from)[0];
+	    });
+	    arrYes = uniqueObjAndSumAll(arrYes);
+	/*    console.log('Первая таблица: ',arrCom);
+	    console.log('Вторая таблица: ',arrNo);
+	    console.log('Третья таблица: ',arrYes);*/
+	    /*var arrYes = uniqueObjAndSumAll(arrNo, common);*/
+	 /*   console.log('arrYes', arrYes);
+	    console.log('arrNo',arrNo);*/
+	    var objSend = {
+	        firstTable: arrCom,
+	        secondTable: arrNo,
+	        thirdTable: arrYes
+	    };
+	    $.ajax({
+	        url: "http://localhost:3000/saveInTable",
+	        type: "POST",
+	        dataType: 'json',
+	        crossDomain: true,
+	        contentType: 'application/json',
+	        data: JSON.stringify(objSend),
+	        success: function(data) {
+	            console.log('data save', data);
+	        },
+	        error: function() {
+	            console.log('ups');
+	        }
+	    });
+
+	/*    findUrlObj.forEach(function(item) {
+	        console.log(item)
+	        $.ajax({
+	            url: "http://localhost:3000/saveInTable",
+	            type: "POST",
+	            dataType: 'json',
+	            data: JSON.stringify(item),
+	            success: function(data) {
+	                console.log('data save', data);
+	            }
+	        });
+	    });*/
+
+	/*    $.ajax({
+	        url: "http://localhost:3000/saveFirst",
+	        type: "POST",
+	        dataType: 'json',
+	        data: {'lol':'hello'},
+	        success: function(data) {
+	            console.log('data save', data);
+	        }
+	    });*/
 	    /**
 	     * Для занесения в базу: form | to |
 	     */
+
 	};
 
 	module.e = findUrl;
