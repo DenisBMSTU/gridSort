@@ -93,8 +93,46 @@ Table.prototype.loadTable = function() {
         }
 
 
+            this.jsonArray.sort(sortCommonCountBase);
+            var score = 0,
+                arrScoreBase = [],
+                arrScore = [];
+            var jsLength = this.jsonArray.length;
+            this.jsonArray.forEach(function(item) {
+                var percent = item.countBase * 100 / jsLength;
+                if ((score + percent) < 90) {
+                    score += percent;
+                    arrScoreBase.push(item);
+                }
+            });
+            this.countBaseMax = arrScoreBase[arrScoreBase.length-1].countBase;
 
-        for (i = 0, jsonArrayLength = this.jsonArray.length; i < jsonArrayLength; i++) {
+            this.jsonArray.sort(sortCommonCountUrl);
+
+            var score = 0;
+            this.jsonArray.forEach(function(item) {
+                var percent = item.count * 100 / jsLength;
+                if ((score + percent) < 90) {
+                    score += percent;
+                    arrScore.push(item);
+                } else {
+                    return;
+                }
+            });
+            arrScore.sort(sortCommonCountUrl);
+            this.countMax = arrScore[arrScore.length-1].count;
+
+
+            for (i = 0; i < this.jsonArray.length; i++) {
+                if (this.jsonArray[i].countBase <= this.countBaseMax) {
+                    this.jsonArray[i].rareBaseUrl = 'yes';
+                }
+                if (this.jsonArray[i].count <= this.countMax) {
+                    this.jsonArray[i].rareUrl = 'yes';
+                }
+            }
+
+            for (i = 0, jsonArrayLength = this.jsonArray.length; i < jsonArrayLength; i++) {
             if (this.jsonArray[i].typeUrl === 'other') {
                 this.jsonTypeOther.push(this.jsonArray[i]);
             } else if (this.jsonArray[i].typeUrl === 'mail') {
@@ -261,7 +299,7 @@ Table.prototype.buttonSaveInBd = function() {
     self.arrAll = self.jsonTypeMail.concat(self.jsonTypeOther).concat(self.jsonTypeSocial);
     $('#buttonBd').on('click', () => {
         if (self.pickerDateFrom || self.pickerDateTo) {
-            findUrl(this.pickerDateFrom, self.pickerDateTo, self.arrAll);
+            findUrl(this.pickerDateFrom, self.pickerDateTo, self.arrAll,self.countBaseMax, self.countMax);
         } else {
             alert('Выберите дату');
         }
@@ -431,6 +469,30 @@ function sortDateDown(a,b) {
     }
 }
 
+var sortCommonCountBase = function(a,b) {
+    a = a.countBase;
+    b = b.countBase;
+    if (a < b) {
+        return -1;
+    } else if (a > b) {
+        return 1;
+    } else {
+        return 0;
+    }
+};
+
+
+var sortCommonCountUrl = function(a,b) {
+    a = a.count;
+    b = b.count;
+    if (a < b) {
+        return -1;
+    } else if (a > b) {
+        return 1;
+    } else {
+        return 0;
+    }
+};
 /*function checkPicker() {
     var re = /\d\d\/\d\d\/\d\d\d\d/;
     if (!re.test($('.date-pick').val())) {

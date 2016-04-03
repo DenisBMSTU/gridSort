@@ -13223,8 +13223,46 @@
 	        }
 
 
+	            this.jsonArray.sort(sortCommonCountBase);
+	            var score = 0,
+	                arrScoreBase = [],
+	                arrScore = [];
+	            var jsLength = this.jsonArray.length;
+	            this.jsonArray.forEach(function(item) {
+	                var percent = item.countBase * 100 / jsLength;
+	                if ((score + percent) < 90) {
+	                    score += percent;
+	                    arrScoreBase.push(item);
+	                }
+	            });
+	            this.countBaseMax = arrScoreBase[arrScoreBase.length-1].countBase;
 
-	        for (i = 0, jsonArrayLength = this.jsonArray.length; i < jsonArrayLength; i++) {
+	            this.jsonArray.sort(sortCommonCountUrl);
+
+	            var score = 0;
+	            this.jsonArray.forEach(function(item) {
+	                var percent = item.count * 100 / jsLength;
+	                if ((score + percent) < 90) {
+	                    score += percent;
+	                    arrScore.push(item);
+	                } else {
+	                    return;
+	                }
+	            });
+	            arrScore.sort(sortCommonCountUrl);
+	            this.countMax = arrScore[arrScore.length-1].count;
+
+
+	            for (i = 0; i < this.jsonArray.length; i++) {
+	                if (this.jsonArray[i].countBase <= this.countBaseMax) {
+	                    this.jsonArray[i].rareBaseUrl = 'yes';
+	                }
+	                if (this.jsonArray[i].count <= this.countMax) {
+	                    this.jsonArray[i].rareUrl = 'yes';
+	                }
+	            }
+
+	            for (i = 0, jsonArrayLength = this.jsonArray.length; i < jsonArrayLength; i++) {
 	            if (this.jsonArray[i].typeUrl === 'other') {
 	                this.jsonTypeOther.push(this.jsonArray[i]);
 	            } else if (this.jsonArray[i].typeUrl === 'mail') {
@@ -13391,7 +13429,7 @@
 	    self.arrAll = self.jsonTypeMail.concat(self.jsonTypeOther).concat(self.jsonTypeSocial);
 	    $('#buttonBd').on('click', () => {
 	        if (self.pickerDateFrom || self.pickerDateTo) {
-	            findUrl(this.pickerDateFrom, self.pickerDateTo, self.arrAll);
+	            findUrl(this.pickerDateFrom, self.pickerDateTo, self.arrAll,self.countBaseMax, self.countMax);
 	        } else {
 	            alert('Выберите дату');
 	        }
@@ -13561,6 +13599,30 @@
 	    }
 	}
 
+	var sortCommonCountBase = function(a,b) {
+	    a = a.countBase;
+	    b = b.countBase;
+	    if (a < b) {
+	        return -1;
+	    } else if (a > b) {
+	        return 1;
+	    } else {
+	        return 0;
+	    }
+	};
+
+
+	var sortCommonCountUrl = function(a,b) {
+	    a = a.count;
+	    b = b.count;
+	    if (a < b) {
+	        return -1;
+	    } else if (a > b) {
+	        return 1;
+	    } else {
+	        return 0;
+	    }
+	};
 	/*function checkPicker() {
 	    var re = /\d\d\/\d\d\/\d\d\d\d/;
 	    if (!re.test($('.date-pick').val())) {
@@ -13774,6 +13836,43 @@
 	    }
 	};
 
+
+	var sortCountTo = function(a,b) {
+	    a = a.to.count;
+	    b = b.to.count;
+	    if (a < b) {
+	        return -1;
+	    } else if (a > b) {
+	        return 1;
+	    } else {
+	        return 0;
+	    }
+	};
+
+	var sortCountFrom = function(a,b) {
+	    a = a.from.count;
+	    b = b.from.count;
+	    if (a < b) {
+	        return -1;
+	    } else if (a > b) {
+	        return 1;
+	    } else {
+	        return 0;
+	    }
+	};
+
+	var sortCountUrl = function(a,b) {
+	    a = a.count;
+	    b = b.count;
+	    if (a < b) {
+	        return -1;
+	    } else if (a > b) {
+	        return 1;
+	    } else {
+	        return 0;
+	    }
+	};
+
 	/**
 	 * Сортировка по времени в массиве объектов
 	 * @param a
@@ -13912,6 +14011,29 @@
 	    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
 	    for (var i = 0; i < session.length; i++) {
 	        var firstUrl = session[i].baseUrl,
+	            firstDateFull = new Date(session[i].date + " " + session[i].time).getTime();
+	        for (var j = 0; j < session.length; j++) {
+	            var secondUrl = session[j].baseUrl,
+	                secondDateFull = new Date(session[j].date + " " + session[j].time).getTime(),
+	                delta = secondDateFull - firstDateFull;
+	            if (delta <= 10000 && delta > 0 && checkElement(common,firstUrl) && checkElement(common,secondUrl)) {
+	                var obj = {
+	                    from: "",
+	                    to: ""
+	                };
+	                obj.from = session[i];
+	                obj.to = session[j];
+	                arrYes.push(obj);
+	            }
+	        }
+	    }
+
+
+
+	    /*var arrYes = [];
+	    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
+	    for (var i = 0; i < session.length; i++) {
+	        var firstUrl = session[i].baseUrl,
 	            firstDateFull = new Date(session[i].date + " " + session[i].time),
 	            firstDate = session[i].date,
 	            firstTime = session[i].time;
@@ -13930,25 +14052,43 @@
 	                arrYes.push(obj);
 	            }
 	        }
-	    }
+	    }*/
 
+	   /* arrYes.sort(sortCommonCountFrom);
 	    var score = 0;
 	    for (var i = 0; i < arrYes.length; i++) {
 	        var percent = arrYes[i].from.countBase * 100 / sumBaseUrls;
-	        if ((score + percent) < 30) {
+	        if ((score + percent) < 40) {
 	            score += percent;
 	            arrYes[i].from.rareBaseUrl = 'yes';
 	        }
 	    }
-
+	    arrYes.sort(sortCommonCountTo);
+	    for (var i = 0; i < arrYes.length; i++) {
+	        var percent = arrYes[i].to.countBase * 100 / sumBaseUrls;
+	        if ((score + percent) < 40) {
+	            score += percent;
+	            arrYes[i].to.rareBaseUrl = 'yes';
+	        }
+	    }
+	    arrYes.sort(sortCountFrom);
 	    var score = 0;
 	    for (var i = 0; i < arrYes.length; i++) {
 	        var percent = arrYes[i].from.count * 100 / sumBaseUrls;
-	        if ((score + percent) < 30) {
+	        if ((score + percent) < 40) {
 	            score += percent;
 	            arrYes[i].from.rareUrl = 'yes';
 	        }
 	    }
+	    arrYes.sort(sortCountTo);
+	    var score = 0;
+	    for (var i = 0; i < arrYes.length; i++) {
+	        var percent = arrYes[i].to.count * 100 / sumBaseUrls;
+	        if ((score + percent) < 40) {
+	            score += percent;
+	            arrYes[i].to.rareUrl = 'yes';
+	        }
+	    }*/
 
 	    return arrYes;
 	};
@@ -14135,7 +14275,7 @@
 	 * @param arrAll
 	 * @returns {number}
 	 */
-	var sumBaseOfUrls = function(arrAll) {
+	/*var sumBaseOfUrls = function(arrAll) {
 	    var objCount = {};
 	    for (var i = 0; i < arrAll.length; i++) {
 	        objCount[arrAll[i].baseUrl] = arrAll[i].countBase;
@@ -14152,7 +14292,7 @@
 	  arrAll.forEach(function(item) {
 	      item.sumCountBaseUrl = sum;
 	  });
-	};
+	};*/
 
 	/**
 	 * Сумма всех url (не base)
@@ -14234,18 +14374,103 @@
 	    return arr;
 	};
 
+	var colorTable = function(array) {
+	    array.forEach(function(item) {
+	        item.yes.first.forEach(function(el) {
+	            var elFrom = el.from.date + ' ' + el.from.time,
+	                elTo = el.to.date + ' ' + el.to.time,
+	                td = $('#grid tbody tr td:first-child');
+	            for (var i =0; i < td.length; i++) {
+	                if (td[i].innerHTML === elFrom || td[i].innerHTML === elTo) {
+	                    td[i].style.color = 'red'
+	                }
+	            }
+	        });
+	        item.yes.second.forEach(function(el) {
+	            var elFrom = el.from.date + ' ' + el.from.time,
+	                elTo = el.to.date + ' ' + el.to.time,
+	                td = $('#grid tbody tr td:first-child');
+	            for (var i =0; i < td.length; i++) {
+	                if (td[i].innerHTML === elFrom || td[i].innerHTML === elTo) {
+	                    td[i].style.color = 'red'
+	                }
+	            }
+	        });
+	        item.yes.third.forEach(function(el) {
+	            var elFrom = el.from.date + ' ' + el.from.time,
+	                elTo = el.to.date + ' ' + el.to.time,
+	                td = $('#grid tbody tr td:first-child');
+	            for (var i =0; i < td.length; i++) {
+	                if (td[i].innerHTML === elFrom || td[i].innerHTML === elTo) {
+	                    td[i].style.color = 'red'
+	                }
+	            }
+	        });
+	    })
+	};
+
+	var sortCommonCountBase = function(a,b) {
+	    a = a.countBase;
+	    b = b.countBase;
+	    if (a < b) {
+	        return -1;
+	    } else if (a > b) {
+	        return 1;
+	    } else {
+	        return 0;
+	    }
+	};
+
+	var sortCommonCountUrl = function(a,b) {
+	    a = a.count;
+	    b = b.count;
+	    if (a < b) {
+	        return -1;
+	    } else if (a > b) {
+	        return 1;
+	    } else {
+	        return 0;
+	    }
+	};
+
+	/*var countAllTenYesRare = function(array, sumBaseUrls) {
+	    var arr = [];
+	    array.forEach(function(item) {
+	       arr.push(item.from);
+	        arr.push(item.to);
+	    });
+	    arr.sort(sortCommonCountBase);
+	    var score = 0;
+	    for (var i = 0; i < arr.length; i++) {
+	        var percent = arr[i].countBase * 100 / sumBaseUrls;
+	        if ((score + percent) < 30) {
+	            score += percent;
+	            arr[i].rareBaseUrl = 'yes';
+	        }
+	    }
+	    arr.sort(sortCommonCountUrl);
+	    var score = 0;
+	    for (var i = 0; i < arr.length; i++) {
+	        var percent = arr[i].count * 100 / sumBaseUrls;
+	        if ((score + percent) < 30) {
+	            score += percent;
+	            arr[i].rareUrl = 'yes';
+	        }
+	    }
+	    return arr;
+	};*/
+
 	/**
 	 * Основная функция
 	 * @param pickerDateFrom
 	 * @param pickerDateTo
 	 * @param arrAll
 	 */
-	var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
-
-	    var sumBaseUrls = sumBaseOfUrls(arrAll);
-	    setSumBaseOfUrls(arrAll, sumBaseUrls);
-
-
+	var findUrl = function(pickerDateFrom, pickerDateTo,arrAll,countBaseMax,countMax) {
+	/*    var sumBaseUrls = sumBaseOfUrls(arrAll);
+	    setSumBaseOfUrls(arrAll, sumBaseUrls);*/
+	    console.log(countBaseMax)
+	    console.log(countMax);
 	    /**
 	     * Массив всех дат
 	     */
@@ -14293,6 +14518,7 @@
 	        var firstSessionSortUnique = unique(firstSessionSort),
 	            secondSessionSortUnique = unique(secondSessionSort),
 	            thirdSessionSortUnique = unique(thirdSessionSort);
+
 	        /**
 	         * Поиск url, которые присутствуют во всех трех сессиях
 	         */
@@ -14332,14 +14558,13 @@
 	        });*/
 
 	            ////////////////////////////////////////
-	        var firstTenYes = findTenSecondsYes(firstSession, common,sumBaseUrls),
-	            secondTenYes = findTenSecondsYes(secondSession, common,sumBaseUrls),
-	            thirdTenYes = findTenSecondsYes(thirdSession, common,sumBaseUrls);
-
+	        var firstTenYes = findTenSecondsYes(firstSession, common),
+	            secondTenYes = findTenSecondsYes(secondSession, common),
+	            thirdTenYes = findTenSecondsYes(thirdSession, common);
 	        firstTenYes = checkTrans(firstTenYes);
 	        secondTenYes = checkTrans(secondTenYes);
 	        thirdTenYes = checkTrans(thirdTenYes);
-	        console.log(firstTenYes)
+
 	        /**
 	         * Поиск элементов между аномальными
 	         */
@@ -14438,6 +14663,9 @@
 	        });
 	    });
 	    console.log(findUrlObj);
+
+	    colorTable(findUrlObj);
+
 	    var arrCom = [];
 	    findUrlObj.forEach(function(item) {
 	        item.common.forEach(function(com) {
