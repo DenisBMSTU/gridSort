@@ -92,6 +92,8 @@ Table.prototype.loadTable = function() {
             }
         }
 
+
+
         for (i = 0, jsonArrayLength = this.jsonArray.length; i < jsonArrayLength; i++) {
             if (this.jsonArray[i].typeUrl === 'other') {
                 this.jsonTypeOther.push(this.jsonArray[i]);

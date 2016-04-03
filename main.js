@@ -13222,6 +13222,8 @@
 	            }
 	        }
 
+
+
 	        for (i = 0, jsonArrayLength = this.jsonArray.length; i < jsonArrayLength; i++) {
 	            if (this.jsonArray[i].typeUrl === 'other') {
 	                this.jsonTypeOther.push(this.jsonArray[i]);
@@ -13760,6 +13762,18 @@
 	    }
 	};
 
+	var sortCommonCount = function(a,b) {
+	    a = a.countBase;
+	    b = b.countBase;
+	    if (a < b) {
+	        return -1;
+	    } else if (a > b) {
+	        return 1;
+	    } else {
+	        return 0;
+	    }
+	};
+
 	/**
 	 * Сортировка по времени в массиве объектов
 	 * @param a
@@ -13838,6 +13852,17 @@
 	    }
 	};
 
+	var checkElementBase = function(array, element) {
+	    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
+	    for (var i = 0; i < array.length; i++) {
+	        var el = re.exec(array[i])[0];
+	        if (element === el) {
+	            return true;
+	        }
+	    }
+	    return false;
+	};
+
 	var checkObject = function(array, element) {
 	    array.forEach(function(item) {
 	        if (item.baseUrl === element) {
@@ -13853,7 +13878,7 @@
 	 * @param second
 	 * @param third
 	 */
-	var checkThreeSession = function(first, second, third) {
+	/*var checkThreeSession = function(first, second, third) {
 	    var arr = [];
 	    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
 	    for (var i = 0; i < first.length; i++) {
@@ -13862,13 +13887,14 @@
 	        }
 	    }
 	    return arr;
-	};
+	};*/
 
 	var checkThreeSession = function(first, second, third) {
 	    var arr = [];
 	    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
 	    for (var i = 0; i < first.length; i++) {
-	        if (checkElement(second, re.exec(first[i])[0]) && checkElement(third,  re.exec(first[i])[0])) {
+	        var el = re.exec(first[i])[0];
+	        if (checkElementBase(second, el) && checkElementBase(third,  el)) {
 	            arr.push(re.exec(first[i])[0]);
 	        }
 	    }
@@ -14197,6 +14223,7 @@
 	        var firstSession = findSession(arrAllDate, 9, 10),
 	            secondSession = findSession(arrAllDate, 12, 13),
 	            thirdSession = findSession(arrAllDate, 18, 19);
+
 	        /**
 	         * Сортировка каждой сессии по времени для удобства
 	         */
@@ -14216,9 +14243,42 @@
 	        /**
 	         * Массив объектов с переходами по аномальным url
 	         */
+	        var commonCheckAbn = [];
+	        arrAll.forEach(function(item) {
+	            if (checkElement(common, item.baseUrl)) {
+	                var obj = {
+	                    baseUrl: item.baseUrl,
+	                    countBase: item.countBase
+	                };
+	                commonCheckAbn.push(obj);
+	            }
+	        });
+	        commonCheckAbn = uniqueObj(commonCheckAbn);
+	            //////////////////////////////////////
+	        commonCheckAbn.sort(sortCommonCount);
+	         var score = 0,
+	            arrComSort = [];
+	        commonCheckAbn.forEach(function(item) {
+	            var percent = item.countBase * 100 / sumBaseUrls;
+	            if ((score + percent) < 20) {
+	                score += percent;
+	                arrComSort.push(item);
+	            } else {
+	                return arrComSort;
+	            }
+	            return arrComSort;
+	         });
+
+	        common = [];
+	        arrComSort.forEach(function(item) {
+	            common.push(item.baseUrl);
+	        });
+
+	            ////////////////////////////////////////
 	        var firstTenYes = findTenSecondsYes(firstSession, common),
 	            secondTenYes = findTenSecondsYes(secondSession, common),
 	            thirdTenYes = findTenSecondsYes(thirdSession, common);
+	        console.log(firstTenYes)
 	        /**
 	         * Поиск элементов между аномальными
 	         */
@@ -14245,7 +14305,6 @@
 	            firstCountInDayNo = countInDayAll[0],
 	            secondCountInDayNo = countInDayAll[1],
 	            thirdCountInDayNo = countInDayAll[2];
-
 
 	        var arrCommon = [];
 	        firstTenYes.forEach(function(item) {
@@ -14275,7 +14334,6 @@
 	            }
 	        });
 	        arrCommon = uniqueObj(arrCommon);
-
 	        /*arrCommon.forEach(function(common) {
 	            arrAllDate.forEach(function(date) {
 	                if (common.baseUrl === date.baseUrl) {
@@ -14383,11 +14441,19 @@
 	    /*var arrYes = uniqueObjAndSumAll(arrNo, common);*/
 	 /*   console.log('arrYes', arrYes);
 	    console.log('arrNo',arrNo);*/
+
+	    /**
+	     * Сортировка common по countBase
+	     */
+
+
+
 	    var objSend = {
 	        firstTable: arrCom,
 	        secondTable: arrNo,
 	        thirdTable: arrYes
 	    };
+	    console.log(objSend);
 	    $.ajax({
 	        url: "http://localhost:3000/saveInTable",
 	        type: "POST",
