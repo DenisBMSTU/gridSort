@@ -200,7 +200,7 @@ var checkThreeSession = function(first, second, third) {
  * Ищет в сессии элементы, разница между которыми 10 секунд для аномальных url
  * @param session, common
  */
-var findTenSecondsYes = function(session, common) {
+var findTenSecondsYes = function(session, common, sumBaseUrls) {
     var arrYes = [];
     var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
     for (var i = 0; i < session.length; i++) {
@@ -224,6 +224,25 @@ var findTenSecondsYes = function(session, common) {
             }
         }
     }
+
+    var score = 0;
+    for (var i = 0; i < arrYes.length; i++) {
+        var percent = arrYes[i].from.countBase * 100 / sumBaseUrls;
+        if ((score + percent) < 30) {
+            score += percent;
+            arrYes[i].from.rareBaseUrl = 'yes';
+        }
+    }
+
+    var score = 0;
+    for (var i = 0; i < arrYes.length; i++) {
+        var percent = arrYes[i].from.count * 100 / sumBaseUrls;
+        if ((score + percent) < 30) {
+            score += percent;
+            arrYes[i].from.rareUrl = 'yes';
+        }
+    }
+
     return arrYes;
 };
 
@@ -421,11 +440,36 @@ var sumBaseOfUrls = function(arrAll) {
     });
     return sum;
 };
+
 var setSumBaseOfUrls = function(arrAll, sum) {
   arrAll.forEach(function(item) {
       item.sumCountBaseUrl = sum;
   });
 };
+
+/**
+ * Сумма всех url (не base)
+ * @param arrAll
+ * @returns {number}
+ */
+var sumOfUrls = function(arrAll) {
+    arrAll.forEach(function(item) {
+        var sum = 0;
+        arrAll.forEach(function(el) {
+            if (item.name === el.name) {
+                sum += el.count;
+            }
+        });
+        item.sumCountUrl = sum;
+    });
+    return arrAll;
+};
+
+/*var setSumOfUrls = function(arrAll, sum) {
+    arrAll.forEach(function(item) {
+        item.sumCountUrl = sum;
+    });
+};*/
 
 var uniqueObjAndSum = function(arr) {
     var result = [];
@@ -473,6 +517,16 @@ var uniqueObjAndSumAll = function(arr) {
     return result;
 };
 
+var checkTrans = function(array) {
+    var arr = [];
+    array.forEach(function(item) {
+        if ((item.to.rareUrl === 'yes' && item.to.rareBaseUrl === 'yes') && (item.from.rareUrl === 'no' || item.from.rareBaseUrl === 'no')) {
+            arr.push(item);
+        }
+    });
+    return arr;
+};
+
 /**
  * Основная функция
  * @param pickerDateFrom
@@ -480,8 +534,11 @@ var uniqueObjAndSumAll = function(arr) {
  * @param arrAll
  */
 var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
+
     var sumBaseUrls = sumBaseOfUrls(arrAll);
     setSumBaseOfUrls(arrAll, sumBaseUrls);
+
+
     /**
      * Массив всех дат
      */
@@ -536,7 +593,7 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
         /**
          * Массив объектов с переходами по аномальным url
          */
-        var commonCheckAbn = [];
+/*        var commonCheckAbn = [];
         arrAll.forEach(function(item) {
             if (checkElement(common, item.baseUrl)) {
                 var obj = {
@@ -565,12 +622,16 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
         common = [];
         arrComSort.forEach(function(item) {
             common.push(item.baseUrl);
-        });
+        });*/
 
             ////////////////////////////////////////
-        var firstTenYes = findTenSecondsYes(firstSession, common),
-            secondTenYes = findTenSecondsYes(secondSession, common),
-            thirdTenYes = findTenSecondsYes(thirdSession, common);
+        var firstTenYes = findTenSecondsYes(firstSession, common,sumBaseUrls),
+            secondTenYes = findTenSecondsYes(secondSession, common,sumBaseUrls),
+            thirdTenYes = findTenSecondsYes(thirdSession, common,sumBaseUrls);
+
+        firstTenYes = checkTrans(firstTenYes);
+        secondTenYes = checkTrans(secondTenYes);
+        thirdTenYes = checkTrans(thirdTenYes);
         console.log(firstTenYes)
         /**
          * Поиск элементов между аномальными
@@ -598,6 +659,7 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll) {
             firstCountInDayNo = countInDayAll[0],
             secondCountInDayNo = countInDayAll[1],
             thirdCountInDayNo = countInDayAll[2];
+
 
         var arrCommon = [];
         firstTenYes.forEach(function(item) {

@@ -8,7 +8,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
   }, {
     "date" : "2001/03/12",
     "name": "https://www.mail.ru/",
@@ -19,7 +21,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
   }, {
     "date" : "2014/10/12",
     "name": "https://www.yandex.ru/",
@@ -30,7 +34,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
   }, {
     "date" : "2013/10/12",
     "name": "https://www.yandex.ru/",
@@ -41,7 +47,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
   }, {
     "date" : "2014/10/30",
     "name": "https://www.gismeteo.ru/",
@@ -52,7 +60,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
   }, {
     "date" : "2015/11/12",
     "name": "https://www.kovalev-denis.ru/",
@@ -63,7 +73,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
   }, {
     "date" : "2013/11/22",
     "name": "https://www.github.com/DenisBMSTU",
@@ -74,7 +86,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
   }, {
     "date" : "2016/01/12",
     "name": "https://www.hh.ru/",
@@ -85,7 +99,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
   }, {
     "date" : "2012/07/02",
     "name": "https://www.habrahabr.ru/",
@@ -96,7 +112,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
   }, {
     "date" : "2014/08/21",
     "name": "https://www.habrahabr.ru/",
@@ -107,7 +125,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
   }, {
     "date" : "2015/05/02",
     "name": "https://www.yandex.ru/",
@@ -118,7 +138,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
   }, {
     "date" : "2015/06/22",
     "name": "https://www.habrahabr.ru/",
@@ -129,7 +151,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
   }, {
     "date" : "2014/11/10",
     "name": "https://www.github.com/DenisBMSTU",
@@ -140,7 +164,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
   }, {
   "date" : "2015/06/13",
   "name": "https://www.mail.ru/",
@@ -151,7 +177,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2015/03/13",
   "name": "https://www.mail.ru/",
@@ -162,7 +190,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/01/12",
   "name": "https://www.mail.ru/",
@@ -173,7 +203,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/01/12",
   "name": "https://www.mail.ru/",
@@ -184,7 +216,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2013/11/12",
   "name": "http://vk.com/",
@@ -195,7 +229,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/01/12",
   "name": "https://www.facebook.com/",
@@ -206,7 +242,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2015/05/12",
   "name": "http://vk.com/",
@@ -217,7 +255,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2014/08/12",
   "name": "https://www.facebook.com/",
@@ -228,7 +268,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/blablabla",
@@ -239,7 +281,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/lololo",
@@ -250,7 +294,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/azaza",
@@ -261,7 +307,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "http://vk.com/",
@@ -272,7 +320,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "http://vk.com/",
@@ -283,7 +333,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2011/06/13",
   "name": "https://www.mail.ru/",
@@ -294,7 +346,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2011/06/13",
   "name": "https://www.mail.ru/",
@@ -305,7 +359,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -316,7 +372,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -327,7 +385,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -338,7 +398,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -349,7 +411,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -360,7 +424,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://twitter.com/",
@@ -371,7 +437,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://azaza.com/",
@@ -382,7 +450,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://azaza.com/",
@@ -393,7 +463,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -404,7 +476,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -415,7 +489,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://twitter.com/",
@@ -426,7 +502,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://azaza.com/",
@@ -437,18 +515,22 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
   "count": 0,
   "typeUrl": "social",
-  "time": "12:40:38",
+  "time": "12:40:39",
   "countBase": 0,
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://twitter.com/tralala",
@@ -459,7 +541,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/ololo",
@@ -470,7 +554,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.ttt.com/",
@@ -481,7 +567,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.ttt.com/",
@@ -492,7 +580,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 },{
   "date" : "2016/03/05",
   "name": "https://www.ttt.com/",
@@ -503,7 +593,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -514,7 +606,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.zzz.com/",
@@ -525,7 +619,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.ooo.com/",
@@ -536,7 +632,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.aaa.com/",
@@ -547,7 +645,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.aaa.com/",
@@ -558,7 +658,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -569,7 +671,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://twitter.com/",
@@ -580,7 +684,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -591,7 +697,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 },{
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -602,7 +710,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -613,7 +723,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -624,7 +736,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -635,7 +749,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -646,7 +762,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://twitter.com/",
@@ -657,7 +775,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://azaza.com/",
@@ -668,7 +788,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://azaza.com/",
@@ -679,7 +801,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -690,7 +814,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -701,7 +827,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://twitter.com/",
@@ -712,7 +840,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://azaza.com/",
@@ -723,18 +853,22 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
   "count": 0,
   "typeUrl": "social",
-  "time": "12:40:38",
+  "time": "12:40:39",
   "countBase": 0,
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://twitter.com/tralala",
@@ -745,7 +879,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/ololo",
@@ -756,7 +892,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.ttt.com/",
@@ -767,7 +905,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.ttt.com/",
@@ -778,7 +918,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 },{
   "date" : "2016/03/06",
   "name": "https://www.ttt.com/",
@@ -789,7 +931,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -800,7 +944,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.zzz.com/",
@@ -811,7 +957,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.ooo.com/",
@@ -822,7 +970,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.aaa.com/",
@@ -833,7 +983,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.aaa.com/",
@@ -844,7 +996,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -855,7 +1009,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://twitter.com/",
@@ -866,7 +1022,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -877,7 +1035,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.mail.com/lolo",
@@ -888,7 +1048,9 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.mail.com/aza",
@@ -899,18 +1061,22 @@
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.mail.com/dep",
   "count": 0,
   "typeUrl": "social",
-  "time" : "12:40:39",
+  "time" : "12:40:38",
   "countBase": 0,
   "baseUrl": "",
   "countInDay": 0,
   "countBaseInDay": 0,
-  "sumCountBaseUrl": 0
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no"
 }]
 
 
