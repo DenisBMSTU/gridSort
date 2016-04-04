@@ -23,6 +23,7 @@ Table.prototype.init = function() {
  * Загрузка JSON-файла
  */
 Table.prototype.loadTable = function() {
+    this.jsonArrayStart = [];
     this.jsonArray = [];
     this.jsonLoadSave = [];
     this.jsonTypeMail = [];
@@ -37,7 +38,22 @@ Table.prototype.loadTable = function() {
             i,
             dataLength = data.length;
         /*this.$tbody.html('');*/
-        var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
+            var yandex = /https?:\/\/(www\.)?yandex.(ru)?(com)?[/]/,
+                google = /https?:\/\/(www\.)?google.(ru)?(com)?[/]/,
+                rambler = /https?:\/\/(www\.)?rambler.(ru)?(com)?[/]/,
+                mail = /https?:\/\/(www\.)?mail.(ru)?(com)?[/]/,
+                bing = /https?:\/\/(www\.)?bing.(ru)?(com)?[/]/;
+            var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
+       /* for (var i = 0; i < data.length; i++) {
+            if (re.exec(data[i].name) != undefined) {
+                var baseUrl = re.exec(data[i].name)[0];
+            }
+            if (!yandex.test(baseUrl) && !google.test(baseUrl) && !rambler.test(baseUrl) && !bing.test(baseUrl) && !mail.test(baseUrl)) {
+                this.jsonArray.push(data[i]);
+            }
+        }*/
+
+
         /**
          * Подсчет полного Url
          */
@@ -47,7 +63,17 @@ Table.prototype.loadTable = function() {
                     data[i].count++;
                 } else if (this.jsonArray[i] != data[i]) {
                     this.jsonArray.push(data[i]);
+                    this.jsonArrayStart.push(data[i]);
                 }
+            }
+        }
+
+        for (var i = 0; i < this.jsonArray.length; i++) {
+            if (re.exec(data[i].name) != undefined) {
+                var baseUrl = re.exec(data[i].name)[0];
+            }
+            if (yandex.test(baseUrl) || google.test(baseUrl) || rambler.test(baseUrl) || bing.test(baseUrl) || mail.test(baseUrl)) {
+                this.jsonArray.splice(i,i+1);
             }
         }
         /**
@@ -132,13 +158,13 @@ Table.prototype.loadTable = function() {
                 }
             }
 
-            for (i = 0, jsonArrayLength = this.jsonArray.length; i < jsonArrayLength; i++) {
-            if (this.jsonArray[i].typeUrl === 'other') {
-                this.jsonTypeOther.push(this.jsonArray[i]);
-            } else if (this.jsonArray[i].typeUrl === 'mail') {
-                this.jsonTypeMail.push(this.jsonArray[i]);
-            } else if (this.jsonArray[i].typeUrl === 'social') {
-                this.jsonTypeSocial.push(this.jsonArray[i]);
+            for (i = 0, jsonArrayLength = this.jsonArrayStart.length; i < jsonArrayLength; i++) {
+            if (this.jsonArrayStart[i].typeUrl === 'other') {
+                this.jsonTypeOther.push(this.jsonArrayStart[i]);
+            } else if (this.jsonArrayStart[i].typeUrl === 'mail') {
+                this.jsonTypeMail.push(this.jsonArrayStart[i]);
+            } else if (this.jsonArrayStart[i].typeUrl === 'social') {
+                this.jsonTypeSocial.push(this.jsonArrayStart[i]);
             }
         }
         this.jsonTypeMail.sort(sortDateUp);

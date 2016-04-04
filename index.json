@@ -10,7 +10,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
   }, {
     "date" : "2001/03/12",
     "name": "https://www.mail.ru/",
@@ -23,7 +24,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
   }, {
     "date" : "2014/10/12",
     "name": "https://www.yandex.ru/",
@@ -36,7 +38,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
   }, {
     "date" : "2013/10/12",
     "name": "https://www.yandex.ru/",
@@ -49,7 +52,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
   }, {
     "date" : "2014/10/30",
     "name": "https://www.gismeteo.ru/",
@@ -62,7 +66,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
   }, {
     "date" : "2015/11/12",
     "name": "https://www.kovalev-denis.ru/",
@@ -75,7 +80,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
   }, {
     "date" : "2013/11/22",
     "name": "https://www.github.com/DenisBMSTU",
@@ -88,7 +94,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
   }, {
     "date" : "2016/01/12",
     "name": "https://www.hh.ru/",
@@ -101,7 +108,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
   }, {
     "date" : "2012/07/02",
     "name": "https://www.habrahabr.ru/",
@@ -114,7 +122,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
   }, {
     "date" : "2014/08/21",
     "name": "https://www.habrahabr.ru/",
@@ -127,7 +136,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
   }, {
     "date" : "2015/05/02",
     "name": "https://www.yandex.ru/",
@@ -140,7 +150,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
   }, {
     "date" : "2015/06/22",
     "name": "https://www.habrahabr.ru/",
@@ -153,7 +164,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
   }, {
     "date" : "2014/11/10",
     "name": "https://www.github.com/DenisBMSTU",
@@ -166,7 +178,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
   }, {
   "date" : "2015/06/13",
   "name": "https://www.mail.ru/",
@@ -179,7 +192,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2015/03/13",
   "name": "https://www.mail.ru/",
@@ -192,7 +206,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/01/12",
   "name": "https://www.mail.ru/",
@@ -205,7 +220,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/01/12",
   "name": "https://www.mail.ru/",
@@ -218,7 +234,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2013/11/12",
   "name": "http://vk.com/",
@@ -231,7 +248,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/01/12",
   "name": "https://www.facebook.com/",
@@ -244,7 +262,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2015/05/12",
   "name": "http://vk.com/",
@@ -257,7 +276,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2014/08/12",
   "name": "https://www.facebook.com/",
@@ -270,7 +290,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/blablabla",
@@ -283,7 +304,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/lololo",
@@ -296,7 +318,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/azaza",
@@ -309,7 +332,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "http://vk.com/",
@@ -322,7 +346,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "http://vk.com/",
@@ -335,7 +360,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2011/06/13",
   "name": "https://www.mail.ru/",
@@ -348,7 +374,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2011/06/13",
   "name": "https://www.mail.ru/",
@@ -361,7 +388,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -374,7 +402,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -387,7 +416,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -400,7 +430,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -413,7 +444,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -426,7 +458,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://twitter.com/",
@@ -439,7 +472,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://twitter.com/werwer",
@@ -452,10 +486,11 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
-  "name": "https://mail.com/fdgfdg",
+  "name": "https://mail.ru/fdgfdg",
   "count": 0,
   "typeUrl": "social",
   "time": "18:40:45",
@@ -465,7 +500,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://azaza.com/",
@@ -478,7 +514,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://azaza.com/",
@@ -491,7 +528,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -504,7 +542,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -517,7 +556,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://twitter.com/et",
@@ -530,7 +570,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://azaza.com/",
@@ -543,7 +584,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -556,7 +598,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://twitter.com/tralala",
@@ -569,7 +612,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/ololo",
@@ -582,7 +626,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.ttt.com/",
@@ -595,7 +640,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.ttt.com/",
@@ -608,7 +654,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 },{
   "date" : "2016/03/05",
   "name": "https://www.ttt.com/",
@@ -621,7 +668,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -634,7 +682,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.zzz.com/",
@@ -647,7 +696,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.ooo.com/",
@@ -660,7 +710,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.aaa.com/",
@@ -673,7 +724,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.aaa.com/",
@@ -686,7 +738,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -699,7 +752,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://twitter.com/",
@@ -712,7 +766,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/",
@@ -725,7 +780,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 },{
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -738,7 +794,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -751,7 +808,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -764,7 +822,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -777,7 +836,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -790,7 +850,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://twitter.com/",
@@ -803,7 +864,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://azaza.com/",
@@ -816,7 +878,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://azaza.com/",
@@ -829,7 +892,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -842,7 +906,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -855,7 +920,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://twitter.com/",
@@ -868,7 +934,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://azaza.com/",
@@ -881,7 +948,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -894,7 +962,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://twitter.com/tralala",
@@ -907,7 +976,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/ololo",
@@ -920,7 +990,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.ttt.com/",
@@ -933,7 +1004,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.ttt.com/",
@@ -946,7 +1018,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 },{
   "date" : "2016/03/06",
   "name": "https://www.ttt.com/",
@@ -959,7 +1032,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -972,7 +1046,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.zzz.com/",
@@ -985,7 +1060,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.ooo.com/",
@@ -998,7 +1074,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.aaa.com/",
@@ -1011,7 +1088,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.aaa.com/",
@@ -1024,7 +1102,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -1037,7 +1116,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://twitter.com/",
@@ -1050,7 +1130,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/06",
   "name": "https://www.facebook.com/",
@@ -1063,10 +1144,11 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
-  "name": "https://www.mail.com/lolo",
+  "name": "https://www.mail.ru/lolo",
   "count": 0,
   "typeUrl": "social",
   "time" : "18:29:25",
@@ -1076,10 +1158,11 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
-  "name": "https://www.mail.com/aza",
+  "name": "https://www.mail.ru/aza",
   "count": 0,
   "typeUrl": "social",
   "time" : "09:40:24",
@@ -1089,10 +1172,11 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
-  "name": "https://www.mail.com/dep",
+  "name": "https://www.mail.ru/dep",
   "count": 0,
   "typeUrl": "social",
   "time" : "12:40:38",
@@ -1102,10 +1186,11 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
-  "name": "https://www.mail.com/aprar",
+  "name": "https://www.mail.ru/aprar",
   "count": 0,
   "typeUrl": "social",
   "time" : "09:40:35",
@@ -1115,7 +1200,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/dsf",
@@ -1128,7 +1214,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://twitter.com/dfsf",
@@ -1141,7 +1228,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://www.afsf.com/",
@@ -1154,7 +1242,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
   "name": "https://twitter.com/sdfsddf",
@@ -1167,10 +1256,11 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }, {
   "date" : "2016/03/05",
-  "name": "https://www.mail.com/sdfsdf",
+  "name": "https://www.mail.ru/sdfsdf",
   "count": 0,
   "typeUrl": "social",
   "time" : "18:33:38",
@@ -1180,7 +1270,8 @@
   "countBaseInDay": 0,
   "sumCountBaseUrl": 0,
   "rareUrl": "no",
-  "rareBaseUrl": "no"
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
 }]
 
 

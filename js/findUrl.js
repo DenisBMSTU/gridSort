@@ -792,9 +792,9 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll,countBaseMax,countMax
         var firstTenYes = findTenSecondsYes(firstSession, common),
             secondTenYes = findTenSecondsYes(secondSession, common),
             thirdTenYes = findTenSecondsYes(thirdSession, common);
-        firstTenYes = checkTrans(firstTenYes);
+     /*   firstTenYes = checkTrans(firstTenYes);
         secondTenYes = checkTrans(secondTenYes);
-        thirdTenYes = checkTrans(thirdTenYes);
+        thirdTenYes = checkTrans(thirdTenYes);*/
 
         /**
          * Поиск элементов между аномальными
@@ -943,7 +943,6 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll,countBaseMax,countMax
             newCom.push(el.baseUrl);
         });
     });
-
     newCom = uniqueArr(newCom);
     var arrYes = [];
     var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
