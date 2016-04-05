@@ -13203,7 +13203,7 @@
 	                var baseUrl = re.exec(data[i].name)[0];
 	            }
 	            if (yandex.test(baseUrl) || google.test(baseUrl) || rambler.test(baseUrl) || bing.test(baseUrl) || mail.test(baseUrl)) {
-	                this.jsonArray.splice(i,i+1);
+	                this.jsonArray.splice(i,1);
 	            }
 	        }
 	        /**
