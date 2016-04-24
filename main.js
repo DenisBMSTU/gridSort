@@ -13464,7 +13464,7 @@
 	    });
 	    self.pickerDateFrom = $('#datepickerFrom').val();
 	    self.pickerDateTo = $('#datepickerTo').val();
-	    self.arrAll = self.jsonTypeMail.concat(self.jsonTypeOther).concat(self.jsonTypeSocial);
+	    self.arrAll = self.jsonArray;/*self.jsonTypeMail.concat(self.jsonTypeOther).concat(self.jsonTypeSocial);*/
 	    $('#buttonBd').on('click', () => {
 	        if (self.pickerDateFrom || self.pickerDateTo) {
 	            findUrl(this.pickerDateFrom, self.pickerDateTo, self.arrAll,self.countBaseMax, self.countMax);
@@ -13982,6 +13982,24 @@
 	    return result;
 	};
 
+
+	var uniqueCommonAllDate = function(arr) {
+	    var result = [];
+	    nextInput:
+	        for (var i = 0; i < arr.length; i++) {
+	            var str = arr[i].baseUrl; // для каждого элемента
+
+	            for (var j = 0; j < result.length; j++) { // ищем, был ли он уже?
+	                if (result[j]) {
+	                    if (result[j] === str) continue nextInput; // если да, то следующий
+	                }
+
+	            }
+	            result.push(str);
+	        }
+
+	    return result;
+	};
 	/**
 	 * Убираем из массива повторяющиеся элементы по имени
 	 * @param arr
@@ -14095,69 +14113,6 @@
 	            }
 	        }
 	    }
-
-
-
-	    /*var arrYes = [];
-	    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
-	    for (var i = 0; i < session.length; i++) {
-	        var firstUrl = session[i].baseUrl,
-	            firstDateFull = new Date(session[i].date + " " + session[i].time),
-	            firstDate = session[i].date,
-	            firstTime = session[i].time;
-	        for (var j = 0; j < session.length; j++) {
-	            var secondUrl = session[j].baseUrl,
-	                secondDateFull = new Date(session[j].date + " " + session[j].time),
-	                secondDate = session[j].date,
-	                secondTime = session[j].time;
-	            if (secondDateFull.getTime() - firstDateFull.getTime() <= 10000 && secondDateFull.getTime() - firstDateFull.getTime() >= 0 && firstDateFull !== secondDateFull && checkElement(common,firstUrl) && checkElement(common,secondUrl) && firstTime!==secondTime) {
-	                var obj = {
-	                    from: "",
-	                    to: ""
-	                };
-	                obj.from = session[i];
-	                obj.to = session[j];
-	                arrYes.push(obj);
-	            }
-	        }
-	    }*/
-
-	   /* arrYes.sort(sortCommonCountFrom);
-	    var score = 0;
-	    for (var i = 0; i < arrYes.length; i++) {
-	        var percent = arrYes[i].from.countBase * 100 / sumBaseUrls;
-	        if ((score + percent) < 40) {
-	            score += percent;
-	            arrYes[i].from.rareBaseUrl = 'yes';
-	        }
-	    }
-	    arrYes.sort(sortCommonCountTo);
-	    for (var i = 0; i < arrYes.length; i++) {
-	        var percent = arrYes[i].to.countBase * 100 / sumBaseUrls;
-	        if ((score + percent) < 40) {
-	            score += percent;
-	            arrYes[i].to.rareBaseUrl = 'yes';
-	        }
-	    }
-	    arrYes.sort(sortCountFrom);
-	    var score = 0;
-	    for (var i = 0; i < arrYes.length; i++) {
-	        var percent = arrYes[i].from.count * 100 / sumBaseUrls;
-	        if ((score + percent) < 40) {
-	            score += percent;
-	            arrYes[i].from.rareUrl = 'yes';
-	        }
-	    }
-	    arrYes.sort(sortCountTo);
-	    var score = 0;
-	    for (var i = 0; i < arrYes.length; i++) {
-	        var percent = arrYes[i].to.count * 100 / sumBaseUrls;
-	        if ((score + percent) < 40) {
-	            score += percent;
-	            arrYes[i].to.rareUrl = 'yes';
-	        }
-	    }*/
-
 	    return arrYes;
 	};
 
@@ -14560,6 +14515,91 @@
 	    return arr;
 	};*/
 
+	/*var uniqueTransitionAll = function(arr) {
+	    var result = [];
+	    nextInput:
+	        for (var i = 0; i < arr.length; i++) {
+	            var obj = arr[i];
+	            var urlFrom = arr[i].from.name,
+	                urlTo = arr[i].to.name;
+	            for (var j = 0; j < result.length; j++) {
+	                if (result[j].from.name && result[j].to.name) {
+	                    if (result[j].from.name === urlFrom && result[j].to.name === urlTo) continue nextInput; // если да, то следующий
+	                }
+
+	            }
+	            result.push(obj);
+	        }
+
+	    return result;
+	};*/
+
+	var sortTransitionAll = function(a,b) {
+	    a = new Date(a.date + " "+ a.time).getTime();
+	    b = new Date(b.date + " "+ b.time).getTime();
+	    if (a < b) {
+	        return -1;
+	    } else if (a > b) {
+	        return 1;
+	    } else {
+	        return 0;
+	    }
+	};
+
+	var uniqueTransition = function(arr) {
+	    var result = [];
+	    nextInput:
+	        for (var i = 0; i < arr.length; i++) {
+	            var obj = arr[i];
+	            var dateFrom = new Date(arr[i].from.date + " " + arr[i].from.time).getTime(),
+	                dateTo = new Date(arr[i].to.date + " " + arr[i].to.time).getTime();
+	            for (var j = 0; j < result.length; j++) { // ищем, был ли он уже?
+	                if (result[j].from.date) {
+	                    var dateFromSecond = new Date(result[j].from.date + ' ' + result[j].from.time).getTime(),
+	                        dateToSecond = new Date(result[j].to.date + ' ' + result[j].to.time).getTime();
+	                    if (dateFromSecond === dateFrom && dateToSecond === dateTo) continue nextInput; // если да, то следующий
+	                }
+
+	            }
+	            result.push(obj);
+	        }
+
+	    return result;
+	};
+	/**
+	 * Поиск всех переходов. Url, с которого совершается переход является подозрительным
+	 * @param session
+	 * @param common
+	 * @returns {Array}
+	 */
+	var findTenSecondsAllTransition = function(session, common) {
+	    session = session.sort(sortTransitionAll);
+	    var arrYes = [];
+	    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
+	    for (var i = 0; i < session.length; i++) {
+	        var firstUrl = session[i].baseUrl,
+	            firstDateFull = new Date(session[i].date + " " + session[i].time).getTime();
+	        for (var j = 0; j < session.length; j++) {
+	            var secondUrl = session[j].baseUrl,
+	                secondDateFull = new Date(session[j].date + " " + session[j].time).getTime(),
+	                delta = secondDateFull - firstDateFull,
+	                rareBaseUrl = session[j].rareBaseUrl;
+	            if (delta <= 10000 && delta > 0 && checkElement(common,firstUrl) && rareBaseUrl === 'yes') {
+	                var obj = {
+	                    from: "",
+	                    to: ""
+	                };
+	                obj.from = session[i];
+	                obj.to = session[j];
+	                arrYes.push(obj);
+	            }
+	        }
+	    }
+	    arrYes = uniqueTransition(arrYes);
+	    return arrYes;
+	};
+
+
 	/**
 	 * Основная функция
 	 * @param pickerDateFrom
@@ -14569,8 +14609,7 @@
 	var findUrl = function(pickerDateFrom, pickerDateTo,arrAll,countBaseMax,countMax) {
 	/*    var sumBaseUrls = sumBaseOfUrls(arrAll);
 	    setSumBaseOfUrls(arrAll, sumBaseUrls);*/
-	    console.log(countBaseMax)
-	    console.log(countMax);
+
 	    /**
 	     * Массив всех дат
 	     */
@@ -14625,38 +14664,6 @@
 	        /**
 	         * Массив объектов с переходами по аномальным url
 	         */
-	/*        var commonCheckAbn = [];
-	        arrAll.forEach(function(item) {
-	            if (checkElement(common, item.baseUrl)) {
-	                var obj = {
-	                    baseUrl: item.baseUrl,
-	                    countBase: item.countBase
-	                };
-	                commonCheckAbn.push(obj);
-	            }
-	        });
-	        commonCheckAbn = uniqueObj(commonCheckAbn);
-	            //////////////////////////////////////
-	        commonCheckAbn.sort(sortCommonCount);
-	         var score = 0,
-	            arrComSort = [];
-	        commonCheckAbn.forEach(function(item) {
-	            var percent = item.countBase * 100 / sumBaseUrls;
-	            if ((score + percent) < 20) {
-	                score += percent;
-	                arrComSort.push(item);
-	            } else {
-	                return arrComSort;
-	            }
-	            return arrComSort;
-	         });
-
-	        common = [];
-	        arrComSort.forEach(function(item) {
-	            common.push(item.baseUrl);
-	        });*/
-
-	            ////////////////////////////////////////
 	        var firstTenYes = findTenSecondsYes(firstSession, common),
 	            secondTenYes = findTenSecondsYes(secondSession, common),
 	            thirdTenYes = findTenSecondsYes(thirdSession, common);
@@ -14807,28 +14814,44 @@
 	    });
 
 
-	    /**
-	     * Убирает переходы, которых нет во всех трех сессиях
-	     */
-	    /*findUrlObj.forEach(function(yes) {
-	        yes.yes.first.forEach(function(trans,index) {
-	          if(checkTransYes(yes.yes.second,trans.from.baseUrl,trans.to.baseUrl) === false || checkTransYes(yes.yes.third,trans.from.baseUrl,trans.to.baseUrl) === false)  {
-	              yes.yes.first.splice(index,1);
-	          }
-	        });
-	        yes.yes.second.forEach(function(trans,index) {
-	            if(checkTransYes(yes.yes.first,trans.from.baseUrl,trans.to.baseUrl) === false || checkTransYes(yes.yes.third,trans.from.baseUrl,trans.to.baseUrl) === false)  {
-	                yes.yes.second.splice(index,1);
-	            }
-	        });
-	        yes.yes.third.forEach(function(trans,index) {
-	            if(checkTransYes(yes.yes.first,trans.from.baseUrl,trans.to.baseUrl) === false || checkTransYes(yes.yes.second,trans.from.baseUrl,trans.to.baseUrl) === false)  {
-	                yes.yes.third.splice(index,1);
-	            }
-	        })
-	    });*/
 	    console.log(findUrlObj);
 	    colorTable(findUrlObj);
+
+	    var commonAllDate = [];
+	    findUrlObj.forEach(function(element) {
+	       element.common.forEach(function(com) {
+	           var obj = {
+	               baseUrl: com.baseUrl
+	           };
+	           commonAllDate.push(obj);
+	       });
+	    });
+	    commonAllDate = uniqueCommonAllDate(commonAllDate);
+	    var transitionAll = findTenSecondsAllTransition(arrAll,commonAllDate);
+
+	    transitionAll.forEach(function(elem) {
+	        elem.from.TransToRearFrom = 1;
+	    });
+	    commonAllDate.forEach(function(com) {
+	        var count = 0;
+	        transitionAll.forEach(function(trans) {
+	            if (com === trans.from.baseUrl) {
+	                count += 1;
+	            }
+	        });
+	        transitionAll.forEach(function(trans) {
+	            if (com === trans.from.baseUrl) {
+	                trans.from.TransToRearFrom = count;
+	            }
+	        });
+	    });
+	    console.log(transitionAll);
+	    console.log(countBaseMax);
+	    console.log(countMax);
+	  /*  console.log(transitionGroup);*/
+
+
+	/*
 
 	    var arrCom = [];
 	    findUrlObj.forEach(function(item) {
@@ -14888,17 +14911,6 @@
 	        item.from = re.exec(item.from)[0];
 	    });
 	    arrYes = uniqueObjAndSumAll(arrYes);
-	/*    console.log('Первая таблица: ',arrCom);
-	    console.log('Вторая таблица: ',arrNo);
-	    console.log('Третья таблица: ',arrYes);*/
-	    /*var arrYes = uniqueObjAndSumAll(arrNo, common);*/
-	 /*   console.log('arrYes', arrYes);
-	    console.log('arrNo',arrNo);*/
-
-	    /**
-	     * Сортировка common по countBase
-	     */
-
 
 
 	    var objSend = {
@@ -14921,32 +14933,7 @@
 	            console.log('ups');
 	        }
 	    });
-
-	/*    findUrlObj.forEach(function(item) {
-	        console.log(item)
-	        $.ajax({
-	            url: "http://localhost:3000/saveInTable",
-	            type: "POST",
-	            dataType: 'json',
-	            data: JSON.stringify(item),
-	            success: function(data) {
-	                console.log('data save', data);
-	            }
-	        });
-	    });*/
-
-	/*    $.ajax({
-	        url: "http://localhost:3000/saveFirst",
-	        type: "POST",
-	        dataType: 'json',
-	        data: {'lol':'hello'},
-	        success: function(data) {
-	            console.log('data save', data);
-	        }
-	    });*/
-	    /**
-	     * Для занесения в базу: form | to |
-	     */
+	*/
 
 	};
 

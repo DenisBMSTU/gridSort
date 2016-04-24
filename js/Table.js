@@ -334,7 +334,7 @@ Table.prototype.buttonSaveInBd = function() {
     });
     self.pickerDateFrom = $('#datepickerFrom').val();
     self.pickerDateTo = $('#datepickerTo').val();
-    self.arrAll = self.jsonTypeMail.concat(self.jsonTypeOther).concat(self.jsonTypeSocial);
+    self.arrAll = self.jsonArray;/*self.jsonTypeMail.concat(self.jsonTypeOther).concat(self.jsonTypeSocial);*/
     $('#buttonBd').on('click', () => {
         if (self.pickerDateFrom || self.pickerDateTo) {
             findUrl(this.pickerDateFrom, self.pickerDateTo, self.arrAll,self.countBaseMax, self.countMax);
