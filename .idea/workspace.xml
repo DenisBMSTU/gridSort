@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5554d67-292c-4466-99c2-52b6c03f6d2c" name="Default" comment="">
+    <list default="true" id="c5554d67-292c-4466-99c2-52b6c03f6d2c" name="Default" comment="find abnormal url">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/Table.js" afterPath="$PROJECT_DIR$/js/Table.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/findUrl.js" afterPath="$PROJECT_DIR$/js/findUrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.json" afterPath="$PROJECT_DIR$/index.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.js" afterPath="$PROJECT_DIR$/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gridSort.iws" />
@@ -27,8 +31,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.7777777">
-              <caret line="38" column="76" selection-start-line="38" selection-start-column="66" selection-end-line="38" selection-end-column="76" />
+            <state vertical-scroll-proportion="-4.0">
+              <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -37,88 +41,83 @@
       <file leaf-file-name="Table.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/Table.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.827586">
-              <caret line="183" column="30" selection-start-line="183" selection-start-column="30" selection-end-line="183" selection-end-column="30" />
+            <state vertical-scroll-proportion="-4.586207">
+              <caret line="403" column="57" selection-start-line="403" selection-start-column="51" selection-end-line="403" selection-end-column="57" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stylesheets/index.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.962963">
-              <caret line="49" column="14" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/index.js">
+      <file leaf-file-name="datePicker.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/datePicker.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="68" />
+              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="highlightTableRows.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/highlightTableRows.js">
+      <file leaf-file-name="jquery-ui.structure.min.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libs/jqueryUi/css/jquery-ui.structure.min.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="4" column="646" selection-start-line="4" selection-start-column="646" selection-end-line="4" selection-end-column="646" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="checkAll.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/checkAll.js">
+      <file leaf-file-name="jquery-ui.theme.min.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libs/jqueryUi/css/jquery-ui.theme.min.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+              <caret line="4" column="3769" selection-start-line="4" selection-start-column="3769" selection-end-line="4" selection-end-column="3769" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stylesheets/index.css">
+      <file leaf-file-name="findUrl.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/findUrl.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.54418606">
+              <caret line="34" column="50" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="68" column="18" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
-              <folding />
+              <caret line="54" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1516" selection-end-column="12" />
+              <folding>
+                <marker date="1461496404470" expanded="true" signature="1305:521419" placeholder="[...]" />
+                <marker date="1461496404470" expanded="true" signature="470587:505683" placeholder="{...}" />
+                <marker date="1461496404470" expanded="true" signature="471036:471044" placeholder="/** Поиск сессий ...*/" />
+                <marker date="1461496404470" expanded="true" signature="502269:505650" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GridSortTr.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/GridSortTr.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.586206">
-              <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="findAbnormalUrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/findAbnormalUrl.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-35.75862">
-              <caret line="190" column="37" selection-start-line="190" selection-start-column="37" selection-end-line="190" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5">
-              <caret line="117" column="26" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
+            <state vertical-scroll-proportion="-2.2142856">
+              <caret line="1178" column="30" selection-start-line="1178" selection-start-column="23" selection-end-line="1178" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -135,6 +134,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="updateUrl" />
+      </map>
+    </option>
+    <push-targets>
+      <push-target-info repo="$PROJECT_DIR$" source="develop" target-remote="origin" target-branch="develop" />
+    </push-targets>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -142,16 +149,24 @@
         <option value="$PROJECT_DIR$/js/js.js" />
         <option value="$PROJECT_DIR$/.babelrc" />
         <option value="$PROJECT_DIR$/stylesheets/index.css" />
-        <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/stylesheets/index.less" />
         <option value="$PROJECT_DIR$/js/checkAll.js" />
-        <option value="$PROJECT_DIR$/js/index.js" />
-        <option value="$PROJECT_DIR$/js/findAbnormalUrl.js" />
         <option value="$PROJECT_DIR$/js/GridSortTr.js" />
+        <option value="$PROJECT_DIR$/main.js" />
+        <option value="$PROJECT_DIR$/js/findAbnormalUrl.js" />
+        <option value="$PROJECT_DIR$/stylesheets/index.less" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/webpack.config.js" />
+        <option value="$PROJECT_DIR$/js/moment.js" />
+        <option value="$PROJECT_DIR$/js/index.js" />
+        <option value="$PROJECT_DIR$/js/datePicker.js" />
+        <option value="$PROJECT_DIR$/libs/jqueryUi/css/jquery-ui.theme.min.css" />
+        <option value="$PROJECT_DIR$/libs/jqueryUi/css/jquery-ui.min.css" />
+        <option value="$PROJECT_DIR$/server/app.js" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/Table.js" />
         <option value="$PROJECT_DIR$/index.json" />
+        <option value="$PROJECT_DIR$/js/findUrl.js" />
       </list>
     </option>
   </component>
@@ -191,8 +206,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -221,12 +234,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="stylesheets" />
+              <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="index.less" />
-              <option name="myItemType" value="com.intellij.plugins.watcher.projectView.NestingTreeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -245,10 +254,12 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript.Linters.JSLint" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
@@ -256,6 +267,9 @@
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="FullScreen" value="false" />
+    <property name="js.eslint.nodeInterpreter" value="/usr/bin/node" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../server" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -380,7 +394,205 @@
       <option name="project" value="LOCAL" />
       <updated>1457275234694</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="find abnormal url">
+      <created>1457276214783</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1457276214783</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Поиск аномальных url">
+      <created>1457295161943</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1457295161943</updated>
+    </task>
+    <task id="LOCAL-00015" summary="find abnormal url">
+      <created>1457295748902</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1457295748902</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Добавил немного комментов. Проверка на выгрузку всех данных">
+      <created>1457342386766</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1457342386766</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Поиск аномальных url">
+      <created>1457725551896</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1457725551896</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Попытка сделать связи">
+      <created>1457784825979</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1457784825979</updated>
+    </task>
+    <task id="LOCAL-00019" summary="time">
+      <created>1457788894032</created>
+      <option name="number" value="00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1457788894032</updated>
+    </task>
+    <task id="LOCAL-00020" summary="продолжаю убирать косяки">
+      <created>1457859991360</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1457859991360</updated>
+    </task>
+    <task id="LOCAL-00021" summary="переходы по важным ссылкам и между ними">
+      <created>1457876302884</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1457876302884</updated>
+    </task>
+    <task id="LOCAL-00022" summary="find url">
+      <created>1457876693688</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1457876693688</updated>
+    </task>
+    <task id="LOCAL-00023" summary="color 'по' 'между'">
+      <created>1457877054421</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1457877054421</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Убрал некоторые косяки">
+      <created>1457895439897</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1457895439897</updated>
+    </task>
+    <task id="LOCAL-00025" summary="add datepicker">
+      <created>1457989372951</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1457989372951</updated>
+    </task>
+    <task id="LOCAL-00026" summary="refactor, add datepicker date format yyyy/mm/dd">
+      <created>1458073656096</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1458073656096</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Новый поиск">
+      <created>1458979852131</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1458979852131</updated>
+    </task>
+    <task id="LOCAL-00028" summary="upgrade findUrl">
+      <created>1458988496769</created>
+      <option name="number" value="00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1458988496769</updated>
+    </task>
+    <task id="LOCAL-00029" summary="new find">
+      <created>1458994104403</created>
+      <option name="number" value="00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1458994104403</updated>
+    </task>
+    <task id="LOCAL-00030" summary="refactor">
+      <created>1459001152218</created>
+      <option name="number" value="00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1459001152218</updated>
+    </task>
+    <task id="LOCAL-00031" summary="поиск url по диапазону дат">
+      <created>1459003652588</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1459003652588</updated>
+    </task>
+    <task id="LOCAL-00032" summary="-&gt;">
+      <created>1459007304380</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1459007304380</updated>
+    </task>
+    <task id="LOCAL-00033" summary="продолжаю делать поиск">
+      <created>1459008769770</created>
+      <option name="number" value="00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1459008769770</updated>
+    </task>
+    <task id="LOCAL-00034" summary="поиск элементов continue...">
+      <created>1459019166474</created>
+      <option name="number" value="00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1459019166474</updated>
+    </task>
+    <task id="LOCAL-00035" summary="add jquery ui">
+      <created>1459019798522</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1459019798522</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Правки в плагин jquery ui">
+      <created>1459021346535</created>
+      <option name="number" value="00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1459021346535</updated>
+    </task>
+    <task id="LOCAL-00037" summary="common date time">
+      <created>1459072775346</created>
+      <option name="number" value="00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1459072775346</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Переходы между аномальными url">
+      <created>1459281532794</created>
+      <option name="number" value="00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1459281532795</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Математика">
+      <created>1459285099931</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1459285099931</updated>
+    </task>
+    <task id="LOCAL-00040" summary="find abnormal url">
+      <created>1459592958261</created>
+      <option name="number" value="00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1459592958261</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Процентное соотношение кол-ва посещений url к общему кол-ву">
+      <created>1459677742641</created>
+      <option name="number" value="00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1459677742641</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Отсеивание переходов на редкие url">
+      <created>1459685075803</created>
+      <option name="number" value="00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1459685075803</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Max count">
+      <created>1459705703958</created>
+      <option name="number" value="00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1459705703958</updated>
+    </task>
+    <task id="LOCAL-00044" summary="убрал поисковики">
+      <created>1459803199161</created>
+      <option name="number" value="00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1459803199161</updated>
+    </task>
+    <task id="LOCAL-00045" summary="исправил баг с поисковиками">
+      <created>1459878371898</created>
+      <option name="number" value="00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1459878371898</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -389,21 +601,21 @@
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25076452" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29969418" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -419,35 +631,42 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add normal pack - webpack" />
-    <MESSAGE value="add es6" />
-    <MESSAGE value="padding 1px" />
-    <MESSAGE value="margin" />
-    <MESSAGE value="add social, remove babel-present, babel-cli, babel-core" />
-    <MESSAGE value="rename button" />
-    <MESSAGE value="count increment" />
-    <MESSAGE value="Вставка элемента при загрузке на нужную позицию" />
-    <MESSAGE value="checkbox all" />
+    <MESSAGE value="переходы по важным ссылкам и между ними" />
+    <MESSAGE value="find url" />
+    <MESSAGE value="color 'по' 'между'" />
+    <MESSAGE value="Убрал некоторые косяки" />
+    <MESSAGE value="add datepicker" />
+    <MESSAGE value="refactor, add datepicker date format yyyy/mm/dd" />
+    <MESSAGE value="Новый поиск" />
+    <MESSAGE value="upgrade findUrl" />
+    <MESSAGE value="new find" />
+    <MESSAGE value="refactor" />
+    <MESSAGE value="поиск url по диапазону дат" />
+    <MESSAGE value="-&gt;" />
+    <MESSAGE value="продолжаю делать поиск" />
+    <MESSAGE value="поиск элементов continue..." />
+    <MESSAGE value="add jquery ui" />
+    <MESSAGE value="Правки в плагин jquery ui" />
+    <MESSAGE value="common date time" />
+    <MESSAGE value="Переходы между аномальными url" />
+    <MESSAGE value="Математика" />
     <MESSAGE value="find abnormal url" />
-    <option name="LAST_COMMIT_MESSAGE" value="find abnormal url" />
+    <MESSAGE value="Процентное соотношение кол-ва посещений url к общему кол-ву" />
+    <MESSAGE value="Отсеивание переходов на редкие url" />
+    <MESSAGE value="Max count" />
+    <MESSAGE value="убрал поисковики" />
+    <MESSAGE value="исправил баг с поисковиками" />
+    <option name="LAST_COMMIT_MESSAGE" value="исправил баг с поисковиками" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="146" selection-start-line="26" selection-start-column="139" selection-end-line="26" selection-end-column="146" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -456,7 +675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="49" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -472,7 +690,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -480,7 +697,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="18" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -488,7 +704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="71" column="18" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -496,7 +711,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -504,7 +718,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -528,7 +741,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -536,7 +748,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="49" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -559,7 +770,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="18" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -567,7 +777,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="71" column="18" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -575,7 +784,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -583,7 +791,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -607,7 +814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -615,7 +821,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="49" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -638,7 +843,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="18" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -646,7 +850,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="71" column="18" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -654,7 +857,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -662,7 +864,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -701,7 +902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -709,15 +909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="68" column="18" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stylesheets/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.962963">
-          <caret line="49" column="14" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -725,7 +916,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/GridSortTr.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="76" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stylesheets/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.6666665">
+          <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/findAbnormalUrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16666667">
+          <caret line="254" column="0" selection-start-line="254" selection-start-column="0" selection-end-line="261" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -733,70 +944,103 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="68" />
-          <folding />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38961038">
-          <caret line="10" column="49" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/jqueryUi/css/jquery-ui.theme.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="3769" selection-start-line="4" selection-start-column="3769" selection-end-line="4" selection-end-column="3769" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/jqueryUi/css/jquery-ui.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="17817" selection-start-line="6" selection-start-column="17817" selection-end-line="6" selection-end-column="17817" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/jqueryUi/css/jquery-ui.structure.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="646" selection-start-line="4" selection-start-column="646" selection-end-line="4" selection-end-column="646" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/datePicker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56551725">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/GridSortTr.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.586206">
-          <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.7777777">
-          <caret line="38" column="76" selection-start-line="38" selection-start-column="66" selection-end-line="38" selection-end-column="76" />
+        <state vertical-scroll-proportion="-4.0">
+          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1516" selection-end-column="12" />
+          <folding>
+            <marker date="1461496404470" expanded="true" signature="1305:521419" placeholder="[...]" />
+            <marker date="1461496404470" expanded="true" signature="470587:505683" placeholder="{...}" />
+            <marker date="1461496404470" expanded="true" signature="471036:471044" placeholder="/** Поиск сессий ...*/" />
+            <marker date="1461496404470" expanded="true" signature="502269:505650" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.2142856">
+          <caret line="1178" column="30" selection-start-line="1178" selection-start-column="23" selection-end-line="1178" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/Table.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.827586">
-          <caret line="183" column="30" selection-start-line="183" selection-start-column="30" selection-end-line="183" selection-end-column="30" />
+        <state vertical-scroll-proportion="-4.586207">
+          <caret line="403" column="57" selection-start-line="403" selection-start-column="51" selection-end-line="403" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/findAbnormalUrl.js">
+    <entry file="file://$PROJECT_DIR$/js/findUrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-35.75862">
-          <caret line="190" column="37" selection-start-line="190" selection-start-column="37" selection-end-line="190" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5">
-          <caret line="117" column="26" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.54418606">
+          <caret line="34" column="50" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
           <folding />
         </state>
       </provider>

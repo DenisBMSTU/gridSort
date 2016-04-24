@@ -148,6 +148,11 @@ Table.prototype.loadTable = function() {
             arrScore.sort(sortCommonCountUrl);
             this.countMax = arrScore[arrScore.length-1].count;
 
+            for (i=0; i<this.jsonArray.length; i++) {
+                this.jsonArray[i]["countMax"] = this.countMax;
+                this.jsonArray[i]["countBaseMax"] = this.countBaseMax;
+            }
+
 
             for (i = 0; i < this.jsonArray.length; i++) {
                 if (this.jsonArray[i].countBase <= this.countBaseMax) {

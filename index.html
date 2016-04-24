@@ -40,7 +40,7 @@
                     <input type="text" id="datepickerTo" class="date-pick" placeholder="ГГГГ/ММ/ДД"/>
                 </div>
             </div>
-            <div style="width:100px;color:red">Найдет аномальные url для категории "Соц сеть" 2016/03/05</div>
+           <!-- <div style="width:100px;color:red">Найдет аномальные url для категории "Соц сеть" 2016/03/05</div>-->
         </div>
         <div class="container__table">
             <table id="grid">
@@ -54,33 +54,17 @@
         <button type="button" id="buttonSave" class="button-style buttonSave">Сохранить данные</button>
         <button type="button" id="buttonBd" class="button-style buttonSave">Загрузить в БД подозрительные Url</button>
     </div>
-    <div class="container__info" style="border:1px solid red;">
+    <!--<div class="container__info" style="border:1px solid red;">
         <div class="container__info-json">
             <div id="info">Связи
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
 
 <script src="libs/jquery/jquery-1.12.0.min.js"></script>
 <script src="libs/jqueryUi/js/jquery-ui.min.js"></script>
 
 <script src="main.js"></script>
-<!--<script>
-    var checkEl = function(array, element) {
-        var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
-        for (var i = 0; i < array.length; i++) {
-            console.log(re.exec(array[i])[0]);
-            console.log(element);
-            var el = re.exec(array[i])[0];
-            if (element == el) {
-                console.log('yrp');
-            } else {
-                console.log('no')
-            }
-        }
-    };
-    checkEl(['https://www.facebook.com/'],'https://www.facebook.com/')
-</script>-->
 </body>
 </html>

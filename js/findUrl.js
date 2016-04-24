@@ -16,6 +16,36 @@ var findDate = function(pickerDate,arrAll) {
     return dateArray;
 };
 /**
+ * Убирает переходы, которых нет в трех сессиях
+ * @param array
+ * @param fromBase
+ * @param toBase
+ * @returns {boolean}
+ */
+function checkTransYes(array, fromBase, toBase) {
+    for (var i = 0; i < array.length; i++) {
+
+        if (fromBase === array[i].from.baseUrl && toBase === array[i].to.baseUrl) {
+            return true;
+        }
+    }
+    return false;
+}
+/**
+ * Проверка на вхождение элемента common в obj.yes
+ * @param array
+ * @param fromBase
+ * @returns {boolean}
+ */
+function checkCommonAfterTrans(array, fromBase) {
+    for (var i = 0; i < array.length; i++) {
+        if (fromBase === array[i].from.baseUrl) {
+            return true;
+        }
+    }
+    return false;
+}
+/**
  * Поиск сессий
  * @param dateArray
  * @param startHours
@@ -607,6 +637,38 @@ var checkTrans = function(array) {
 
 var colorTable = function(array) {
     array.forEach(function(item) {
+        item.no.first.forEach(function(el) {
+            var elFrom = el.from.date + ' ' + el.from.time,
+                elTo = el.to.date + ' ' + el.to.time,
+                td = $('#grid tbody tr td:first-child');
+            for (var i =0; i < td.length; i++) {
+                if (td[i].innerHTML === elFrom || td[i].innerHTML === elTo) {
+                    td[i].style.color = 'green'
+                }
+            }
+        });
+        item.no.second.forEach(function(el) {
+            var elFrom = el.from.date + ' ' + el.from.time,
+                elTo = el.to.date + ' ' + el.to.time,
+                td = $('#grid tbody tr td:first-child');
+            for (var i =0; i < td.length; i++) {
+                if (td[i].innerHTML === elFrom || td[i].innerHTML === elTo) {
+                    td[i].style.color = 'green'
+                }
+            }
+        });
+        item.no.third.forEach(function(el) {
+            var elFrom = el.from.date + ' ' + el.from.time,
+                elTo = el.to.date + ' ' + el.to.time,
+                td = $('#grid tbody tr td:first-child');
+            for (var i =0; i < td.length; i++) {
+                if (td[i].innerHTML === elFrom || td[i].innerHTML === elTo) {
+                    td[i].style.color = 'green'
+                }
+            }
+        });
+    })
+    array.forEach(function(item) {
         item.yes.first.forEach(function(el) {
             var elFrom = el.from.date + ' ' + el.from.time,
                 elTo = el.to.date + ' ' + el.to.time,
@@ -792,36 +854,12 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll,countBaseMax,countMax
         var firstTenYes = findTenSecondsYes(firstSession, common),
             secondTenYes = findTenSecondsYes(secondSession, common),
             thirdTenYes = findTenSecondsYes(thirdSession, common);
-     /*   firstTenYes = checkTrans(firstTenYes);
+        firstTenYes = checkTrans(firstTenYes);
         secondTenYes = checkTrans(secondTenYes);
-        thirdTenYes = checkTrans(thirdTenYes);*/
+        thirdTenYes = checkTrans(thirdTenYes);
 
-        /**
-         * Поиск элементов между аномальными
-         */
-        var firstTenNo = findElementsBetweenAbn(firstTenYes, firstSession),
-            secondTenNo = findElementsBetweenAbn(secondTenYes, secondSession),
-            thirdTenNo = findElementsBetweenAbn(thirdTenYes, thirdSession);
 
-        /**
-         * Составление переходов между подозрительными url
-         */
-        var firstNo = findTransition(firstTenNo),
-            secondNo = findTransition(secondTenNo),
-            thirdNo = findTransition(thirdTenNo);
-        /**
-         * Подсчет повторений переходов по каждой сессии
-         */
-        var firstCountNo = findCountTransitionInSession(firstNo),
-            secondCountNo = findCountTransitionInSession(secondNo),
-            thirdCountNo = findCountTransitionInSession(thirdNo);
-        /**
-         * Подсчет кол-ва повторений в сутки
-         */
-        var countInDayAll = findCountTransitionInDay(firstCountNo,secondCountNo,thirdCountNo),
-            firstCountInDayNo = countInDayAll[0],
-            secondCountInDayNo = countInDayAll[1],
-            thirdCountInDayNo = countInDayAll[2];
+
 
 
         var arrCommon = [];
@@ -852,6 +890,7 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll,countBaseMax,countMax
             }
         });
         arrCommon = uniqueObj(arrCommon);
+
         /*arrCommon.forEach(function(common) {
             arrAllDate.forEach(function(date) {
                 if (common.baseUrl === date.baseUrl) {
@@ -866,15 +905,80 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll,countBaseMax,countMax
             })
         });*/
 
+
+
+
+
         obj.yes.first = firstTenYes;
         obj.yes.second = secondTenYes;
         obj.yes.third = thirdTenYes;
+        obj.yes.first.forEach(function(trans,index) {
+            if(checkTransYes(obj.yes.second,trans.from.baseUrl,trans.to.baseUrl) === false || checkTransYes(obj.yes.third,trans.from.baseUrl,trans.to.baseUrl) === false)  {
+                obj.yes.first.splice(index,1);
+            }
+        });
+        obj.yes.second.forEach(function(trans,index) {
+            if(checkTransYes(obj.yes.first,trans.from.baseUrl,trans.to.baseUrl) === false || checkTransYes(obj.yes.third,trans.from.baseUrl,trans.to.baseUrl) === false)  {
+                obj.yes.second.splice(index,1);
+            }
+        });
+        obj.yes.third.forEach(function(trans,index) {
+            if(checkTransYes(obj.yes.first,trans.from.baseUrl,trans.to.baseUrl) === false || checkTransYes(obj.yes.second,trans.from.baseUrl,trans.to.baseUrl) === false)  {
+                obj.yes.third.splice(index,1);
+            }
+        });
+
+        var firstTenYesNew = [],
+            secondTenYesNew = [],
+            thirdTenYesNew = [];
+
+        obj.yes.first.forEach(function(elem) {
+            firstTenYesNew.push(elem);
+        });
+        obj.yes.second.forEach(function(elem) {
+            secondTenYesNew.push(elem);
+        });
+        obj.yes.third.forEach(function(elem) {
+            thirdTenYesNew.push(elem);
+        });
+        /**
+         * Поиск элементов между аномальными
+         */
+        var firstTenNo = findElementsBetweenAbn(firstTenYesNew, firstSession),
+            secondTenNo = findElementsBetweenAbn(secondTenYesNew, secondSession),
+            thirdTenNo = findElementsBetweenAbn(thirdTenYesNew, thirdSession);
+        /**
+         * Составление переходов между подозрительными url
+         */
+        var firstNo = findTransition(firstTenNo),
+            secondNo = findTransition(secondTenNo),
+            thirdNo = findTransition(thirdTenNo);
+        /**
+         * Подсчет повторений переходов по каждой сессии
+         */
+        var firstCountNo = findCountTransitionInSession(firstNo),
+            secondCountNo = findCountTransitionInSession(secondNo),
+            thirdCountNo = findCountTransitionInSession(thirdNo);
+        /**
+         * Подсчет кол-ва повторений в сутки
+         */
+        var countInDayAll = findCountTransitionInDay(firstCountNo,secondCountNo,thirdCountNo),
+            firstCountInDayNo = countInDayAll[0],
+            secondCountInDayNo = countInDayAll[1],
+            thirdCountInDayNo = countInDayAll[2];
+
         obj.no.first = firstCountInDayNo;
         obj.no.second = secondCountInDayNo;
         obj.no.third = thirdCountInDayNo;
-        obj.common = arrCommon;
 
 
+        var arrCommonNew = [];
+        arrCommon.forEach(function(elem) {
+            if( checkCommonAfterTrans(obj.yes.first, elem.baseUrl) === true) {
+                arrCommonNew.push(elem);
+            }
+        });
+        obj.common = arrCommonNew;
         findUrlObj.push(obj);
     });
 
@@ -893,8 +997,29 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll,countBaseMax,countMax
             com.dateTime = com.dateTime.join(', ');
         });
     });
-    console.log(findUrlObj);
 
+
+    /**
+     * Убирает переходы, которых нет во всех трех сессиях
+     */
+    /*findUrlObj.forEach(function(yes) {
+        yes.yes.first.forEach(function(trans,index) {
+          if(checkTransYes(yes.yes.second,trans.from.baseUrl,trans.to.baseUrl) === false || checkTransYes(yes.yes.third,trans.from.baseUrl,trans.to.baseUrl) === false)  {
+              yes.yes.first.splice(index,1);
+          }
+        });
+        yes.yes.second.forEach(function(trans,index) {
+            if(checkTransYes(yes.yes.first,trans.from.baseUrl,trans.to.baseUrl) === false || checkTransYes(yes.yes.third,trans.from.baseUrl,trans.to.baseUrl) === false)  {
+                yes.yes.second.splice(index,1);
+            }
+        });
+        yes.yes.third.forEach(function(trans,index) {
+            if(checkTransYes(yes.yes.first,trans.from.baseUrl,trans.to.baseUrl) === false || checkTransYes(yes.yes.second,trans.from.baseUrl,trans.to.baseUrl) === false)  {
+                yes.yes.third.splice(index,1);
+            }
+        })
+    });*/
+    console.log(findUrlObj);
     colorTable(findUrlObj);
 
     var arrCom = [];
