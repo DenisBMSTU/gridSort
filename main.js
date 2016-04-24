@@ -13197,15 +13197,21 @@
 	                }
 	            }
 	        }
-
+	        this.jsonArrayNew = [];
 	        for (var i = 0; i < this.jsonArray.length; i++) {
 	            if (re.exec(data[i].name) != undefined) {
 	                var baseUrl = re.exec(data[i].name)[0];
 	            }
-	            if (yandex.test(baseUrl) || google.test(baseUrl) || rambler.test(baseUrl) || bing.test(baseUrl) || mail.test(baseUrl)) {
-	                this.jsonArray.splice(i,1);
+	            if (yandex.test(baseUrl) === false && google.test(baseUrl)=== false && rambler.test(baseUrl)=== false && bing.test(baseUrl)=== false && mail.test(baseUrl)=== false) {
+	                this.jsonArrayNew.push(this.jsonArray[i]);
 	            }
 	        }
+	        this.jsonArray = [];
+	            var self = this;
+	            this.jsonArrayNew.forEach(function(elem) {
+	                self.jsonArray.push(elem);
+	            });
+
 	        /**
 	         * Подсчет базового Url
 	         */
@@ -13306,6 +13312,7 @@
 	        this.jsonTypeOther.sort(sortDateUp);
 	        this.jsonTypeSocial.sort(sortDateUp);
 	        this.buttonSaveInBd();
+
 	    }.bind(this)});
 
 	};
@@ -14591,7 +14598,6 @@
 	         * Поиск всех объектов по нужной дате
 	         */
 	        var arrAllDate = findDate(date,arrAll);
-
 	        /**
 	         * Поиск сессий
 	         */
@@ -14780,6 +14786,8 @@
 	        });
 	        obj.common = arrCommonNew;
 	        findUrlObj.push(obj);
+
+
 	    });
 
 	    findUrlObj.forEach(function(objAll) {

@@ -791,7 +791,6 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll,countBaseMax,countMax
          * Поиск всех объектов по нужной дате
          */
         var arrAllDate = findDate(date,arrAll);
-
         /**
          * Поиск сессий
          */
@@ -980,6 +979,8 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll,countBaseMax,countMax
         });
         obj.common = arrCommonNew;
         findUrlObj.push(obj);
+
+
     });
 
     findUrlObj.forEach(function(objAll) {
