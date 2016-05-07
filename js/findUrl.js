@@ -791,7 +791,34 @@ var findTenSecondsAllTransition = function(session, common) {
     arrYes = uniqueTransition(arrYes);
     return arrYes;
 };
-
+var findAllTransition = function(session, common) {
+    session = session.sort(sortTransitionAll);
+    var arrYes = [];
+    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
+    for (var i = 0; i < session.length; i++) {
+        if (session[i+1] === undefined) {
+            arrYes = uniqueTransition(arrYes);
+            return arrYes;
+        }
+        var firstUrl = session[i].baseUrl
+            ,firstDateFull = new Date(session[i].date + " " + session[i].time).getTime()
+            ,secondUrl = session[i+1].baseUrl
+            ,secondDateFull = new Date(session[i+1].date + " " + session[i+1].time).getTime()
+            ,rareBaseUrl = session[i+1].rareBaseUrl
+            ;
+        if (checkElement(common,firstUrl) && rareBaseUrl === 'yes') {
+            var obj = {
+                from: "",
+                to: ""
+            };
+            obj.from = session[i];
+            obj.to = session[i+1];
+            arrYes.push(obj);
+        }
+    }
+    arrYes = uniqueTransition(arrYes);
+    return arrYes;
+};
 
 /**
  * Основная функция
@@ -1020,9 +1047,9 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll,countBaseMax,countMax
        });
     });
     commonAllDate = uniqueCommonAllDate(commonAllDate);
-    var transitionAll = findTenSecondsAllTransition(arrAll,commonAllDate);
+    var transitionAll = findAllTransition(arrAll,commonAllDate);
 
-    transitionAll.forEach(function(elem) {
+   /* transitionAll.forEach(function(elem) {
         elem.from.TransToRearFrom = 1;
     });
     commonAllDate.forEach(function(com) {
@@ -1037,7 +1064,7 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll,countBaseMax,countMax
                 trans.from.TransToRearFrom = count;
             }
         });
-    });
+    });*/
     console.log(transitionAll);
     console.log(countBaseMax);
     console.log(countMax);
