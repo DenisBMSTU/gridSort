@@ -13146,7 +13146,7 @@
 	    this.loadTable();
 	    this.buttonSend();
 	    this.checkBox();
-	    this.saveTableData();
+	   /* this.saveTableData();*/
 	};
 
 	/**
@@ -14434,30 +14434,39 @@
 	        item.yes.first.forEach(function(el) {
 	            var elFrom = el.from.date + ' ' + el.from.time,
 	                elTo = el.to.date + ' ' + el.to.time,
-	                td = $('#grid tbody tr td:first-child');
+	                td = $('#grid tbody tr td');
 	            for (var i =0; i < td.length; i++) {
 	                if (td[i].innerHTML === elFrom || td[i].innerHTML === elTo) {
-	                    td[i].style.color = 'red'
+	                    td[i].style.color = 'red';
+	                    $(td[i]).parent().each(function(index, elem) {
+	                       elem.style.color = 'red';
+	                    });
 	                }
 	            }
 	        });
 	        item.yes.second.forEach(function(el) {
 	            var elFrom = el.from.date + ' ' + el.from.time,
 	                elTo = el.to.date + ' ' + el.to.time,
-	                td = $('#grid tbody tr td:first-child');
+	                td = $('#grid tbody tr td');
 	            for (var i =0; i < td.length; i++) {
 	                if (td[i].innerHTML === elFrom || td[i].innerHTML === elTo) {
-	                    td[i].style.color = 'red'
+	                    td[i].style.color = 'red';
+	                    $(td[i]).parent().each(function(index, elem) {
+	                        elem.style.color = 'red';
+	                    });
 	                }
 	            }
 	        });
 	        item.yes.third.forEach(function(el) {
 	            var elFrom = el.from.date + ' ' + el.from.time,
 	                elTo = el.to.date + ' ' + el.to.time,
-	                td = $('#grid tbody tr td:first-child');
+	                td = $('#grid tbody tr td');
 	            for (var i =0; i < td.length; i++) {
 	                if (td[i].innerHTML === elFrom || td[i].innerHTML === elTo) {
-	                    td[i].style.color = 'red'
+	                    td[i].style.color = 'red';
+	                    $(td[i]).parent().each(function(index, elem) {
+	                        elem.style.color = 'red';
+	                    });
 	                }
 	            }
 	        });
@@ -14878,9 +14887,8 @@
 	  /*  console.log(transitionGroup);*/
 
 
-	/*
 
-	    var arrCom = [];
+	   /* var arrCom = [];
 	    findUrlObj.forEach(function(item) {
 	        item.common.forEach(function(com) {
 	            arrCom.push(com);
@@ -14959,9 +14967,93 @@
 	        error: function() {
 	            console.log('ups');
 	        }
-	    });
-	*/
+	    });*/
 
+	    var tableSend = [],
+	        tableCommon = [];
+	    findUrlObj.forEach(function(elem) {
+	        elem.common.forEach(function(item) {
+	            var obj = {
+	                baseUrl: '',
+	                count: 0,
+	                dateTime: ''
+	            };
+	            obj.baseUrl = item.baseUrl;
+	            obj.count = item.countBase;
+	            obj.dateTime = item.dateTime.split(', ');
+	            tableCommon.push(obj);
+	        });
+	        elem.yes.first.forEach(function(item) {
+	           var obj = {
+	               from: {},
+	               to: {},
+	               dateTimeBase: [],
+	               countFromBase: 0,
+	               countFromFull: 0,
+	               dateTimeFull: []
+	           };
+	           obj.from = item.from;
+	           obj.to = item.to;
+	           tableSend.push(obj);
+	       });
+	        elem.yes.second.forEach(function(item) {
+	            var obj = {
+	                from: {},
+	                to: {},
+	                dateTimeBase: [],
+	                countFromBase: 0,
+	                countFromFull: 0,
+	                dateTimeFull: []
+	            };
+	            obj.from = item.from;
+	            obj.to = item.to;
+	            tableSend.push(obj);
+	        });
+	        elem.yes.third.forEach(function(item) {
+	            var obj = {
+	                from: {},
+	                to: {},
+	                dateTimeBase: [],
+	                countFromBase: 0,
+	                countFromFull: 0,
+	                dateTimeFull: []
+	            };
+	            obj.from = item.from;
+	            obj.to = item.to;
+	            tableSend.push(obj);
+	        });
+	    });
+	    tableSend.forEach(function(elem) {
+	        tableSend.forEach(function(item) {
+	            if (elem.from.baseUrl === item.from.baseUrl) {
+	                elem.countFromBase +=1;
+	                elem.dateTimeBase.push(item.to.date + ' ' + item.to.time);
+	            }
+	            if (elem.from.name === item.from.name) {
+	                elem.countFromFull +=1;
+	                elem.dateTimeFull.push(item.to.date + ' ' + item.to.time);
+	            }
+	        });
+	    });
+	    var tableAll = {
+	        common: tableCommon,
+	        tableSend: tableSend
+	    };
+	    console.log(tableAll)
+	    $.ajax({
+	        url: "http://localhost:3000/saveInTable",
+	        type: "POST",
+	        dataType: 'json',
+	        crossDomain: true,
+	        contentType: 'application/json',
+	        data: JSON.stringify(tableAll),
+	        success: function(data) {
+	            console.log('data save', data);
+	        },
+	        error: function() {
+	            console.log('ups');
+	        }
+	    });
 	};
 
 	module.e = findUrl;

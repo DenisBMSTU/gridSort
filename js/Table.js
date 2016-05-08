@@ -16,7 +16,7 @@ Table.prototype.init = function() {
     this.loadTable();
     this.buttonSend();
     this.checkBox();
-    this.saveTableData();
+   /* this.saveTableData();*/
 };
 
 /**
