@@ -81,11 +81,20 @@ Table.prototype.loadTable = function() {
             this.jsonArrayNew.forEach(function(elem) {
                 self.jsonArray.push(elem);
             });
-
+        /**
+         * Добавим дату в Utc
+         */
+        for (i = 0; i < this.jsonArray.length; i++) {
+            this.jsonArray[i].fullDate = new Date(this.jsonArray[i].date + ' ' + this.jsonArray[i].time).getTime();
+        }
         /**
          * Подсчет базового Url
          */
+
+
         for (i = 0; i < this.jsonArray.length; i++) {
+            this.jsonArray[i].countBaseA = 0;
+            this.jsonArray[i].countBaseB = 0;
             this.jsonArray[i].baseUrl = re.exec(this.jsonArray[i].name)[0];
             for (var j = 0; j < this.jsonArray.length; j++) {
                 if (re.exec(this.jsonArray[i].name)[0] === re.exec(this.jsonArray[j].name)[0]) {

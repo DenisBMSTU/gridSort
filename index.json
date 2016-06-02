@@ -614,7 +614,22 @@
   "rareUrl": "no",
   "rareBaseUrl": "no",
   "searchUrl": "no"
-}, {
+},{
+  "date" : "2016/03/05",
+  "name": "https://twitter.com/page10",
+  "count": 0,
+  "typeUrl": "social",
+  "time": "09:41:28",
+  "countBase": 0,
+  "baseUrl": "",
+  "countInDay": 0,
+  "countBaseInDay": 0,
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
+},
+  {
   "date" : "2016/03/05",
   "name": "https://www.facebook.com/page2",
   "count": 0,
@@ -1110,6 +1125,20 @@
   "count": 0,
   "typeUrl": "social",
   "time" : "09:40:35",
+  "countBase": 0,
+  "baseUrl": "",
+  "countInDay": 0,
+  "countBaseInDay": 0,
+  "sumCountBaseUrl": 0,
+  "rareUrl": "no",
+  "rareBaseUrl": "no",
+  "searchUrl": "no"
+},{
+  "date" : "2016/03/05",
+  "name": "https://www.site.ru/page10",
+  "count": 0,
+  "typeUrl": "social",
+  "time" : "09:41:35",
   "countBase": 0,
   "baseUrl": "",
   "countInDay": 0,

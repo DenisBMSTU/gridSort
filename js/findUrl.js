@@ -747,6 +747,17 @@ var sortTransitionAll = function(a,b) {
         return 0;
     }
 };
+var sortArrAllFullDate = function(a,b) {
+    a = a.fullDate;
+    b = b.fullDate;
+    if (a < b) {
+        return -1;
+    } else if (a > b) {
+        return 1;
+    } else {
+        return 0;
+    }
+};
 
 var uniqueTransition = function(arr) {
     var result = [];
@@ -829,6 +840,7 @@ var findAllTransition = function(session, common) {
     return arrYes;
 };
 
+
 /**
  * Основная функция
  * @param pickerDateFrom
@@ -838,6 +850,13 @@ var findAllTransition = function(session, common) {
 var findUrl = function(pickerDateFrom, pickerDateTo,arrAll,countBaseMax,countMax) {
 /*    var sumBaseUrls = sumBaseOfUrls(arrAll);
     setSumBaseOfUrls(arrAll, sumBaseUrls);*/
+    arrAll = arrAll.sort(sortArrAllFullDate);
+
+    var num = 0;
+    arrAll.forEach(function(elem) {
+       elem.numberOfDate = num;
+        num += 1;
+    });
 
     /**
      * Массив всех дат
@@ -1247,6 +1266,136 @@ var findUrl = function(pickerDateFrom, pickerDateTo,arrAll,countBaseMax,countMax
             console.log('ups');
         }
     });
+    /**
+     * часть 2 - самая сложная!)
+     */
+
+
+    console.log('findUrlObj',findUrlObj);
+    var sessionsAll = [];
+    dateArray.forEach(function(date, index) {
+        var obj = {
+            yes: {
+                first: [],
+                second: [],
+                third: []
+            }
+        };
+        var arrAllDate = findDate(date,arrAll);
+        var firstSession = findSession(arrAllDate, 9, 10),
+            secondSession = findSession(arrAllDate, 12, 13),
+            thirdSession = findSession(arrAllDate, 18, 19);
+        var firstSessionSort = firstSession.sort(sortArray),
+            secondSessionSort = secondSession.sort(sortArray),
+            thirdSessionSort = thirdSession.sort(sortArray);
+        findUrlObj[index].yes.first.forEach(function(elem) {
+            var arrCheck = findRareUrlDynamic(elem, arrAll, firstSessionSort);
+            if (checkObject(arrCheck[0], elem.form) && checkObject(arrCheck[1], elem.to)) {
+                obj.yes.first.push(elem);
+            }
+            /**
+             * СДЕЛАТЬ ПРОВЕРКУ НА transition < kOfTrans
+             */
+        });
+        /*findUrlObj[index].yes.second.forEach(function(elem) {
+            var arrCheck = findRareUrlDynamic(elem, arrAll, secondSessionSort);
+            if (checkObject(arrCheck[0], elem.form) && checkObject(arrCheck[1], elem.to)) {
+                obj.yes.second.push(elem);
+            }
+        });
+        findUrlObj[index].yes.third.forEach(function(elem) {
+            var arrCheck = findRareUrlDynamic(elem, arrAll, thirdSessionSort);
+            if (checkObject(arrCheck[0], elem.form) && checkObject(arrCheck[1], elem.to)) {
+                obj.yes.third.push(elem);
+            }
+        });*/
+        sessionsAll.push(obj);
+    });
+    console.log('sessionsAll',sessionsAll);
 };
+
+function findRareUrlDynamic(elem, arrAll, firstSessionSort) {
+    // Собираем динамично массивы для поиска редких ресурсов
+    var re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}[/]/;
+    var arrFrom = arrAll.slice(0, elem.from.numberOfDate + 1),
+        arrTo = firstSessionSort.slice(0, elem.to.numberOfDate + 1);
+    for (i = 0; i < arrFrom.length; i++) {
+        arrFrom[i].countBaseA = 0;
+        arrFrom[i].redkiyUrl = 'no';
+    }
+    for (i = 0; i < arrTo.length; i++) {
+        arrTo[i].countBaseB = 0;
+        arrTo[i].redkiyUrl = 'no';
+    }
+    for (var i = 0; i < arrFrom.length; i++) {
+        arrFrom[i].baseUrl = re.exec(arrFrom[i].name)[0];
+        for (var j = 0; j < arrFrom.length; j++) {
+            if (re.exec(arrFrom[i].name)[0] === re.exec(arrFrom[j].name)[0]) {
+                arrFrom[i].countBaseA++;
+            }
+        }
+    }
+    for (var i = 0; i < arrTo.length; i++) {
+        arrTo[i].baseUrl = re.exec(arrTo[i].name)[0];
+        for (var j = 0; j < arrTo.length; j++) {
+            if (re.exec(arrTo[i].name)[0] === re.exec(arrTo[j].name)[0]) {
+                arrTo[i].countBaseB++;
+            }
+        }
+    }
+
+
+    //Находим редкие url from
+    var score = 0,
+        arrScoreBase = [],
+        arrScore = [];
+    var jsLength = arrFrom.length;
+    arrFrom.forEach(function(item) {
+        var percent = item.countBaseA * 100 / jsLength;
+        if ((score + percent) < 90) {
+            score += percent;
+            arrScoreBase.push(item);
+        }
+    });
+    var countTransFrom = arrScoreBase[arrScoreBase.length-1].countBaseA;
+
+    arrFrom.sort(sortCommonCountUrl);
+    for (i = 0; i<arrFrom.length; i++) {
+        arrFrom[i]["countTransFrom"] = countTransFrom;
+    }
+    for (i = 0; i < arrFrom.length; i++) {
+        if (arrFrom[i].countBaseA <= countTransFrom) {
+            arrFrom[i].redkiyUrl = 'yes';
+        }
+    }
+
+    //to
+    var score = 0,
+        arrScoreBase = [],
+        arrScore = [];
+    var jsLength = arrFrom.length;
+    arrTo.forEach(function(item) {
+        var percent = item.countBaseB * 100 / jsLength;
+        if ((score + percent) < 90) {
+            score += percent;
+            arrScoreBase.push(item);
+        }
+    });
+    var countTransTo = arrScoreBase[arrScoreBase.length-1].countBaseB;
+
+    arrTo.sort(sortCommonCountUrl);
+
+    for (i = 0; i<arrTo.length; i++) {
+        arrTo[i]["countTransTo"] = countTransTo;
+    }
+
+    for (i = 0; i < arrTo.length; i++) {
+        if (arrTo[i].countBaseB <= countTransTo) {
+            arrTo[i].redkiyUrl = 'yes';
+        }
+    }
+
+    return [arrFrom, arrTo];
+}
 
 module.exports = findUrl;
